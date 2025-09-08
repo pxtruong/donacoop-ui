@@ -1,0 +1,6 @@
+@use '../variables';
+.btn-disabled {
+    .mat-icon {
+        color: variables.$gray-med-base !important;
+    }
+}

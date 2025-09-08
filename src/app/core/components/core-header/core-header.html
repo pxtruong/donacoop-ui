@@ -1,0 +1,34 @@
+@if(isShowHeader) {
+<article>
+  <header
+    mat-subheader
+    class="d-flex justify-content-between pl-4 pr-4 pt-2 pb-2 align-items-center wrapper-header hover-element"
+  >
+    <div class="cursor-pointer">
+      <a
+        routerLink="/page/note"
+        routerLinkActive="active"
+        class="d-flex justify-content-start align-items-center wrapper-link"
+      >
+        <!-- <img src="./favicon.svg" alt="hình ảnh" width="30" /> -->
+        <h4 class="nav-label icon-white pl-2">Donacoop</h4>
+      </a>
+    </div>
+    <div
+      class="text-center cursor-pointer d-flex align-items-center"
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon class="core-icon-color icon-white mr-2"
+        >account_circle</mat-icon
+      >
+      <div>{{ "Test" }}</div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()" [disabled]="true">
+          {{ "Logout" }}
+        </button>
+      </mat-menu>
+    </div>
+  </header>
+</article>
+
+}

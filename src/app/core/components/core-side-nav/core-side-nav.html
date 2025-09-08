@@ -1,0 +1,82 @@
+@if (isLoggedIn) {
+<nav
+  class="core-side-nav short-nav hover-element"
+  #sideNav
+  [class.cores-side-is-mobile]="isMobile()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  @for (navItem of navList; track navItem) {
+  <a
+    [routerLink]="navItem.isDisabled || navItem.children ? null : navItem.link"
+    [class.disabled]="navItem.isDisabled"
+    routerLinkActive="active"
+    class="d-flex justify-content-start align-items-center wrapper-link"
+  >
+    <div class="d-flex" [ngClass]="{ 'none-child': !navItem.children }">
+      @if(navItem.children) { @if(navItem.isExpand) {
+      <mat-icon
+        class="core-icon-color icon-white cursor-pointer"
+        (click)="onClickExpand(navItem)"
+        >arrow_drop_down</mat-icon
+      >
+      } @else {
+      <mat-icon
+        class="core-icon-color icon-white cursor-pointer"
+        (click)="onClickExpand(navItem)"
+        >arrow_right</mat-icon
+      >
+      } }
+      <mat-icon class="core-icon-color {{ navItem.customClass }}">{{
+        navItem.icon
+      }}</mat-icon>
+    </div>
+    <span class="nav-label {{ navItem.customClass }}">{{
+      navItem.label | translate
+    }}</span></a
+  >
+  @if(navItem.isExpand) { @for (children of navItem.children; track children) {
+  <a
+    [routerLink]="
+      children.isDisabled || children.children ? null : children.link
+    "
+    [class.disabled]="children.isDisabled"
+    routerLinkActive="active"
+    class="d-flex justify-content-start align-items-center wrapper-link wrapper-child"
+  >
+    <div class="d-flex" [ngClass]="{ 'none-child': !children.children }">
+      @if(children.children) { @if(children.isExpand) {
+      <mat-icon
+        class="core-icon-color icon-white cursor-pointer"
+        (click)="onClickExpand(children)"
+        >arrow_drop_down</mat-icon
+      >
+      } @else {
+      <mat-icon
+        class="core-icon-color icon-white cursor-pointer"
+        (click)="onClickExpand(children)"
+        >arrow_right</mat-icon
+      >
+      } }
+      <mat-icon class="core-icon-color {{ children.customClass }}">{{
+        children.icon
+      }}</mat-icon>
+    </div>
+    <span class="nav-label {{ children.customClass }}">{{
+      children.label | translate
+    }}</span></a
+  >
+
+  } } }
+  <mat-divider class="mb-2"></mat-divider>
+  <div
+    class="cursor-pointer d-flex justify-content-start align-items-center wrapper-link none-child"
+    (click)="lockOrUnlockNav()"
+  >
+    <mat-icon class="core-icon-color icon-white">{{
+      isLock ? "lock" : "lock_open"
+    }}</mat-icon>
+    <span class="nav-label icon-white">{{ "Khóa" | translate }}</span>
+  </div>
+</nav>
+}

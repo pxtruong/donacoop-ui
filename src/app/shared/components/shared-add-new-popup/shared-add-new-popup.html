@@ -1,0 +1,22 @@
+<core-dialog>
+  <span header>{{ title }}</span>
+  <div body class="dynamic-form">
+    @if(message) {
+    {{ message }}
+    } @else {
+    <shared-form [iFormConfig]="formConfig"></shared-form>
+
+    }
+  </div>
+  <div action>
+    <btn-cancel
+      class="mr-2"
+      [iText]="'Hủy Bỏ'"
+      (clickBTN)="cancel()"
+    ></btn-cancel>
+    <btn-acceppt
+      [iText]="confirmBTNText"
+      (clickBTN)="confirmed()"
+    ></btn-acceppt>
+  </div>
+</core-dialog>

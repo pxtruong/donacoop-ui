@@ -1,0 +1,305 @@
+@use 'variables';
+body {
+    --mat-form-field-outlined-input-text-color:  variables.$primary;
+    &.dark-theme {
+        color: variables.$primary;
+        background:  variables.$background-color;
+        --mat-divider-color: red;
+        /*Header*/
+        .wrapper-header {
+            border-bottom: solid 1px;
+        }
+        .hover-element {
+            &:hover {
+                box-shadow: 
+                    0 0 10px variables.$primary, 
+                    0 0 20px variables.$primary; /* Glow ngoài */
+            }
+        }
+        .core-active {
+            box-shadow: 
+                0 0 10px #ff00c8, 
+                0 0 20px #ff00c8; /* Glow ngoài */
+        }
+        .base-layout {
+            /* Track */
+            &::-webkit-scrollbar-track {
+                box-shadow: 0 0 6px rgba(0, 255, 0, 0.15), 0 0 12px rgba(0, 255, 0, 0.1);
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: variables.$secondary-color; 
+            }
+            
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: variables.$primary; 
+                box-shadow: 
+                    0 0 10px variables.$primary, 
+                    0 0 20px variables.$primary; /* Glow ngoài */
+            }
+            /* Track */
+            ::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px grey; 
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: variables.$secondary-color; 
+            }
+            
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: variables.$primary; 
+                box-shadow: 
+                    0 0 10px variables.$primary, 
+                    0 0 20px variables.$primary; /* Glow ngoài */
+            }
+
+            // border: solid 1px variables.$secondary-color;
+            .angular-editor-toolbar, .angular-editor-textarea {
+                background: transparent;
+                border: solid 1px variables.$secondary-color !important;
+                fill: variables.$primary;
+                &:focus {
+                    box-shadow: 
+                        0 0 10px variables.$primary, 
+                        0 0 20px variables.$primary; /* Glow ngoài */
+                    border: 1px solid variables.$primary !important;
+                }
+                button {
+                    svg {
+                        color: variables.$primary;
+                    }
+                    &[iconname="indent"], &[iconname="outdent"] {
+                        stroke: variables.$primary;
+                    }
+                    &:hover {
+                        box-shadow: 
+                            0 0 10px variables.$primary, 
+                            0 0 20px variables.$primary; /* Glow ngoài */
+                    }
+                    &.ae-picker-label {
+                        border: none;
+                        color: variables.$primary;
+                    }
+                }
+                // --ae-gap: 5px;
+                // --ae-text-area-border: solid 1px variables.$secondary-color !important;
+                // // --ae-text-area-border-radius: 10px;
+                // --ae-toolbar-padding: 1px;
+                // --ae-toolbar-bg-color: red;
+                // // --ae-toolbar-border-radius: 1px solid #ddd;
+                --ae-button-bg-color: variables.$background-color;
+                --ae-button-border: none;
+                // --ae-button-radius: 0px;
+                --ae-button-hover-bg-color: variables.$background-color;
+                --ae-button-active-bg-color: variables.$background-color;
+                --ae-button-active-hover-bg-color: variables.$background-color;
+                // --ae-button-disabled-bg-color: gray;
+
+                --ae-picker-label-color: variables.$background-color;;
+                .select-custom-style, .ae-picker-label, .select-heading, .select-font {
+                    &:hover {
+                        background: variables.$background-color;
+                        &::before {
+                            background: transparent;
+                        }
+                    }
+                }
+                .ae-picker-options .ae-picker-item {
+                    background: variables.$background-color;
+                    &.selected {
+                        color: variables.$primary;
+                    }
+                    
+                }
+                // --ae-picker-icon-bg-color: red;
+                --ae-picker-option-bg-color: variables.$background-color;
+                --ae-picker-option-active-bg-color:  variables.$background-color
+                --ae-picker-option-focused-bg-color:  variables.$background-color;
+                // --ae-picker-color: red;
+                --ae-picker-option-hover-bg-color: variables.$background-color;
+            }
+            // .angular-editor-toolbar {
+            // }
+            .angular-editor-textarea, .view-html-angular-editor {
+                color: variables.$white-color;
+            }
+            .btn-custom {
+                background-color: transparent;
+                &.mat-mdc-button-disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+            .btn-green {
+                color: variables.$secondary-color;
+                // text-shadow: 0 0 4px variables.$secondary-color;
+                border: solid 1px variables.$secondary-color;
+            }
+            .btn-pink {
+                color: variables.$primary;
+                // text-shadow: 0 0 4px variables.$primary;
+                border: solid 1px variables.$primary;
+            }
+            .btn-violet {
+                color: variables.$three-color;
+                // text-shadow: 0 0 4px variables.$three-color;
+                border: solid 1px variables.$three-color;
+            }
+            // variables.$three-color
+        }
+        .icon-green {
+            &.core-icon-color {
+                color: variables.$secondary-color;
+                &:hover {
+                    text-shadow: 0 0 4px variables.$secondary-color;
+                }
+            }
+            &.nav-label {
+                color: variables.$secondary-color;
+                &:hover {
+                    text-shadow: 0 0 4px variables.$secondary-color;
+                }
+            }
+        }
+        .icon-pink {
+            &.core-icon-color {
+                color: variables.$primary;
+            }
+            &.nav-label {
+                color: variables.$primary;
+            }
+        }
+        .icon-violet {
+            &.core-icon-color {
+                color: variables.$three-color;
+                &:hover {
+                    text-shadow: 0 0 4px variables.$three-color;
+                }
+            }
+            &.nav-label {
+                color: variables.$three-color;
+                &:hover {
+                    text-shadow: 0 0 4px variables.$three-color;
+                }
+            }
+        }
+            a {
+                &.disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+                &.wrapper-link {
+                        &:hover {
+                            .icon-green {
+                                &.core-icon-color {
+                                    text-shadow: 0 0 4px variables.$secondary-color;
+                                }
+                                &.nav-label {
+                                    text-shadow: 0 0 4px variables.$secondary-color;
+                                }
+                            }
+                            .icon-pink {
+                                &.core-icon-color {
+                                    text-shadow: 0 0 4px variables.$primary;
+                                }
+                                &.nav-label {
+                                    text-shadow: 0 0 4px variables.$primary;
+                                }
+                            }
+                            .icon-violet {
+                                &.core-icon-color {
+                                    text-shadow: 0 0 4px variables.$three-color;
+                                }
+                                &.nav-label {
+                                    text-shadow: 0 0 4px variables.$three-color;
+                                }
+                            }
+                        }
+                        &.active {
+                            .icon-green {
+                                &.core-icon-color {
+                                    text-shadow: 0 0 4px variables.$secondary-color;
+                                }
+                                &.nav-label {
+                                    text-shadow: 0 0 4px variables.$secondary-color;
+                                }
+                            }
+                            .icon-pink {
+                                &.core-icon-color {
+                                    text-shadow: 0 0 4px variables.$primary;
+                                }
+                                &.nav-label {
+                                    text-shadow: 0 0 4px variables.$primary;
+                                }
+                            }
+                            .icon-violet {
+                                &.core-icon-color {
+                                    text-shadow: 0 0 4px variables.$three-color;
+                                }
+                                &.nav-label {
+                                    text-shadow: 0 0 4px variables.$three-color;
+                                }
+                            }
+                        }
+                    }
+                }
+        /*side nav*/
+        .core-side-nav {
+                background-color: transparent;
+                border: 1px solid variables.$secondary-color;
+                &:hover {
+                    border: 1px solid variables.$primary;
+                }
+            }
+            
+        /*login*/
+        .login-form {
+            background-color:  variables.$black;
+            background: #111;
+            border: 1.5px solid variables.$primary;
+            text-shadow: 0 0 4px variables.$primary;
+            box-shadow: 0 0 6px rgba(0, 255, 0, 0.15), 0 0 12px rgba(0, 255, 0, 0.1);
+        }
+        .note-wrapper {
+            .wrapper-button-note {
+                border: 1px solid rgb(165, 40, 214);
+            }
+        }
+        /*loading*/
+        .loading-spinner {
+            background: transparent;
+            .mat-mdc-dialog-surface {
+                overflow: hidden;
+                background: none;
+                box-shadow: none;
+                &::before {
+                    border: none;
+                }
+            }
+        }
+        /*menu*/
+        
+        .cdk-overlay-container {
+            .mat-mdc-menu-panel {
+                background-color: variables.$black;
+                border: 1px solid variables.$secondary-color;
+                &:hover {
+                    border: 1px solid variables.$primary;
+                }
+                .mat-mdc-menu-content {
+                    .mat-mdc-menu-item {
+                        min-height: 28px;
+                        color: variables.$primary;
+                        &:hover {
+                            text-shadow: 0 0 4px variables.$primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

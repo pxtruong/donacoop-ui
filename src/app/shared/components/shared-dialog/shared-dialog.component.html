@@ -1,0 +1,20 @@
+<core-dialog>
+  <span header>{{ "dialog.confirm-title" | translate }}</span>
+  <div body>
+    <span class="break-line">{{ message }}</span>
+  </div>
+  <div action class="d-flex">
+    <btn-cancel
+      class="mr-2"
+      [iCustomClass]="'w-100'"
+      [iText]="'common.buttons.cancel'"
+      (clickBTN)="close()"
+    >
+    </btn-cancel>
+    <btn-acceppt
+      [iCustomClass]="'w-100'"
+      [iText]="'common.buttons.confirm'"
+      (clickBTN)="confirmed()"
+    ></btn-acceppt>
+  </div>
+</core-dialog>

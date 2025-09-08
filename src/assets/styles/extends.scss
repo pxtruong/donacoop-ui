@@ -1,0 +1,13 @@
+@use "variables";
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.ex-toggle-group  .mat-button-toggle {
+    --mat-button-toggle-height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+}
+.border-none {
+    border: none !important;
+}

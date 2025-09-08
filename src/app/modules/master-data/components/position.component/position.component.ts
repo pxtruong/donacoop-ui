@@ -1,0 +1,42 @@
+import { Component } from '@angular/core';
+import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
+import { ITableConfig } from '../../../../shared/models/table.model';
+import { GET_ADD_NEW_CONFIG_CHUC_VU } from '../../constants/chuc-vu-add-new-config.constant';
+import { GET_TABLE_CONFIG_ROLE } from '../../constants/chuc-vu-table.constant';
+import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
+
+@Component({
+  selector: 'md-position',
+  imports: [SharedTable],
+  templateUrl: './position.component.html',
+  styleUrl: './position.component.scss',
+  standalone: true,
+})
+export class PositionComponent extends MasterDataBaseComponent {
+  override tableConfig: ITableConfig = GET_TABLE_CONFIG_ROLE();
+  protected override _loadData() {
+    this.subcribe(
+      this._masterDataService.getRoles(),
+      (res) => {
+        if (!Array.isArray(res)) {
+          return;
+        }
+        this._uppdateTableData(res);
+      },
+      (error) => {}
+    );
+  }
+  protected override getFormConfig(record: any): any[] {
+    return GET_ADD_NEW_CONFIG_CHUC_VU(record, this._formGroupAddNew);
+  }
+  protected override updateAPI(id: any, data: any) {
+    return this._masterDataService.updateRoles(id, data);
+  }
+
+  protected override deleteAPI(id: any) {
+    return this._masterDataService.deleteRoles(id);
+  }
+  override createAPI(data: any) {
+    return this._masterDataService.createRoles(data);
+  }
+}

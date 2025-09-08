@@ -1,0 +1,16 @@
+<mat-form-field class="w-100" appearance="outline">
+  <mat-select [formControl]="_formControl" multiple>
+    <mat-select-trigger>
+      {{_formControl.value?.[0].label || ''}}
+      @if ((_formControl.value?.length || 0) > 1) {
+      <span class="example-additional-selection">
+        (+{{ (_formControl.value?.length || 0) - 1 }}
+        {{ _formControl.value?.length === 2 ? "other" : "others" }})
+      </span>
+      }
+    </mat-select-trigger>
+    @for (option of dataSource; track option.value) {
+    <mat-option [value]="option">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

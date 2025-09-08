@@ -1,0 +1,11 @@
+<base-layout>
+  <div body class="w-100 h-100 master-data-wrapper s-content">
+    <h5>Dữ Liệu Chính</h5>
+    <div class="dynamic-form mt-4">
+      <shared-form [iFormConfig]="formConfig"></shared-form>
+    </div>
+    <div>
+      <router-outlet #outlet="outlet"> </router-outlet>
+    </div>
+  </div>
+</base-layout>

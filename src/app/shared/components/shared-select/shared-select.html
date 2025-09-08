@@ -1,0 +1,25 @@
+<mat-form-field class="w-100" appearance="outline">
+  <mat-select [formControl]="_formControl">
+    <mat-option>
+      <ngx-mat-select-search
+        [formControl]="searchControl"
+        [placeholderLabel]="'Tìm...'"
+        [noEntriesFoundLabel]="'Data not found'"
+      ></ngx-mat-select-search>
+    </mat-option>
+    @for (option of renderDataSource; track option.value) { @if(applyFieldValue)
+    {
+    <mat-option
+      [value]="option[applyFieldValue]"
+      (click)="selectionChange(option, $event)"
+      >{{ option.label }}</mat-option
+    >
+
+    } @else {
+    <mat-option [value]="option" (click)="selectionChange(option, $event)">{{
+      option.label
+    }}</mat-option>
+
+    } }
+  </mat-select>
+</mat-form-field>

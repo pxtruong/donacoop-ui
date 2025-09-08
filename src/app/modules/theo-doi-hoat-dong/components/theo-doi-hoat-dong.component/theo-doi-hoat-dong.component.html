@@ -1,0 +1,13 @@
+<base-layout>
+  <div body class="w-100 h-100 master-data-wrapper s-content">
+    <h5>Theo Dõi Kế Hoạch</h5>
+    <div class="dynamic-form">
+      <shared-form [iFormConfig]="formConfig"></shared-form>
+    </div>
+    <div>
+      @if(tableConfig) {
+      <shared-table [iTableConfig]="tableConfig"></shared-table>
+      }
+    </div>
+  </div>
+</base-layout>

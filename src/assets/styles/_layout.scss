@@ -1,0 +1,25 @@
+@use "variables";
+.force-24 {
+    width: 24px;
+    height: 24px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+
+
+.break-line {
+  white-space: pre-line
+}

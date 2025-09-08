@@ -1,0 +1,16 @@
+<base-layout>
+  <div body class="w-100 h-100 master-data-wrapper s-content">
+    <h5>Danh Sách Xe Tải Đăng Ký</h5>
+    <div class="dynamic-form mt-4">
+      <shared-form [iFormConfig]="formConfig"></shared-form>
+    </div>
+    <div>
+      @if(tableConfig) {
+      <shared-table
+        [iTableConfig]="tableConfig"
+        (clickBTN)="onClickBTN($event)"
+      ></shared-table>
+      }
+    </div>
+  </div>
+</base-layout>

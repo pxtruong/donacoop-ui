@@ -1,0 +1,16 @@
+export const FIELD_THEO_DOI_HOAT_DONG_CONSTANTS = {
+  BIEN_SO_XE: 'bienSoXe',
+  VI_TRI_CAN: 'viTriCan',
+  LOAI_DA: 'loaiDa',
+  VI_TRI_LAY_DA: 'viTriLayDa',
+  DOANH_THU: 'doanhThu',
+  CONG_TY_MUA: 'congTyMua',
+  THOI_GIAN_VAO_CONG: 'thoiGianVaoCong',
+  THOI_GIAN_CAN_LAN_1: 'thoiGianCanLan1',
+  VI_TRI_CAN_LAN_1: 'viTriCanLan1',
+  KHOI_LUONG1: 'khoiLuong1',
+  THOI_GIAN_CAN_LAN_2: 'thoiGianCanLan2',
+  VI_TRI_CAN_LAN_2: 'viTriCanLan2',
+  KHOI_LUONG2: 'khoiLuong2',
+  THOI_GIAN_RA_CONG: 'thoiGianRaCong',
+};

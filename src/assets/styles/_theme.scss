@@ -1,0 +1,170 @@
+@use '@angular/material' as mat;
+@include mat.core();
+// http://mcg.mbitson.com/
+/*
+https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+#90dae5
+*/
+$shared-primary: (
+  50 : #e2eaf2,
+  100 : #b6cadd,
+  200 : #89a7c7,
+  300 : #5b84b0,
+  400 : #376aa0,
+  500 : #00458f, // màu chính bạn muốn
+  600 : #003e81,
+  700 : #00366f,
+  800 : #002f5f,
+  900 : #002145,
+  A100 : #a2c6ff,
+  A200 : #6fa6ff,
+  A400 : #3c86ff,
+  A700 : #006fff,
+
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff
+  )
+);
+
+
+/*
+#8dfce4
+*/
+$shared-second:(
+    50 : #d3fff6,
+    100 : #8dfce4,
+    200 : #41f6d3,
+    300 : #00ebc1,
+    400 : #00e0b2,
+    500 : #00d6a4,
+    600 : #00c695,
+    700 : #00b483,
+    800 : #00a374,
+    900 : #008355,
+    A100 : #ffffff,
+    A200 : #eeffee,
+    A400 : #bdffbb,
+    A700 : #a4ffa1,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$shared-accent: (
+  50 :  #f9fbe7,
+  100 : #f0f4c3,
+  200 : #e6ee9c,
+  300 : #dce775,
+  400 : #d4e157,
+  500 : #cddc39, // <-- Accent chính
+  600 : #c0ca33,
+  700 : #afb42b,
+  800 : #9e9d24,
+  900 : #827717,
+
+  A100 : #f4ff81,
+  A200 : #eeff41,
+  A400 : #c6ff00,
+  A700 : #aeea00,
+
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000
+  )
+);
+
+
+$shared-warn:(
+    50 : #ffebee,
+    100 : #ffcdd2,
+    200 : #ef9a9a,
+    300 : #e57373,
+    400 : #ef5350,
+    500 : #f44336,/*p*/
+    600 : #e53935,
+    700 : #d32f2f,
+    800 : #c62828,
+    900 : #b71b1c,
+    A100 : #ffffff,
+    A200 : #ffeada,
+    A400 : #ffcca7,
+    A700 : #ffbd8e,
+    contrast: (
+        50 : #fdfcfc,
+        100 : #f9f9f8,
+        200 : #f6f5f3,
+        300 : #f2f0ee,
+        400 : #efedea,
+        500 : #eceae6,
+        600 : #eae7e3,
+        700 : #e7e4df,
+        800 : #e4e1db,
+        900 : #dfdbd5,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+$shared-app-primary: mat.m2-define-palette($shared-primary);
+$shared-app-warn: mat.m2-define-palette($shared-warn);
+$shared-app-accent: mat.m2-define-palette($shared-accent);
+$shared-app-second: mat.m2-define-palette($shared-second);
+
+$shared-app-theme: mat.m2-define-light-theme((
+    color: (
+        primary: $shared-app-primary,
+        warn: $shared-app-warn,
+        second:$shared-app-second,
+        accent: $shared-app-accent,
+        tertiary: $shared-accent
+    )
+));
+
+@include mat.all-component-themes($shared-app-theme);
+@include mat.theme((
+    plain-family: Roboto,
+    brand-family: Open Sans,
+    bold-weight: 900,
+    medium-weight: 500,
+    regular-weight: 300,
+    typography: Roboto,
+    density: 0,
+));

@@ -1,0 +1,5 @@
+<mat-form-field class="w-100 wrapper-time-picker" appearance="outline">
+  <input matInput [matTimepicker]="timepicker" [formControl]="_formControl" />
+  <mat-timepicker #timepicker />
+  <mat-timepicker-toggle [for]="timepicker" matSuffix />
+</mat-form-field>

@@ -1,0 +1,8 @@
+@use "variables";
+.cdk-overlay-container {
+    .mat-mdc-menu-panel {
+        .mat-mdc-menu-item {
+            min-height: 28px;
+        }
+    }
+}

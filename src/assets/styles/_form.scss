@@ -1,0 +1,26 @@
+.mat-custom-style {
+    font-size: 12px;
+}
+.mat-form-field-outline {
+    border-radius: 8px;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+}
+.mat-form-field-label {
+    color: white;
+}
+.header-font-size {
+    font-size: 24px;
+}
+.mat-mdc-form-field.mat-form-field-animations-enabled .mat-mdc-form-field-error-wrapper {
+    padding-left: 0px;
+}
+:root{
+    --mat-form-field-container-height: 48px;
+    --mat-form-field-label-font-size: 14px;
+    --mat-form-field-filled-with-label-container-padding-top: 8px;
+    --mat-form-field-filled-with-label-container-padding-bottom: 8px;
+    --mat-form-field-container-vertical-padding:8px;
+    --mat-form-field-container-horizontal-padding: 12px;    
+}

@@ -1,0 +1,15 @@
+<div class="dynamic-form row">
+  @for(config of iFormConfig; track config.fieldName) {
+  <div class="mb-3 {{ config.className }}">
+    <div>{{ config.label }}</div>
+    <shared-dynamic-component
+      [iComponent]="config.iComponent"
+      [iParams]="config.iParams"
+      (triggerSearch)="
+        config.onTriggerSearch ? config.onTriggerSearch($event) : null
+      "
+      (clickBTN)="config.clickBTN ? config.clickBTN() : null"
+    ></shared-dynamic-component>
+  </div>
+  }
+</div>

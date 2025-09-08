@@ -1,0 +1,12 @@
+<div class="wrapper-action d-flex">
+  @if(actionList) { @for(actionItem of actionList; track actionItem.iIcon) {
+  <btn-cancel
+    [iIcon]="actionItem.iIcon"
+    [iCustomClass]="actionItem.iCustomClass"
+    [iColor]="actionItem.iColor"
+    [iColorIcon]="actionItem.iColorIcon"
+    (clickBTN)="onActionClick(actionItem)"
+    [iDisabled]="isLoading"
+  ></btn-cancel>
+  } }
+</div>

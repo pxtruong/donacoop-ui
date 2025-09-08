@@ -1,0 +1,18 @@
+@use '../variables';
+.wrapper-table {
+    width: 100%;
+    overflow: auto;
+    max-width: calc(100vw - 10rem);
+    min-height: 500px;
+    max-height: 500px;
+    --mat-table-header-container-height: 40px;
+    --mat-table-row-item-container-height: 32px;
+    // var(--mat-table-header-headline-color, var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87)))
+    --mat-table-header-headline-color: white;
+    .mat-mdc-row:nth-child(odd) {
+        background-color: variables.$light-gray;
+    }
+    .mat-mdc-header-row {
+        background-color: variables.$primary-hover;
+    }
+}

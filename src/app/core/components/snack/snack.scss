@@ -1,0 +1,38 @@
+@use "variables";
+
+.snack-wrapper {
+  max-width: 250px;
+  overflow-y: auto;
+  max-height: 200px;
+  min-width: 250px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  &.snack-bg-success {
+    background: variables.$snack-success;
+  }
+  &.snack-bg-error {
+    background: variables.$snack-error;
+
+  }
+  @keyframes animationDisplay {
+    0% {
+      opacity: 0; /* Optional: start hidden */
+    }
+    100% {
+      opacity: 1; /* Optional: fully visible */
+    }
+  }
+  .snack-animation {
+    padding: 8px;
+    animation-name: animationDisplay;
+    animation-duration: 1s; /* Adjust duration as needed */
+    animation-timing-function: linear; /* Control animation speed curve */
+    animation-fill-mode: forwards; /*Keep the final state after animation*/
+    white-space: pre-line;
+  }
+  .snack-wrapper .snack-icon {
+    width: 24px;
+    margin-top: 4px;
+  }
+}

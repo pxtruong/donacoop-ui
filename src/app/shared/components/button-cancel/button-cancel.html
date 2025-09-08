@@ -1,0 +1,23 @@
+<button
+  [disabled]="iDisabled"
+  class="{{ iCustomClass }} {{ iDisabled ? 'btn-disabled' : '' }}"
+  matButton="outlined"
+  color="{{ iColor }}"
+  (click)="onClick()"
+>
+  <div class="d-flex justify-content-center align-items-center">
+    @if(iIcon) {
+    <mat-icon
+      class="mr-1"
+      color="{{ iColorIcon }}"
+      #tooltip="matTooltip"
+      matTooltip="{{ iToolTip }}"
+      >{{ iIcon }}</mat-icon
+    >
+
+    } @if(iText) {
+    <span> {{ iText | translate }}</span>
+
+    }
+  </div>
+</button>
