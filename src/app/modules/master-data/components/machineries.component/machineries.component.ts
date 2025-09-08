@@ -46,6 +46,9 @@ export class MachineriesComponent extends MasterDataBaseComponent {
     if (_record.company) {
       _record[MACHINERIES_FIELD_CONSTANT.TEN_CONG_TY] = _record.company.id;
     }
+    if (_record.driver) {
+      _record[MACHINERIES_FIELD_CONSTANT.TAI_XE] = _record.driver.id;
+    }
     return _record;
   }
 }

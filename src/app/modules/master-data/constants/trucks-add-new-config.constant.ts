@@ -4,6 +4,7 @@ import { SharedInputComponent } from '../../../shared/components/shared-input/sh
 import { SharedSelect } from '../../../shared/components/shared-select/shared-select';
 import { TRUCK_FIELD_CONSTANT } from './trucks-field.constant';
 import { WEIGHT_METHOD_OPTIONS } from './truck.constant';
+import { ROLES_CONSTANT } from '../../base/donacoop-base.component/constants/roles.constant';
 
 export function GET_CONFIG_ADD_NEW_XE_TAI() {
   const companyList = StoreDataService.getValue(StoreDataKeys.COMPANY_LIST);
@@ -13,12 +14,21 @@ export function GET_CONFIG_ADD_NEW_XE_TAI() {
   const userList = StoreDataService.getValue(StoreDataKeys.USER_LIST);
   let userOptions: any[] = [];
   if (Array.isArray(userList)) {
-    userList.forEach((i) => {
-      userOptions.push({
-        label: i.fullName,
-        value: i.id,
+    userList
+      .filter((item) => {
+        const roles = item.roles;
+        return (
+          roles.findIndex((i: { key: string; id: number; name: string }) => {
+            return i.key === ROLES_CONSTANT.DRIVER;
+          }) !== -1
+        );
+      })
+      .forEach((i) => {
+        userOptions.push({
+          label: i.fullName,
+          value: i.id,
+        });
       });
-    });
   }
   return [
     {

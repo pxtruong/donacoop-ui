@@ -43,6 +43,9 @@ export class TruckComponent extends MasterDataBaseComponent {
     if (_record.company) {
       _record[TRUCK_FIELD_CONSTANT.THUOC_CONG_TY] = _record.company.id;
     }
+    if (_record.driver) {
+      _record[TRUCK_FIELD_CONSTANT.TAI_XE] = _record.driver.id;
+    }
     return _record;
   }
 }
