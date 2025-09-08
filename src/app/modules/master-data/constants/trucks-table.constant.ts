@@ -8,6 +8,10 @@ export function GET_TABLE_CONFIG_XE_TAI(): ITableConfig {
   customBindingCompany.customFunction = (value: any, args: any) => {
     return args[1]?.company?.name;
   };
+  const customBindingDriver = new CustomBindingPipe();
+  customBindingDriver.customFunction = (value: any, args: any) => {
+    return args[1]?.driver?.fullName;
+  };
   return {
     columns: [
       {
@@ -46,6 +50,7 @@ export function GET_TABLE_CONFIG_XE_TAI(): ITableConfig {
       {
         field: TRUCK_FIELD_CONSTANT.TAI_XE,
         columnTitle: 'Tài Xế',
+        pipeValue: customBindingDriver,
       },
       {
         field: TRUCK_FIELD_CONSTANT.MO_TA,
