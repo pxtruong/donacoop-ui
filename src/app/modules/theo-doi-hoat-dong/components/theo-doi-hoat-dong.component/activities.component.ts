@@ -15,6 +15,8 @@ import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/don
 import { GET_ADD_NEW_ACTIVITIES } from '../../constants/activities-add-new-form.constant';
 import { GET_TABLE_CONFIG_ACTIVITIES } from '../../constants/activities-table.constant';
 import { ActivitiesService } from '../../services/activities.services';
+import { FIELD_THEO_DOI_HOAT_DONG_CONSTANTS } from '../../constants/activities-field.constant';
+import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from '../../../registrations/constants/registrations-field.constant';
 
 @Component({
   selector: 'activities',
@@ -126,5 +128,138 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
   }
   protected override getFormConfig() {
     return GET_ADD_NEW_ACTIVITIES();
+  }
+  protected override updateAPI(id: number, data: any) {
+    const request = this._setRequest(data);
+    return this._activitiesService.updateActivities(id, request);
+  }
+
+  protected override deleteAPI(id: number) {
+    return this._activitiesService.deleteActivities(id);
+  }
+
+  protected override createAPI(data: number) {
+    const request = this._setRequest(data);
+    return this._activitiesService.createActivities(request);
+  }
+
+  private _setRequest(record: any) {
+    // registrationId - buyerCompanyId - pickupPositionId - stoneTypeId - truckId - revenueType
+    if (!record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.REGISTRATION_ID]) {
+      return record;
+    }
+    let request: any = {};
+    const divideData =
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.REGISTRATION_ID].split('-');
+    if (divideData) {
+      request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.REGISTRATION_ID] =
+        divideData[0];
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID] = divideData[1];
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID] = divideData[2];
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID] = divideData[3];
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID] = divideData[4];
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] = divideData[5];
+    }
+    // map time In
+    const inDate = record[
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG
+    ] as Date;
+    const inTime = record[
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.GIO_VAO_CONG
+    ] as Date;
+    inDate.setHours(inTime.getHours());
+    inDate.setMinutes(inTime.getMinutes());
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG] =
+      inDate.toISOString();
+
+    // map time Out
+    const outDate = record[
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG
+    ] as Date;
+    const outTime = record[
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.GIO_RA_CONG
+    ] as Date;
+    outDate.setHours(outTime.getHours());
+    outDate.setMinutes(outTime.getMinutes());
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG] =
+      outDate.toISOString();
+
+    // weight time 1
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_1] =
+      record[
+        FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_1
+      ].toISOString();
+    // weight time 2
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_2] =
+      record[
+        FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_2
+      ].toISOString();
+    // weight
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.KHOI_LUONG1] =
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.KHOI_LUONG1];
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.KHOI_LUONG2] =
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.KHOI_LUONG2];
+
+    // weight poisition
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_CAN_LAN_1] =
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_CAN_LAN_1];
+    request[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_CAN_LAN_2] =
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_CAN_LAN_2];
+    return request;
+  }
+
+  protected override _prepareEditData(record: any) {
+    let _editData = { ...record };
+    _editData[
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.REGISTRATION_ID
+    ] = `${this._getIdInField(record, 'registration')}-${this._getIdInField(
+      record,
+      'buyerCompany'
+    )}-${this._getIdInField(record, 'pickupPosition')}-${this._getIdInField(
+      record,
+      'stoneType'
+    )}-${this._getIdInField(record, 'truck')}-${
+      record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE]
+    }`;
+    this._handleDateTime(_editData);
+    return _editData;
+  }
+
+  private _handleDateTime(record: any) {
+    // gate in time
+    if (record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG]) {
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG] = new Date(
+        record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG]
+      );
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.GIO_VAO_CONG] = new Date(
+        record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG]
+      );
+    }
+    // gate out time
+    if (record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG]) {
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG] = new Date(
+        record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG]
+      );
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.GIO_RA_CONG] = new Date(
+        record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG]
+      );
+    }
+
+    // weight time 1
+    if (record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_1]) {
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_1] = new Date(
+        record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_1]
+      );
+    }
+
+    // weight time 2
+    if (record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_2]) {
+      record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_2] = new Date(
+        record[FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_2]
+      );
+    }
+  }
+  private _getIdInField(record: any, field: string): number | string {
+    return record[field].id;
   }
 }

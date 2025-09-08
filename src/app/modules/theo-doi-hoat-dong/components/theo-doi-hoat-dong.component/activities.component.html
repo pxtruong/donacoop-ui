@@ -6,7 +6,10 @@
     </div>
     <div>
       @if(tableConfig) {
-      <shared-table [iTableConfig]="tableConfig"></shared-table>
+      <shared-table
+        [iTableConfig]="tableConfig"
+        (clickBTN)="onClickBTN($event)"
+      ></shared-table>
       }
     </div>
   </div>

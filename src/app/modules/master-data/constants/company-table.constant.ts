@@ -69,10 +69,6 @@ export const tableConfigCongTy: ITableConfig = {
             iIcon: 'delete',
             iCustomClass: 'border-none',
             iColorIcon: 'warn',
-            cbShow: (element: any) => {
-              console.log(element);
-              return true;
-            },
           },
         ],
       },
