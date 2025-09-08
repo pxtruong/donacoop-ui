@@ -1,8 +1,9 @@
 @use '../variables';
 .wrapper-table {
+    transition: width 0.5s ease;
+    // max-width: calc(100vw - 10rem);
     width: 100%;
     overflow: auto;
-    max-width: calc(100vw - 10rem);
     min-height: 500px;
     max-height: 500px;
     --mat-table-header-container-height: 40px;
@@ -14,5 +15,22 @@
     }
     .mat-mdc-header-row {
         background-color: variables.$primary-hover;
+    }
+}
+
+body {
+    .core-container {
+        transition: width 0.5s ease;
+    }
+    &.short-nav {
+        .wrapper-table {
+            max-width: calc(100vw - 12rem);
+        }
+    }
+    &.full-nav {
+        .wrapper-table {
+            max-width: calc(100vw - 20rem);
+        }
+
     }
 }

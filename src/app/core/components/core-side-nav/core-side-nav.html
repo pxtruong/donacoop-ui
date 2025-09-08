@@ -5,6 +5,7 @@
   [class.cores-side-is-mobile]="isMobile()"
   (mouseenter)="onMouseEnter()"
   (mouseleave)="onMouseLeave()"
+  (onmouseover)="onMouseLeave()"
 >
   @for (navItem of navList; track navItem) {
   <a

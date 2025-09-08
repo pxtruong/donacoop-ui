@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ControlOutputBase } from '../../models/control-output-base.model';
+import { ITableColumn } from '../../models/table.model';
 
 @Component({
   selector: 'shared-dynamic-component',
@@ -40,6 +41,9 @@ export class SharedDynamicComponent
   @Input() iComponent!: Type<any>;
   @Input() iParams!: any;
   @ViewChild('wrapperDynamic') wrapperDynamic: any;
+  // support shared table binding data into component
+  @Input() iElement: any;
+  @Input() iColumn!: ITableColumn;
 
   private _componentRef!: ComponentRef<any> | null;
   constructor(
@@ -71,6 +75,13 @@ export class SharedDynamicComponent
         }
         this._componentRef.setInput(field, this.iParams[field]);
       }
+    }
+    // support table
+    if (this.iElement) {
+      this._componentRef.setInput('iElement', this.iElement);
+    }
+    if (this.iColumn) {
+      this._componentRef.setInput('iColumn', this.iColumn);
     }
     this._getOutput();
 

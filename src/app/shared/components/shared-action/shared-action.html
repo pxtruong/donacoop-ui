@@ -1,5 +1,6 @@
 <div class="wrapper-action d-flex">
   @if(actionList) { @for(actionItem of actionList; track actionItem.iIcon) {
+  @if(actionItem.cbShow && actionItem.cbShow(iElement) || !actionItem.cbShow) {
   <btn-cancel
     [iIcon]="actionItem.iIcon"
     [iCustomClass]="actionItem.iCustomClass"
@@ -8,5 +9,6 @@
     (clickBTN)="onActionClick(actionItem)"
     [iDisabled]="isLoading"
   ></btn-cancel>
-  } }
+
+  } } }
 </div>

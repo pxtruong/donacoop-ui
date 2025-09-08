@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { ButtonCancel } from '../button-cancel/button-cancel';
 import { CommonModule } from '@angular/common';
-import { ButtonBase } from '../../models/button-basic.model';
-import { StoreDataService } from '../../../core/services/store-data.service';
+import { Component, Input } from '@angular/core';
 import { StoreDataKeys } from '../../../core/models/store-data.model';
+import { StoreDataService } from '../../../core/services/store-data.service';
+import { ButtonBase } from '../../models/button-basic.model';
+import { ITableColumn } from '../../models/table.model';
+import { ButtonCancel } from '../button-cancel/button-cancel';
 
 @Component({
   selector: 'shared-action',
@@ -14,6 +15,8 @@ import { StoreDataKeys } from '../../../core/models/store-data.model';
 })
 export class SharedAction extends ButtonBase {
   @Input() actionList: any[] = [];
+  @Input() iElement: any;
+  @Input() iColumn!: ITableColumn;
   public isLoading: boolean = false;
 
   public onActionClick(action: any) {
@@ -25,7 +28,6 @@ export class SharedAction extends ButtonBase {
       StoreDataService.getSubcribe(StoreDataKeys.IS_LOADING),
       (isLoading) => {
         this.isLoading = isLoading;
-        this.logLevel.debug(`isload--`, isLoading);
       }
     );
   }

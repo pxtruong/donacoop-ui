@@ -147,4 +147,7 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
     }
     return res;
   }
+  protected updateCircle(id: any, data: any, otherRecord: any) {
+    return of(null);
+  }
 }

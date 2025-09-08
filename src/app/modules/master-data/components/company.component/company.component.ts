@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { StoreDataKeys } from '../../../../core/models/store-data.model';
 import { StoreDataService } from '../../../../core/services/store-data.service';
 import { SharedAddNewPopup } from '../../../../shared/components/shared-add-new-popup/shared-add-new-popup';
@@ -12,6 +12,7 @@ import {
 import { tableConfigCongTy } from '../../constants/company-table.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../constants/company-field.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
+import { COMMON_FIELD } from '../../../base/donacoop-base.component/constants/donacoop-base.constant';
 
 @Component({
   selector: 'company',
@@ -32,12 +33,15 @@ export class CompanyComponent extends MasterDataBaseComponent {
         const showData: any[] = [];
         res.forEach((i) => {
           if (Array.isArray(i.deliveryPoints) && i.deliveryPoints.length > 0) {
+            i[`${COMMON_FIELD.ACTION}add_circle_outlineShow`] = true;
             showData.push(i);
             i.deliveryPoints.forEach((deliveryPoint: any) => {
               showData.push({
                 [COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG]: deliveryPoint.name,
                 [COMPANY_FIELD_CONSTANT.QUANG_DUONG]: deliveryPoint.distance,
-                [`actioncolumnHideComponent`]: true,
+                isDeliveryPoints: true,
+                id: deliveryPoint.id,
+                companyId: i.id,
               });
             });
           } else {
@@ -112,6 +116,62 @@ export class CompanyComponent extends MasterDataBaseComponent {
             );
         },
         initData: record,
+        formGroup: this._formGroupAddNew,
+      },
+      panelClass: ['common-popup-3xx'],
+    });
+  }
+
+  protected _editDeliveryPoints(record: any) {
+    this._formGroupAddNew = this._builder.group({});
+    this._dialog.open(SharedAddNewPopup, {
+      data: {
+        title: `Sửa Điểm Đến`,
+        confirmBTNText: `Xác nhận`,
+        formConfig: GET_ADD_MEW_DIEM_DEN(record, this._formGroupAddNew),
+        confirmAction: (data: any) => {
+          const request = {
+            name: data[COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG],
+            [COMPANY_FIELD_CONSTANT.QUANG_DUONG]:
+              data[COMPANY_FIELD_CONSTANT.QUANG_DUONG],
+            companyId: record.companyId,
+            id: record.id,
+          };
+          return this._masterDataService
+            .updateDeliveryPoints(record.id, this._clearNullData(request))
+            .pipe(
+              finalize(() => {
+                this._loadData();
+              })
+            );
+        },
+        initData: record,
+        formGroup: this._formGroupAddNew,
+      },
+      panelClass: ['common-popup-3xx'],
+    });
+  }
+
+  protected override _editPopup(record: any) {
+    if (record.isDeliveryPoints) {
+      this._editDeliveryPoints(record);
+      return;
+    }
+
+    this._formGroupAddNew = this._builder.group({});
+    this._dialog.open(SharedAddNewPopup, {
+      data: {
+        title: `Sửa`,
+        confirmBTNText: `Xác nhận`,
+        formConfig: this.getFormConfig(record),
+        confirmAction: (data: any) => {
+          return this.updateAPI(record.id, this._clearNullData(data)).pipe(
+            finalize(() => {
+              this._loadData();
+            })
+          );
+        },
+        initData: this._prepareEditData(record),
         formGroup: this._formGroupAddNew,
       },
       panelClass: ['common-popup-3xx'],

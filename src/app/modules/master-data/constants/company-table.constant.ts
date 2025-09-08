@@ -1,5 +1,6 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
+import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { COMPANY_FIELD_CONSTANT } from './company-field.constant';
 
 export const tableConfigCongTy: ITableConfig = {
@@ -45,7 +46,7 @@ export const tableConfigCongTy: ITableConfig = {
       columnTitle: 'Mã Bưu Chính',
     },
     {
-      field: 'actioncolumn',
+      field: COMMON_FIELD.ACTION,
       columnTitle: 'Action',
       stickyEnd: true,
       showComponent: SharedAction,
@@ -60,11 +61,18 @@ export const tableConfigCongTy: ITableConfig = {
             iIcon: 'add_circle_outline',
             iCustomClass: 'border-none',
             iColorIcon: 'primary',
+            cbShow: (element: any) => {
+              return element[`${COMMON_FIELD.ACTION}add_circle_outlineShow`];
+            },
           },
           {
             iIcon: 'delete',
             iCustomClass: 'border-none',
             iColorIcon: 'warn',
+            cbShow: (element: any) => {
+              console.log(element);
+              return true;
+            },
           },
         ],
       },
@@ -81,7 +89,7 @@ export const tableConfigCongTy: ITableConfig = {
     COMPANY_FIELD_CONSTANT.THANH_PHO,
     COMPANY_FIELD_CONSTANT.EMAIL_CO_QUAN,
     COMPANY_FIELD_CONSTANT.MA_BUU_CHINH,
-    'actioncolumn',
+    COMMON_FIELD.ACTION,
   ],
   pageSizeOptions: [5, 10, 25, 100],
   pageSize: 10,

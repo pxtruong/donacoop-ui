@@ -35,6 +35,13 @@ export class MasterDataService extends HTTPService {
   public createDeliveryPoints(data: any) {
     return this.post(`/delivery_points`, data);
   }
+  public updateDeliveryPoints(id: any, data: any) {
+    return this.put(`/delivery_points/${id}`, data);
+  }
+  public deleteDeliveryPoints(id: any) {
+    return this.delete(`/delivery_points`, id);
+  }
+
   // #region user
   public getUserList() {
     return this.get('/users').pipe(

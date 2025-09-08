@@ -139,6 +139,8 @@ export class CoreSideNav extends BasicExtends {
   private _onMouseEnter() {
     this.sideNav.nativeElement.classList.remove('short-nav');
     this.sideNav.nativeElement.classList.add('full-nav');
+    document.body.classList.remove('short-nav');
+    document.body.classList.add('full-nav');
   }
 
   onMouseLeave() {
@@ -151,6 +153,8 @@ export class CoreSideNav extends BasicExtends {
   private _onMouseLeave() {
     this.sideNav.nativeElement.classList.remove('full-nav');
     this.sideNav.nativeElement.classList.add('short-nav');
+    document.body.classList.remove('full-nav');
+    document.body.classList.add('short-nav');
   }
 
   lockOrUnlockNav() {
@@ -158,8 +162,10 @@ export class CoreSideNav extends BasicExtends {
     if (this.isLock) {
       if (this.sideNav.nativeElement.classList.contains('full-nav')) {
         this.sideNav.nativeElement.classList.remove('short-nav');
+        document.body.classList.remove('short-nav');
       } else {
         this.sideNav.nativeElement.classList.add('full-nav');
+        document.body.classList.add('full-nav');
       }
     }
   }
