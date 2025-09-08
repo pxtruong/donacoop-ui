@@ -104,5 +104,12 @@ export function GET_ADD_MEW_DIEM_DEN(record: any, formGroup: FormGroup) {
       iParams: {},
       className: 'col-6',
     },
+    {
+      fieldName: COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG,
+      iComponent: SharedInputComponent,
+      label: 'Thông Tin Địa Điểm Giao Hàng',
+      iParams: {},
+      className: 'col-12',
+    },
   ];
 }

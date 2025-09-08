@@ -23,6 +23,7 @@ export const FIELD_DANH_SACH_XE_TAI_DANG_KY = {
   NAME: 'name',
   KHO: 'destinationWarehouse',
   TO_KHO: 'toDestinationWarehouse',
+  DELIVERY_POINT_DESCRIPTION: 'deliveryPointDescription',
 };
 
 export const FIELD_DAN_SACH_XE_TAI_ADD_NEW = {

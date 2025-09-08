@@ -1,10 +1,9 @@
-import { DatePipe } from '@angular/common';
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
+import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
 import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from './registrations-field.constant';
-import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const displayFn = (field: string, fieldName: string) => {
     return (value: any, args: any) => {
@@ -102,6 +101,11 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   customBindingDeployDistance.customFunction = displayFn(
     'destination',
     FIELD_DANH_SACH_XE_TAI_DANG_KY.QUANG_DUONG
+  );
+  const customBindingDeployDescription = new CustomBindingPipe();
+  customBindingDeployDescription.customFunction = displayFn(
+    'destination',
+    FIELD_DANH_SACH_XE_TAI_DANG_KY.MO_TA
   );
 
   // #region binding warehouses
@@ -202,6 +206,11 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
         pipeValue: customBindingDeployPoint,
       },
       {
+        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.DELIVERY_POINT_DESCRIPTION,
+        columnTitle: 'Thông Tin Điểm Giao Hàng',
+        pipeValue: customBindingDeployDescription,
+      },
+      {
         field: FIELD_DANH_SACH_XE_TAI_DANG_KY.QUANG_DUONG,
         columnTitle: 'Quãng Đường',
         pipeValue: customBindingDeployDistance,
@@ -275,6 +284,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
       FIELD_DANH_SACH_XE_TAI_DANG_KY.TO_KHO,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.CONG_TY_MUA,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.DIEM_DEN,
+      FIELD_DANH_SACH_XE_TAI_DANG_KY.DELIVERY_POINT_DESCRIPTION,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.QUANG_DUONG,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.EMAIL_CO_QUAN,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.DIEN_THOAI_CO_QUAN,

@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { finalize, Observable } from 'rxjs';
+import { finalize } from 'rxjs';
 import { StoreDataKeys } from '../../../../core/models/store-data.model';
 import { StoreDataService } from '../../../../core/services/store-data.service';
 import { SharedAddNewPopup } from '../../../../shared/components/shared-add-new-popup/shared-add-new-popup';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
+import { COMMON_FIELD } from '../../../base/donacoop-base.component/constants/donacoop-base.constant';
 import {
   GET_ADD_MEW_DIEM_DEN,
   GET_ADD_NEW_CONFIG_CONG_TY,
 } from '../../constants/company-add-new-config.constant';
-import { tableConfigCongTy } from '../../constants/company-table.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../constants/company-field.constant';
+import { tableConfigCongTy } from '../../constants/company-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
-import { COMMON_FIELD } from '../../../base/donacoop-base.component/constants/donacoop-base.constant';
 
 @Component({
   selector: 'company',
@@ -39,6 +39,10 @@ export class CompanyComponent extends MasterDataBaseComponent {
               showData.push({
                 [COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG]: deliveryPoint.name,
                 [COMPANY_FIELD_CONSTANT.QUANG_DUONG]: deliveryPoint.distance,
+                [COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG]:
+                  deliveryPoint[
+                    COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG
+                  ],
                 isDeliveryPoints: true,
                 id: deliveryPoint.id,
                 companyId: i.id,
@@ -105,6 +109,8 @@ export class CompanyComponent extends MasterDataBaseComponent {
             name: data[COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG],
             [COMPANY_FIELD_CONSTANT.QUANG_DUONG]:
               data[COMPANY_FIELD_CONSTANT.QUANG_DUONG],
+            [COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG]:
+              data[COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG],
             companyId: record.id,
           };
           return this._masterDataService
@@ -134,8 +140,9 @@ export class CompanyComponent extends MasterDataBaseComponent {
             name: data[COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG],
             [COMPANY_FIELD_CONSTANT.QUANG_DUONG]:
               data[COMPANY_FIELD_CONSTANT.QUANG_DUONG],
+            [COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG]:
+              data[COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG],
             companyId: record.companyId,
-            id: record.id,
           };
           return this._masterDataService
             .updateDeliveryPoints(record.id, this._clearNullData(request))
@@ -161,7 +168,7 @@ export class CompanyComponent extends MasterDataBaseComponent {
     this._formGroupAddNew = this._builder.group({});
     this._dialog.open(SharedAddNewPopup, {
       data: {
-        title: `Sửa`,
+        title: `Sửa Sửa Công Ty`,
         confirmBTNText: `Xác nhận`,
         formConfig: this.getFormConfig(record),
         confirmAction: (data: any) => {
@@ -173,6 +180,48 @@ export class CompanyComponent extends MasterDataBaseComponent {
         },
         initData: this._prepareEditData(record),
         formGroup: this._formGroupAddNew,
+      },
+      panelClass: ['common-popup-3xx'],
+    });
+  }
+
+  protected _deleteDeliveryPoints(record: any) {
+    this._dialog.open(SharedAddNewPopup, {
+      data: {
+        message: `Bạn có đồng ý xóa dòng này ?`,
+        title: `Xóa Điểm Giao Hàng`,
+        confirmBTNText: `Xác nhận`,
+        confirmAction: () => {
+          return this._masterDataService.deleteDeliveryPoints(record.id).pipe(
+            finalize(() => {
+              this._loadData();
+            })
+          );
+        },
+        initData: record,
+      },
+      panelClass: ['common-popup-3xx'],
+    });
+  }
+
+  protected override _deletePoup(record: any) {
+    if (record.isDeliveryPoints) {
+      this._deleteDeliveryPoints(record);
+      return;
+    }
+    this._dialog.open(SharedAddNewPopup, {
+      data: {
+        message: `Bạn có đồng ý xóa dòng này ?`,
+        title: `Xóa Công Ty`,
+        confirmBTNText: `Xác nhận`,
+        confirmAction: () => {
+          return this.deleteAPI(record.id).pipe(
+            finalize(() => {
+              this._loadData();
+            })
+          );
+        },
+        initData: record,
       },
       panelClass: ['common-popup-3xx'],
     });

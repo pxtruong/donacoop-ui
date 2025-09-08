@@ -1,7 +1,7 @@
 @use '../variables';
 .wrapper-table {
     transition: width 0.5s ease;
-    // max-width: calc(100vw - 10rem);
+    max-width: calc(100vw - 11.5rem);
     width: 100%;
     overflow: auto;
     min-height: 500px;
@@ -21,16 +21,5 @@
 body {
     .core-container {
         transition: width 0.5s ease;
-    }
-    &.short-nav {
-        .wrapper-table {
-            max-width: calc(100vw - 12rem);
-        }
-    }
-    &.full-nav {
-        .wrapper-table {
-            max-width: calc(100vw - 20rem);
-        }
-
     }
 }

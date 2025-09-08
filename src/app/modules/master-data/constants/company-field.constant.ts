@@ -2,7 +2,7 @@ export const COMPANY_FIELD_CONSTANT = {
   TEN_CONG_TY: 'name',
   DIA_CHI: 'address',
   DIA_DIEM_GIAO_HANG: 'diaDiemGiaoHang',
-  THONG_TIN_DIEM_GIAO_HANG: 'thongtiaDiemGiaoHang',
+  THONG_TIN_DIEM_GIAO_HANG: 'description',
   QUANG_DUONG: 'distance',
   SO_DIEN_THOAI_CO_QUAN: 'phone',
   THANH_PHO: 'city',
