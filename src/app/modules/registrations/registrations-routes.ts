@@ -8,7 +8,8 @@ import { CompanyResolver } from '../master-data/resolvers/company.resolver';
 
 export const RegistrationsRoutes: Routes = [
   {
-    path: ROUTE_CONSTANTS.PAGE.DS_XE_TAI_DANG_KY.PATH,
+    path: ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+      .DS_XE_TAI_DANG_KY.PATH,
     loadComponent: () =>
       import(
         './components/registrations.component/registrations.component'

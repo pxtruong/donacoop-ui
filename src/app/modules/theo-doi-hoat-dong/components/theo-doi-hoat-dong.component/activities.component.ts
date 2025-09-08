@@ -103,7 +103,7 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
           iText: 'Tìm',
           iCustomClass: 'mt-4',
         },
-        className: 'col-3',
+        className: 'col-1',
         clickBTN: () => {
           this.logLevel.debug('Click tìm in activities');
         },
@@ -118,7 +118,7 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
           iText: 'Thêm',
           iCustomClass: 'mt-4',
         },
-        className: 'col-3',
+        className: 'col-1',
         clickBTN: () => {
           this.logLevel.debug('Click thêm in activities');
           this.addNewPopup();

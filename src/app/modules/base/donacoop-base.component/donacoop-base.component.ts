@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { finalize, of } from 'rxjs';
@@ -12,7 +12,10 @@ import { ITableConfig } from '../../../shared/models/table.model';
   templateUrl: './donacoop-base.component.html',
   styleUrl: './donacoop-base.component.scss',
 })
-export class DonacoopBaseComponent extends BasicExtends implements OnInit {
+export class DonacoopBaseComponent
+  extends BasicExtends
+  implements OnInit, OnDestroy
+{
   tableConfig!: ITableConfig;
   protected _formGroupAddNew!: FormGroup;
   constructor(protected _dialog: MatDialog, protected _builder: FormBuilder) {
@@ -21,6 +24,12 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
 
   ngOnInit(): void {
     this._loadData();
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => {
+      sub.unsubscribe();
+    });
+    this.subscriptions.clear();
   }
   protected _loadData() {}
   protected _uppdateTableData(data: any[]) {

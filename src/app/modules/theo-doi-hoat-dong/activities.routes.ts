@@ -4,7 +4,8 @@ import { RegistrationsResolver } from '../registrations/resolvers/registrations.
 
 export const ActivitiesRoutes: Routes = [
   {
-    path: ROUTE_CONSTANTS.PAGE.THEO_DOI_HOAT_DONG.PATH,
+    path: ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+      .THEO_DOI_HOAT_DONG.PATH,
     loadComponent: () =>
       import(
         './components/theo-doi-hoat-dong.component/activities.component'

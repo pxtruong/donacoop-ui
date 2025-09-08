@@ -36,8 +36,8 @@ export const FIELD_DAN_SACH_XE_TAI_ADD_NEW = {
   REVENUE_TYPE: 'revenueType',
   BUYER_COMPANY_ID: 'buyerCompanyId',
   DEPLOY_POINT: 'destinationId',
-  WAREHOUSES_ID: 'originWarehouse',
-  TO_WAREHOUSES_ID: 'destinationWarehouse',
+  WAREHOUSES_ID: 'originWarehouseId',
+  TO_WAREHOUSES_ID: 'destinationWarehouseId',
   TRIP_NUM: 'tripNumber',
   MO_TA: 'description',
 };

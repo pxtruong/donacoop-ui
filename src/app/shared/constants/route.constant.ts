@@ -35,17 +35,25 @@ export const ROUTE_CONSTANTS = {
         },
       },
     },
-    DS_XE_TAI_DANG_KY: {
-      PATH: 'danh-sach-xe-tai-dang-ky',
-      FULL_PATH: 'page/danh-sach-xe-tai-dang-ky',
-    },
     KE_HOACH: {
       PATH: 'ke-hoach',
       FULL_PATH: 'page/ke-hoach',
     },
-    THEO_DOI_HOAT_DONG: {
-      PATH: 'theo-doi-hoat-dong',
-      FULL_PATH: 'page/theo-doi-hoat-dong',
+    REGISTRATION_AND_ACTIVITIES: {
+      PATH: 'danh-sach-xe-dang-ky-va-hoat-dong',
+      FULL_PATH: 'page/danh-sach-xe-dang-ky-va-hoat-dong',
+      CHILDREN: {
+        THEO_DOI_HOAT_DONG: {
+          PATH: 'theo-doi-hoat-dong',
+          FULL_PATH:
+            'page/danh-sach-xe-dang-ky-va-hoat-dong/theo-doi-hoat-dong',
+        },
+        DS_XE_TAI_DANG_KY: {
+          PATH: 'danh-sach-xe-tai-dang-ky',
+          FULL_PATH:
+            'page/danh-sach-xe-dang-ky-va-hoat-dong/danh-sach-xe-tai-dang-ky',
+        },
+      },
     },
   },
 };

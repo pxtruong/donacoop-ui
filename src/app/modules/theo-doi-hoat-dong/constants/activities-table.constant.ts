@@ -117,6 +117,11 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
         pipeValue: datePipe,
       },
       {
+        field: FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.TRONG_LUONG_HANG,
+        columnTitle: 'Trọng Lượng Hàng',
+        minWidth: 160,
+      },
+      {
         field: COMMON_FIELD.ACTION,
         columnTitle: 'Action',
         stickyEnd: true,

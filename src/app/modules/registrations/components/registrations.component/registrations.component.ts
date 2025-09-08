@@ -16,10 +16,11 @@ import {
 } from '../../constants/registrations-field.constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'registrations',
-  imports: [BaseLayoutComponent, SharedTable, SharedForm],
+  imports: [BaseLayoutComponent, SharedTable, SharedForm, MatTabsModule],
   templateUrl: './registrations.component.html',
   styleUrl: './registrations.component.scss',
   standalone: true,

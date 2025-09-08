@@ -96,7 +96,6 @@ export class SharedDynamicComponent
   }
 
   private _getOutput() {
-    console.log(this.iComponent.name);
     if (!this._componentRef) {
       return;
     }
@@ -120,7 +119,6 @@ export class SharedDynamicComponent
       }
       instance[action].subscribe((value: any) => {
         const that = this as any;
-        console.log('Event from dynamic component:', action, value);
         if (!that[action]) {
           return;
         }

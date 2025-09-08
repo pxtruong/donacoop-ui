@@ -3,7 +3,10 @@ import { StoreDataService } from '../../../core/services/store-data.service';
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input';
 import { SharedSelect } from '../../../shared/components/shared-select/shared-select';
 import { TRUCK_FIELD_CONSTANT } from './trucks-field.constant';
-import { WEIGHT_METHOD_OPTIONS } from './truck.constant';
+import {
+  WEIGHT_METHOD_OPTIONS,
+  WEIGHT_POSITION_OPTIONS,
+} from './truck.constant';
 import { ROLES_CONSTANT } from '../../base/donacoop-base.component/constants/roles.constant';
 
 export function GET_CONFIG_ADD_NEW_XE_TAI() {
@@ -71,9 +74,12 @@ export function GET_CONFIG_ADD_NEW_XE_TAI() {
     },
     {
       fieldName: TRUCK_FIELD_CONSTANT.VI_TRI_CAN,
-      iComponent: SharedInputComponent,
+      iComponent: SharedSelect,
       label: 'Vị Trí Cân',
-      iParams: {},
+      iParams: {
+        dataSource: WEIGHT_POSITION_OPTIONS,
+        applyFieldValue: 'value',
+      },
       className: 'col-4',
     },
     {

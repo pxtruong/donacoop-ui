@@ -18,6 +18,10 @@ export const tableConfigKeHoach: ITableConfig = {
       field: FIELD_KE_HOACH.GIO,
       columnTitle: 'Giờ',
     },
+    {
+      field: FIELD_KE_HOACH.MA_SO_XE,
+      columnTitle: 'Mã Số Xe',
+    },
   ],
   dataSource: [],
   displayedColumns: [
@@ -25,6 +29,7 @@ export const tableConfigKeHoach: ITableConfig = {
     FIELD_KE_HOACH.LOAI_DA,
     FIELD_KE_HOACH.NGAY,
     FIELD_KE_HOACH.GIO,
+    FIELD_KE_HOACH.MA_SO_XE,
   ],
   pageSizeOptions: [5, 10, 25, 100],
   pageSize: 10,

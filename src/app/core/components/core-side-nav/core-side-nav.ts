@@ -108,8 +108,8 @@ export class CoreSideNav extends BasicExtends {
     },
     {
       isDisabled: false,
-      link: `/${ROUTE_CONSTANTS.PAGE.DS_XE_TAI_DANG_KY.FULL_PATH}`,
-      label: 'Danh Sách Xe Tải Đăng Ký',
+      link: `/${ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.FULL_PATH}`,
+      label: 'Danh Sách Xe Tải Đăng Ký và Theo Dõi',
       icon: 'no_crash',
       customClass: 'icon-white',
     },
@@ -120,13 +120,13 @@ export class CoreSideNav extends BasicExtends {
       icon: 'assignment',
       customClass: 'icon-white',
     },
-    {
-      isDisabled: false,
-      link: `/${ROUTE_CONSTANTS.PAGE.THEO_DOI_HOAT_DONG.FULL_PATH}`,
-      label: 'Theo Dõi Hoạt Động',
-      icon: 'work_history',
-      customClass: 'icon-white',
-    },
+    // {
+    //   isDisabled: false,
+    //   link: `/${ROUTE_CONSTANTS.PAGE.THEO_DOI_HOAT_DONG.FULL_PATH}`,
+    //   label: 'Theo Dõi Hoạt Động',
+    //   icon: 'work_history',
+    //   customClass: 'icon-white',
+    // },
   ];
 
   onMouseEnter() {

@@ -1,7 +1,7 @@
 import { Observable, Subscription } from 'rxjs';
 
 export abstract class Subscribable {
-  private subscriptions: Set<Subscription> = new Set();
+  protected subscriptions: Set<Subscription> = new Set();
 
   protected subcribe<T>(
     observable: Observable<T>,
@@ -17,7 +17,7 @@ export abstract class Subscribable {
 
     this.addSubscription(subscription);
   }
-  private addSubscription(subscription: Subscription): void {
+  protected addSubscription(subscription: Subscription): void {
     this.subscriptions.add(subscription);
   }
 }

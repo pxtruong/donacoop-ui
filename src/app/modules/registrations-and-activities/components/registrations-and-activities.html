@@ -1,0 +1,27 @@
+<base-layout>
+  <div body class="w-100 h-100 master-data-wrapper s-content">
+    <h5>Theo Dõi Danh Sách Xe Tải Và Hoạt Động</h5>
+    <div>
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        mat-align-tabs="start"
+        [selectedIndex]="selectedTab"
+        (selectedIndexChange)="tabChange($event)"
+      >
+        <mat-tab label="Theo Dõi Kế Hoạch">
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">no_crash</mat-icon>
+            Danh Sách Xe Tải Đăng Ký
+          </ng-template></mat-tab
+        >
+        <mat-tab label="Theo Dõi Hoạt Động">
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">work_history</mat-icon>
+            Theo Dõi Hoạt Động
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</base-layout>
