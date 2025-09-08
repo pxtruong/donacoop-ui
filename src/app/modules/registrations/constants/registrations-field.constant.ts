@@ -1,5 +1,5 @@
 export const FIELD_DANH_SACH_XE_TAI_DANG_KY = {
-  STT: 'STT',
+  STT: 'tripNumber',
   BIEN_SO_XE: 'licensePlate',
   MA_SO_XE: 'code',
   LOAI_XE: 'type',
