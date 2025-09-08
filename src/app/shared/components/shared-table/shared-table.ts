@@ -5,6 +5,7 @@ import { BasicExtends } from '../../models/basic-extends.model';
 import { ITableConfig } from '../../models/table.model';
 import { PipeDynamicPipe } from '../../pipes/pipe-dynamic.pipe';
 import { SharedDynamicComponent } from '../shared-dynamic-component/shared-dynamic-component';
+import { SharedRemarkComponent } from '../shared-remark.component/shared-remark.component';
 
 @Component({
   selector: 'shared-table',
@@ -13,6 +14,7 @@ import { SharedDynamicComponent } from '../shared-dynamic-component/shared-dynam
     SharedDynamicComponent,
     CommonModule,
     PipeDynamicPipe,
+    SharedRemarkComponent,
   ],
   templateUrl: './shared-table.html',
   styleUrl: './shared-table.scss',

@@ -11,7 +11,10 @@ import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/don
 import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
 import { REVENUE_TYPE_VALUE } from '../../constants/registrations-constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
-import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from '../../constants/registrations-field.constant';
+import {
+  FIELD_DAN_SACH_XE_TAI_ADD_NEW,
+  FIELD_DANH_SACH_XE_TAI_DANG_KY,
+} from '../../constants/registrations-field.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
 
 @Component({
@@ -53,10 +56,29 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     this.subcribe(
       this._registrationsService.getRegistrations(),
       (res) => {
+        // remarkConfig
         this._uppdateTableData(res);
       },
       (error) => {}
     );
+  }
+
+  protected override _uppdateTableData(data: any[]) {
+    if (!this.tableConfig || !Array.isArray(data)) {
+      return;
+    }
+    data.forEach((i) => {
+      if (i.truck.isActive) {
+        i[`${FIELD_DANH_SACH_XE_TAI_DANG_KY.STT}remarkConfig`] = {
+          className: 'remark-green',
+        };
+      } else {
+        i[`${FIELD_DANH_SACH_XE_TAI_DANG_KY.STT}remarkConfig`] = {
+          className: 'remark-red',
+        };
+      }
+    });
+    this.tableConfig.dataSource = [...data];
   }
   override updateAPI(id: any, data: any) {
     return this._registrationsService.updateRegistrations(
@@ -65,7 +87,7 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     );
   }
 
-  override deleteAPI(id: any) {
+  override inactiveAPI(id: any) {
     return this._registrationsService.deleteRegistrations(id);
   }
   override createAPI(data: any) {
@@ -130,7 +152,6 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
   override _prepareEventAddNew() {
     let lastRevenueTypeValue: any = null;
     this._formGroupAddNew.valueChanges.subscribe((data) => {
-      console.log(`data--`, data);
       const revenueTypeValue = data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE];
       if (
         !data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] ||

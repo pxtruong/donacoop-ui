@@ -1,0 +1,13 @@
+.wrapper-remark {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: 0px;
+    left: 0px;
+    &.remark-green {
+        background-color: green;
+    }
+    &.remark-red {
+        background-color: red;
+    }
+}

@@ -24,7 +24,7 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
   }
   protected _loadData() {}
   protected _uppdateTableData(data: any[]) {
-    if (!this.tableConfig) {
+    if (!this.tableConfig || !Array.isArray(data)) {
       return;
     }
     this.tableConfig.dataSource = [...data];
@@ -47,7 +47,12 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
       this.addCircle(record);
       return;
     }
+    if (iIcon === 'disabled_by_default') {
+      this._inactivePopup(record);
+      return;
+    }
   }
+
   protected addCircle(record: any) {}
 
   protected getFormConfig(record: any): any[] {
@@ -105,6 +110,29 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
       },
       panelClass: ['common-popup-3xx'],
     });
+  }
+
+  protected _inactivePopup(record: any) {
+    this._dialog.open(SharedAddNewPopup, {
+      data: {
+        message: `Bạn muốn ngừng hoạt động ?`,
+        title: `Ngừng hoạt động`,
+        confirmBTNText: `Xác nhận`,
+        confirmAction: () => {
+          return this.deleteAPI(record.id).pipe(
+            finalize(() => {
+              this._loadData();
+            })
+          );
+        },
+        initData: record,
+      },
+      panelClass: ['common-popup-3xx'],
+    });
+  }
+
+  protected inactiveAPI(id: any) {
+    return of(null);
   }
 
   protected deleteAPI(id: any) {

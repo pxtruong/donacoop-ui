@@ -1,25 +1,26 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
 import { SharedDatePicker } from '../../../../shared/components/shared-date-picker/shared-date-picker';
+import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedSelect } from '../../../../shared/components/shared-select/shared-select';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
-import { SharedTimePicker } from '../../../../shared/components/shared-time-picker/shared-time-picker';
-import { BasicExtends } from '../../../../shared/models/basic-extends.model';
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { ISelectionOption } from '../../../../shared/models/selection-option.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
+import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { tableConfigTheoDoiKeHoach } from '../../constants/theo-doi-hoat-dong-table.constant';
-import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
-import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
+import { ActivitiesService } from '../../services/activities.services';
 
 @Component({
-  selector: 'theo-doi-hoat-dong.component',
+  selector: 'theo-doi-hoat-dong',
   imports: [BaseLayoutComponent, SharedForm, SharedTable],
   templateUrl: './theo-doi-hoat-dong.component.html',
   styleUrl: './theo-doi-hoat-dong.component.scss',
   standalone: true,
 })
-export class TheoDoiHoatDongComponent extends BasicExtends {
+export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
   private masterDataFormGroup = new FormGroup({
     xeXuc: new FormControl(''),
     fromDate: new FormControl(''),
@@ -72,7 +73,24 @@ export class TheoDoiHoatDongComponent extends BasicExtends {
       },
     },
   ];
+  public override tableConfig: ITableConfig = tableConfigTheoDoiKeHoach;
 
-  public tableConfig: ITableConfig = tableConfigTheoDoiKeHoach;
-  @ViewChild(SharedTable) sharedTable!: SharedTable;
+  constructor(
+    protected _activitiesService: ActivitiesService,
+
+    protected override _dialog: MatDialog,
+    protected override _builder: FormBuilder
+  ) {
+    super(_dialog, _builder);
+  }
+  protected override _loadData() {
+    this.subcribe(
+      this._activitiesService.getActivities(),
+      (res) => {
+        // remarkConfig
+        this._uppdateTableData(res);
+      },
+      (error) => {}
+    );
+  }
 }

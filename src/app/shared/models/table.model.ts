@@ -15,8 +15,11 @@ export interface ITableColumn {
   maxWidth?: number;
   actionList?: any[];
   pipeValue?: PipeTransform;
+  remarkConfig?: IRemarkConfig;
 }
-
+export interface IRemarkConfig {
+  className: string;
+}
 export interface ITableConfig {
   columns: ITableColumn[];
   dataSource: any[];

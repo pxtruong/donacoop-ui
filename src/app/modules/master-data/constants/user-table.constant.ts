@@ -1,6 +1,7 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
+import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { USER_FIELD_CONSTANT } from './user-field.constant';
 
 export function GET_TABLE_NHAN_SU(): ITableConfig {
@@ -58,7 +59,7 @@ export function GET_TABLE_NHAN_SU(): ITableConfig {
         columnTitle: 'Thành Phố',
       },
       {
-        field: 'actioncolumn',
+        field: COMMON_FIELD.ACTION,
         columnTitle: 'Action',
         stickyEnd: true,
         showComponent: SharedAction,
@@ -88,7 +89,7 @@ export function GET_TABLE_NHAN_SU(): ITableConfig {
       USER_FIELD_CONSTANT.DIEN_THOAI_CA_NHAN,
       USER_FIELD_CONSTANT.DIA_CHI_NHA_RIENG,
       USER_FIELD_CONSTANT.THANH_PHO,
-      'actioncolumn',
+      COMMON_FIELD.ACTION,
     ],
     pageSizeOptions: [5, 10, 25, 100],
     pageSize: 10,

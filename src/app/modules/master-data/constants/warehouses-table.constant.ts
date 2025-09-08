@@ -3,6 +3,7 @@ import { StoreDataService } from '../../../core/services/store-data.service';
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
+import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { WAREHOUSES_FIELD_CONSTANT } from './warehouses-field.constant';
 
 export function GET_TABLE_CONFIG_KHO(): ITableConfig {
@@ -37,7 +38,7 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
       pipeValue: customBindingCompany,
     },
     {
-      field: 'actioncolumn',
+      field: COMMON_FIELD.ACTION,
       columnTitle: 'Action',
       stickyEnd: true,
       showComponent: SharedAction,
@@ -62,7 +63,7 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
       },
     }
   );
-  displayedColumns.push(WAREHOUSES_FIELD_CONSTANT.COMPANY, 'actioncolumn');
+  displayedColumns.push(WAREHOUSES_FIELD_CONSTANT.COMPANY, COMMON_FIELD.ACTION);
   return {
     columns: columns,
     dataSource: [{}],

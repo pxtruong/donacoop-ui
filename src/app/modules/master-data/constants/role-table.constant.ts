@@ -1,5 +1,6 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
+import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { ROLE_FIELD_CONSTANT } from './role-field.constant';
 
 export function GET_TABLE_CONFIG_ROLE(): ITableConfig {
@@ -10,7 +11,7 @@ export function GET_TABLE_CONFIG_ROLE(): ITableConfig {
         columnTitle: 'Tên Chức Vụ',
       },
       {
-        field: 'actioncolumn',
+        field: COMMON_FIELD.ACTION,
         columnTitle: 'Action',
         stickyEnd: true,
         showComponent: SharedAction,
@@ -31,7 +32,7 @@ export function GET_TABLE_CONFIG_ROLE(): ITableConfig {
       },
     ],
     dataSource: [{}],
-    displayedColumns: [ROLE_FIELD_CONSTANT.TEN_CHUC_VU, 'actioncolumn'],
+    displayedColumns: [ROLE_FIELD_CONSTANT.TEN_CHUC_VU, COMMON_FIELD.ACTION],
     pageSizeOptions: [5, 10, 25, 100],
     pageSize: 10,
     length: 0,

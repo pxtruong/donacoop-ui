@@ -1,8 +1,9 @@
 @use '../variables';
 .wrapper-table {
     transition: width 0.5s ease;
-    max-width: calc(100vw - 11.5rem);
+    max-width: calc(100vw - 30rem);
     width: 100%;
+    min-width: 100%;
     overflow: auto;
     min-height: 500px;
     max-height: 500px;

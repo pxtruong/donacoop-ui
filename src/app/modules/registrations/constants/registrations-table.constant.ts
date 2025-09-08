@@ -2,6 +2,7 @@ import { SharedAction } from '../../../shared/components/shared-action/shared-ac
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
+import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
 import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from './registrations-field.constant';
 export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
@@ -246,7 +247,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
         columnTitle: 'Mô Tả',
       },
       {
-        field: 'actioncolumn',
+        field: COMMON_FIELD.ACTION,
         columnTitle: 'Action',
         stickyEnd: true,
         showComponent: SharedAction,
@@ -258,7 +259,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
               iColorIcon: 'primary',
             },
             {
-              iIcon: 'delete',
+              iIcon: 'disabled_by_default',
               iCustomClass: 'border-none',
               iColorIcon: 'warn',
             },
@@ -292,7 +293,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
       FIELD_DANH_SACH_XE_TAI_DANG_KY.THANH_PHO,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.MA_BUU_CHINH,
       FIELD_DANH_SACH_XE_TAI_DANG_KY.MO_TA,
-      'actioncolumn',
+      COMMON_FIELD.ACTION,
     ],
     pageSizeOptions: [5, 10, 25, 100],
     pageSize: 10,
