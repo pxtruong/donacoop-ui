@@ -107,7 +107,7 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
         },
       },
       {
-        fieldName: 'btnAccept',
+        fieldName: 'btnThem',
         iComponent: ButtonAcceppt,
         label: '',
         iParams: {

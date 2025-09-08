@@ -8,6 +8,7 @@ export enum StoreDataKeys {
   WAREHOUSES = 'WAREHOUSES',
   MACHINERIES = 'MACHINERIES',
   USER_LIST = 'USER_LIST',
+  REGISTRATIONS = 'REGISTRATIONS',
 }
 export class ISubcribeStore {
   [key: string]: BehaviorSubject<any>;
@@ -19,6 +20,7 @@ export class ISubcribeStore {
   WAREHOUSES!: BehaviorSubject<any>;
   MACHINERIES!: BehaviorSubject<any>;
   USER_LIST!: BehaviorSubject<any>;
+  REGISTRATIONS!: BehaviorSubject<any>;
   constructor() {
     this.IS_LOADING = new BehaviorSubject<boolean>(false);
     this.COMPANY_LIST = new BehaviorSubject<any>(null);
@@ -28,5 +30,6 @@ export class ISubcribeStore {
     this.WAREHOUSES = new BehaviorSubject<any>(null);
     this.MACHINERIES = new BehaviorSubject<any>(null);
     this.USER_LIST = new BehaviorSubject<any>(null);
+    this.REGISTRATIONS = new BehaviorSubject<any>(null);
   }
 }

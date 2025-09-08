@@ -4,7 +4,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
   return {
     columns: [
       {
-        field: FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.BIEN_SO_XE,
+        field: FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.TRUCK_ID,
         columnTitle: 'Biển Số Xe',
         minWidth: 120,
       },
@@ -76,7 +76,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
     ],
     dataSource: [{}],
     displayedColumns: [
-      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.BIEN_SO_XE,
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.TRUCK_ID,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_CAN,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.LOAI_DA,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_LAY_DA,

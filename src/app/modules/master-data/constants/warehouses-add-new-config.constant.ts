@@ -33,13 +33,22 @@ export function GET_ADD_NEW_CONFIG_WAREHOUSES() {
 
 export function GET_ADD_NEW_LOAI_DA_VAO_KHO(record: any, formGroup: FormGroup) {
   const stoneTypeList = StoreDataService.getValue(StoreDataKeys.STONE_TYPE);
+  const stoneTypeOptions: any[] = [];
+  if (Array.isArray(stoneTypeList)) {
+    stoneTypeList.forEach((i) => {
+      stoneTypeOptions.push({
+        label: i.name,
+        value: i.id,
+      });
+    });
+  }
   return [
     {
       fieldName: WAREHOUSES_FIELD_CONSTANT.LOAI_DA,
       iComponent: SharedSelect,
       label: 'Loại Đá',
       iParams: {
-        dataSource: stoneTypeList,
+        dataSource: stoneTypeOptions,
         applyFieldValue: 'value',
       },
       className: 'col-12',

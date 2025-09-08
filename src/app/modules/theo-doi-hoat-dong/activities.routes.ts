@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ROUTE_CONSTANTS } from '../../shared/constants/route.constant';
-import { TruckResolver } from '../master-data/resolvers/trucks.resolver';
+import { RegistrationsResolver } from '../registrations/resolvers/registrations.resolver';
 
 export const ActivitiesRoutes: Routes = [
   {
@@ -9,6 +9,6 @@ export const ActivitiesRoutes: Routes = [
       import(
         './components/theo-doi-hoat-dong.component/activities.component'
       ).then((m) => m.TheoDoiHoatDongComponent),
-    resolve: [TruckResolver],
+    resolve: [RegistrationsResolver],
   },
 ];

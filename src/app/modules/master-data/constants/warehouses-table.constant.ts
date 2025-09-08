@@ -11,7 +11,7 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
   customBindingCompany.customFunction = (value: any, args: any) => {
     return args[1]?.company?.name;
   };
-  const stoneList = StoreDataService.getValue(StoreDataKeys.STONE_TYPE);
+  const stoneTypeList = StoreDataService.getValue(StoreDataKeys.STONE_TYPE);
   const columns: any[] = [
     {
       field: WAREHOUSES_FIELD_CONSTANT.TEN_KHO,
@@ -21,13 +21,13 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
   ];
   const displayedColumns: string[] = [WAREHOUSES_FIELD_CONSTANT.TEN_KHO];
   // generate column stone
-  if (Array.isArray(stoneList)) {
-    stoneList.forEach((i) => {
+  if (Array.isArray(stoneTypeList)) {
+    stoneTypeList.forEach((i) => {
       columns.push({
-        field: i.value + '',
-        columnTitle: i.label,
+        field: i.id + '',
+        columnTitle: i.name,
       });
-      displayedColumns.push(i.value + '');
+      displayedColumns.push(i.id + '');
     });
   }
 

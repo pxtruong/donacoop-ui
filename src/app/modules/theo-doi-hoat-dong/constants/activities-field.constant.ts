@@ -1,7 +1,7 @@
 export const FIELD_THEO_DOI_HOAT_DONG_CONSTANTS = {
-  BIEN_SO_XE: 'bienSoXe',
+  TRUCK_ID: 'truckId',
   VI_TRI_CAN: 'viTriCan',
-  LOAI_DA: 'loaiDa',
+  LOAI_DA: 'stoneTypeId',
   VI_TRI_LAY_DA: 'viTriLayDa',
   DOANH_THU: 'doanhThu',
   CONG_TY_MUA: 'congTyMua',

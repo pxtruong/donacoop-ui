@@ -82,8 +82,9 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
     );
   }
   const isDiDoi =
+    record &&
     record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] ===
-    REVENUE_TYPE_VALUE.DI_DOI;
+      REVENUE_TYPE_VALUE.DI_DOI;
   return [
     {
       fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID,
