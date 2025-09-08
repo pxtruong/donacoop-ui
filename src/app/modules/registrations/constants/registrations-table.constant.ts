@@ -170,7 +170,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
       {
         field: FIELD_DANH_SACH_XE_TAI_DANG_KY.THOI_GIAN_TOI,
         columnTitle: 'Thời Gian Tới',
-        pipeValue: pipeTime,
+        // pipeValue: pipeTime,
       },
       {
         field: FIELD_DANH_SACH_XE_TAI_DANG_KY.KHO,

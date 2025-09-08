@@ -10,11 +10,11 @@ import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
 import { REVENUE_TYPE_VALUE } from '../../constants/registrations-constant';
-import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import {
   FIELD_DAN_SACH_XE_TAI_ADD_NEW,
   FIELD_DANH_SACH_XE_TAI_DANG_KY,
 } from '../../constants/registrations-field.constant';
+import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
 
 @Component({
@@ -98,6 +98,7 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
 
   private _prepareData(data: any) {
     let request: any = {};
+    // map company
     if (data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID]) {
       const divideCompany =
         data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID].split('-');
@@ -106,6 +107,7 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID] = companyId;
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.DEPLOY_POINT] = destinationId;
     }
+    // map stone and warehouses
     if (data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID]) {
       const divideWarehouses =
         data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID].split('-');
@@ -115,10 +117,9 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.WAREHOUSES_ID] =
         destinationWarehouseId;
     }
+    // map field
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_DATE] =
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_DATE];
-    request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME] =
-      data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME];
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRIP_NUM] =
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRIP_NUM];
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID] =
@@ -129,27 +130,71 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MO_TA];
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID] =
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID];
+    // map time
+    const toTime = data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME];
+    const fromTime = data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.FROM_TIME];
+    request[
+      FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME
+    ] = `${fromTime.getHours()}:${fromTime.getMinutes()} - ${toTime.getHours()}:${toTime.getMinutes()}`;
     return request;
   }
 
-  protected override getFormConfig() {
-    return GET_ADD_NEW_DANG_KY_XE_TAI();
+  protected override getFormConfig(record: any) {
+    return GET_ADD_NEW_DANG_KY_XE_TAI(record);
   }
 
   protected override _prepareEditData(record: any) {
-    record[
-      FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID
-    ] = `${record.buyerCompany.id}-${record.destination.id}`;
-    record[
-      FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID
-    ] = `${record.destinationWarehouse.id}-${record.stoneType.id}`;
-    record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID] =
-      record.pickupPosition.id;
-    record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID] = record.truck.id;
-    return { ...record };
+    let _resData: any = { ...record };
+    if (_resData.buyerCompany && _resData.destination) {
+      _resData[
+        FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID
+      ] = `${_resData.buyerCompany.id}-${_resData.destination.id}`;
+    }
+    if (_resData.destinationWarehouse && _resData.stoneType) {
+      _resData[
+        FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID
+      ] = `${_resData.destinationWarehouse.id}-${_resData.stoneType.id}`;
+    }
+
+    if (_resData.pickupPosition) {
+      _resData[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID] =
+        _resData.pickupPosition.id;
+    }
+    if (_resData.truck) {
+      _resData[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID] = _resData.truck.id;
+    }
+    // handle Time
+    if (
+      _resData[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME] &&
+      typeof _resData[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME] === 'string'
+    ) {
+      this._handleTimeEdit(_resData);
+    }
+    return { ..._resData };
   }
 
-  override _prepareEventAddNew() {
+  private _handleTimeEdit(record: any) {
+    try {
+      const arrivalTime =
+        record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME].split(' - ');
+      const fromTime = arrivalTime[0].split(':');
+      const toTime = arrivalTime[1].split(':');
+      const _fromDate = new Date();
+      record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.FROM_TIME] = new Date(
+        _fromDate.setHours(fromTime[0], fromTime[1])
+      );
+      const _toDate = new Date();
+      record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME] = new Date(
+        _toDate.setHours(toTime[0], toTime[1])
+      );
+    } catch (e) {
+      this.logLevel.debug(`split time error`, e);
+    }
+  }
+  protected override _prepareEventEdit() {
+    this._prepareEventAddNew();
+  }
+  protected override _prepareEventAddNew() {
     let lastRevenueTypeValue: any = null;
     this._formGroupAddNew.valueChanges.subscribe((data) => {
       const revenueTypeValue = data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE];

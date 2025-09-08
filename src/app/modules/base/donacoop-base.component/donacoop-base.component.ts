@@ -70,6 +70,7 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
   }
   protected _editPopup(record: any) {
     this._formGroupAddNew = this._builder.group({});
+    this._prepareEventEdit();
     this._dialog.open(SharedAddNewPopup, {
       data: {
         title: `Sửa`,
@@ -140,6 +141,7 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
   }
 
   protected _prepareEventAddNew() {}
+  protected _prepareEventEdit() {}
 
   public addNewPopup() {
     this._formGroupAddNew = this._builder.group({});

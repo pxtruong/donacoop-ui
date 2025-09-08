@@ -6,10 +6,13 @@ import { SharedSelect } from '../../../shared/components/shared-select/shared-se
 import { SharedTimePicker } from '../../../shared/components/shared-time-picker/shared-time-picker';
 import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
 import { TRUCK_FIELD_CONSTANT } from '../../master-data/constants/trucks-field.constant';
-import { REVENUE_TYPE_OPTIONS } from './registrations-constant';
+import {
+  REVENUE_TYPE_OPTIONS,
+  REVENUE_TYPE_VALUE,
+} from './registrations-constant';
 import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from './registrations-field.constant';
 
-export function GET_ADD_NEW_DANG_KY_XE_TAI() {
+export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
   const truckList = StoreDataService.getValue(StoreDataKeys.TRUCK_LIST);
   const truckOptions = truckList.map((i: any) => {
     return {
@@ -78,7 +81,9 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI() {
       }
     );
   }
-
+  const isDiDoi =
+    record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] ===
+    REVENUE_TYPE_VALUE.DI_DOI;
   return [
     {
       fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID,
@@ -150,7 +155,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI() {
         applyFieldValue: 'value',
       },
       className: 'col-12',
-      defaultDisabled: true,
+      defaultDisabled: !isDiDoi,
     },
     {
       fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID,
@@ -161,7 +166,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI() {
         applyFieldValue: 'value',
       },
       className: 'col-12',
-      defaultDisabled: true,
+      defaultDisabled: isDiDoi,
     },
     {
       fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.MO_TA,
