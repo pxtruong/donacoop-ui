@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
@@ -16,11 +16,10 @@ import {
 } from '../../constants/registrations-field.constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
-import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'registrations',
-  imports: [BaseLayoutComponent, SharedTable, SharedForm, MatTabsModule],
+  imports: [SharedTable, SharedForm, MatTabsModule],
   templateUrl: './registrations.component.html',
   styleUrl: './registrations.component.scss',
   standalone: true,
@@ -109,15 +108,29 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID] = companyId;
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.DEPLOY_POINT] = destinationId;
     }
+    // map bussines revenue type
+    request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] =
+      data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE];
+    if (
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] ===
+      REVENUE_TYPE_VALUE.DI_DOI
+    ) {
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_WAREHOUSES_ID] =
+        data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_WAREHOUSES_ID];
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID] = null;
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.DEPLOY_POINT] = null;
+    } else {
+      request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_WAREHOUSES_ID] = null;
+    }
     // map stone and warehouses
     if (data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID]) {
       const originalWarehouses =
         data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID].split('-');
-      const destinationWarehouseId = originalWarehouses[0];
+      const originalWarehouseId = originalWarehouses[0];
       const stoneTypeId = originalWarehouses[1];
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID] = stoneTypeId;
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.WAREHOUSES_ID] =
-        destinationWarehouseId;
+        originalWarehouseId;
     }
     // map field
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_DATE] =
@@ -126,8 +139,6 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRIP_NUM];
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID] =
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID];
-    request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] =
-      data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE];
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MO_TA] =
       data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MO_TA];
     request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID] =
@@ -164,6 +175,10 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     }
     if (_resData.truck) {
       _resData[FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID] = _resData.truck.id;
+    }
+    if (_resData.originWarehouse) {
+      _resData[FIELD_DAN_SACH_XE_TAI_ADD_NEW.WAREHOUSES_ID] =
+        _resData.originWarehouse.id;
     }
     // handle Time
     if (

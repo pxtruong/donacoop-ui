@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
 import { StoreDataKeys } from '../../../../core/models/store-data.model';
 import { StoreDataService } from '../../../../core/services/store-data.service';
 import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
@@ -12,15 +11,15 @@ import { SharedTable } from '../../../../shared/components/shared-table/shared-t
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
+import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from '../../../registrations/constants/registrations-field.constant';
 import { GET_ADD_NEW_ACTIVITIES } from '../../constants/activities-add-new-form.constant';
+import { FIELD_THEO_DOI_HOAT_DONG_CONSTANTS } from '../../constants/activities-field.constant';
 import { GET_TABLE_CONFIG_ACTIVITIES } from '../../constants/activities-table.constant';
 import { ActivitiesService } from '../../services/activities.services';
-import { FIELD_THEO_DOI_HOAT_DONG_CONSTANTS } from '../../constants/activities-field.constant';
-import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from '../../../registrations/constants/registrations-field.constant';
 
 @Component({
   selector: 'activities',
-  imports: [BaseLayoutComponent, SharedForm, SharedTable],
+  imports: [SharedForm, SharedTable],
   templateUrl: './activities.component.html',
   styleUrl: './activities.component.scss',
   standalone: true,
