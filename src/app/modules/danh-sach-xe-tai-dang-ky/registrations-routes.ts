@@ -6,13 +6,13 @@ import { TruckResolver } from '../master-data/resolvers/trucks.resolver';
 import { WarehousesResolver } from '../master-data/resolvers/warehouses.resolver';
 import { CompanyResolver } from '../master-data/resolvers/company.resolver';
 
-export const DSXeTaiRoutes: Routes = [
+export const RegistrationsRoutes: Routes = [
   {
     path: ROUTE_CONSTANTS.PAGE.DS_XE_TAI_DANG_KY.PATH,
     loadComponent: () =>
       import(
-        './components/danh-sach-xe-tai-dang-ky.component/danh-sach-xe-tai-dang-ky.component'
-      ).then((m) => m.DanhSachXeTaiDangKyComponent),
+        './components/registrations.component/registrations.component'
+      ).then((m) => m.RegistrationsComponent),
     resolve: [
       TruckResolver,
       WarehousesResolver,

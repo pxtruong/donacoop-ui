@@ -6,8 +6,8 @@ import { SharedSelect } from '../../../shared/components/shared-select/shared-se
 import { SharedTimePicker } from '../../../shared/components/shared-time-picker/shared-time-picker';
 import { FIELD_CONG_TY_CONSTANT } from '../../master-data/constants/field-cong-ty.constant';
 import { FIELD_XE_TAI_CONSTANT } from '../../master-data/constants/field-danh-sach-xe-tai.constant';
-import { REVENUE_TYPE_OPTIONS } from './danh-sach-xe-tai-dang-ky-constant';
-import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from './field-danh-sach-xe-tai-dang-ky.constant';
+import { REVENUE_TYPE_OPTIONS } from './registrations-constant';
+import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from './registrations-field.constant';
 
 export function GET_ADD_NEW_DANG_KY_XE_TAI() {
   const truckList = StoreDataService.getValue(StoreDataKeys.TRUCK_LIST);

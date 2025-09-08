@@ -8,20 +8,20 @@ import { SharedTable } from '../../../../shared/components/shared-table/shared-t
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
-import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/danh-sach-xe-tai-dang-ky-add-new-form.constant';
-import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/danh-sach-xe-tai-dang-ky-table.constant';
-import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from '../../constants/field-danh-sach-xe-tai-dang-ky.constant';
+import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
+import { REVENUE_TYPE_VALUE } from '../../constants/registrations-constant';
+import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
+import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from '../../constants/registrations-field.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
-import { REVENUE_TYPE_VALUE } from '../../constants/danh-sach-xe-tai-dang-ky-constant';
 
 @Component({
-  selector: 'danh-sach-xe-tai-dang-ky.component',
+  selector: 'registrations',
   imports: [BaseLayoutComponent, SharedTable, SharedForm],
-  templateUrl: './danh-sach-xe-tai-dang-ky.component.html',
-  styleUrl: './danh-sach-xe-tai-dang-ky.component.scss',
+  templateUrl: './registrations.component.html',
+  styleUrl: './registrations.component.scss',
   standalone: true,
 })
-export class DanhSachXeTaiDangKyComponent extends DonacoopBaseComponent {
+export class RegistrationsComponent extends DonacoopBaseComponent {
   public override tableConfig: ITableConfig = GET_TABLE_CONFIG_REGISTRATTIONS();
   @ViewChild(SharedTable) sharedTable!: SharedTable;
   public formConfig: IDynamicFormModel[] = [

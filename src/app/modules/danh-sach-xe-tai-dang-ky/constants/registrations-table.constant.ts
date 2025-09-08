@@ -3,7 +3,7 @@ import { SharedAction } from '../../../shared/components/shared-action/shared-ac
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { FIELD_CONG_TY_CONSTANT } from '../../master-data/constants/field-cong-ty.constant';
-import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from './field-danh-sach-xe-tai-dang-ky.constant';
+import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from './registrations-field.constant';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const displayFn = (field: string, fieldName: string) => {
