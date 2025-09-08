@@ -1,4 +1,4 @@
-export const FIELD_CONG_TY_CONSTANT = {
+export const COMPANY_FIELD_CONSTANT = {
   TEN_CONG_TY: 'name',
   DIA_CHI: 'address',
   DIA_DIEM_GIAO_HANG: 'diaDiemGiaoHang',

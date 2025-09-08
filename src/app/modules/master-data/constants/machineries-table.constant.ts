@@ -1,7 +1,7 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
-import { FIELD_XE_CO_GIOI_CONSTANT } from './field-xe-co-gioi.constant';
+import { MACHINERIES_FIELD_CONSTANT } from './machineries-field.constant';
 
 export function GET_TABLE_CONFIG_MACHINERIES(): ITableConfig {
   const customBindingCompany = new CustomBindingPipe();
@@ -11,24 +11,24 @@ export function GET_TABLE_CONFIG_MACHINERIES(): ITableConfig {
   return {
     columns: [
       {
-        field: FIELD_XE_CO_GIOI_CONSTANT.TEN_XE,
+        field: MACHINERIES_FIELD_CONSTANT.TEN_XE,
         columnTitle: 'Tên Xe',
       },
       {
-        field: FIELD_XE_CO_GIOI_CONSTANT.TEN_CONG_TY,
+        field: MACHINERIES_FIELD_CONSTANT.TEN_CONG_TY,
         columnTitle: 'Tên Công Ty',
         pipeValue: customBindingCompany,
       },
       {
-        field: FIELD_XE_CO_GIOI_CONSTANT.TAI_KHOAN,
+        field: MACHINERIES_FIELD_CONSTANT.TAI_KHOAN,
         columnTitle: 'Tài Khoản',
       },
       {
-        field: FIELD_XE_CO_GIOI_CONSTANT.MAT_KHAU,
+        field: MACHINERIES_FIELD_CONSTANT.MAT_KHAU,
         columnTitle: 'Mật Khẩu',
       },
       {
-        field: FIELD_XE_CO_GIOI_CONSTANT.TAI_XE,
+        field: MACHINERIES_FIELD_CONSTANT.TAI_XE,
         columnTitle: 'Tài Xế',
       },
       {
@@ -54,11 +54,11 @@ export function GET_TABLE_CONFIG_MACHINERIES(): ITableConfig {
     ],
     dataSource: [{}],
     displayedColumns: [
-      FIELD_XE_CO_GIOI_CONSTANT.TEN_XE,
-      FIELD_XE_CO_GIOI_CONSTANT.TEN_CONG_TY,
-      FIELD_XE_CO_GIOI_CONSTANT.TAI_KHOAN,
-      FIELD_XE_CO_GIOI_CONSTANT.MAT_KHAU,
-      FIELD_XE_CO_GIOI_CONSTANT.TAI_XE,
+      MACHINERIES_FIELD_CONSTANT.TEN_XE,
+      MACHINERIES_FIELD_CONSTANT.TEN_CONG_TY,
+      MACHINERIES_FIELD_CONSTANT.TAI_KHOAN,
+      MACHINERIES_FIELD_CONSTANT.MAT_KHAU,
+      MACHINERIES_FIELD_CONSTANT.TAI_XE,
       'actioncolumn',
     ],
     pageSizeOptions: [5, 10, 25, 100],

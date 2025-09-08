@@ -3,12 +3,12 @@ import { finalize } from 'rxjs';
 import { SharedAddNewPopup } from '../../../../shared/components/shared-add-new-popup/shared-add-new-popup';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
-import { FIELD_KHO_CONSTANT } from '../../constants/field-kho.constant';
-import { GET_TABLE_CONFIG_KHO } from '../../constants/kho-table.constant';
 import {
   GET_ADD_NEW_CONFIG_WAREHOUSES,
   GET_ADD_NEW_LOAI_DA_VAO_KHO,
 } from '../../constants/warehouses-add-new-config.constant';
+import { WAREHOUSES_FIELD_CONSTANT } from '../../constants/warehouses-field.constant';
+import { GET_TABLE_CONFIG_KHO } from '../../constants/warehouses-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({
@@ -61,7 +61,7 @@ export class WarehouseComponent extends MasterDataBaseComponent {
   protected override _prepareEditData(record: any) {
     const _record: any = { ...record };
     if (_record.company) {
-      _record[FIELD_KHO_CONSTANT.COMPANY] = _record.company.id;
+      _record[WAREHOUSES_FIELD_CONSTANT.COMPANY] = _record.company.id;
     }
     return _record;
   }
@@ -75,15 +75,19 @@ export class WarehouseComponent extends MasterDataBaseComponent {
         formConfig: GET_ADD_NEW_LOAI_DA_VAO_KHO(record, this._formGroupAddNew),
         confirmAction: (data: any) => {
           const request = {
-            [FIELD_KHO_CONSTANT.SO_LUONG]: data[FIELD_KHO_CONSTANT.SO_LUONG],
-            [FIELD_KHO_CONSTANT.LOAI_DA]: data[FIELD_KHO_CONSTANT.LOAI_DA],
-            [FIELD_KHO_CONSTANT.WAREHOUSEID]: record.id,
+            [WAREHOUSES_FIELD_CONSTANT.SO_LUONG]:
+              data[WAREHOUSES_FIELD_CONSTANT.SO_LUONG],
+            [WAREHOUSES_FIELD_CONSTANT.LOAI_DA]:
+              data[WAREHOUSES_FIELD_CONSTANT.LOAI_DA],
+            [WAREHOUSES_FIELD_CONSTANT.WAREHOUSEID]: record.id,
           };
           let hasStock: boolean = false;
           let updateStockId: number = 0;
           if (Array.isArray(record.stocks)) {
             record.stocks.forEach((stock: any) => {
-              if (data[FIELD_KHO_CONSTANT.LOAI_DA] === stock.stoneType.id) {
+              if (
+                data[WAREHOUSES_FIELD_CONSTANT.LOAI_DA] === stock.stoneType.id
+              ) {
                 hasStock = true;
                 updateStockId = stock.id;
               }

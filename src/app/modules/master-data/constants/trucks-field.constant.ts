@@ -1,4 +1,4 @@
-export const FIELD_XE_TAI_CONSTANT = {
+export const TRUCK_FIELD_CONSTANT = {
   BIEN_SO_XE: 'licensePlate',
   MA_SO_XE: 'code',
   LOAI_XE: 'type',

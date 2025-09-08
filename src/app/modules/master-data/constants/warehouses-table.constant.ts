@@ -3,7 +3,7 @@ import { StoreDataService } from '../../../core/services/store-data.service';
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
-import { FIELD_KHO_CONSTANT } from './field-kho.constant';
+import { WAREHOUSES_FIELD_CONSTANT } from './warehouses-field.constant';
 
 export function GET_TABLE_CONFIG_KHO(): ITableConfig {
   const customBindingCompany = new CustomBindingPipe();
@@ -13,12 +13,12 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
   const stoneList = StoreDataService.getValue(StoreDataKeys.STONE_TYPE);
   const columns: any[] = [
     {
-      field: FIELD_KHO_CONSTANT.TEN_KHO,
+      field: WAREHOUSES_FIELD_CONSTANT.TEN_KHO,
       columnTitle: 'Tên Kho',
       sticky: true,
     },
   ];
-  const displayedColumns: string[] = [FIELD_KHO_CONSTANT.TEN_KHO];
+  const displayedColumns: string[] = [WAREHOUSES_FIELD_CONSTANT.TEN_KHO];
   // generate column stone
   if (Array.isArray(stoneList)) {
     stoneList.forEach((i) => {
@@ -32,7 +32,7 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
 
   columns.push(
     {
-      field: FIELD_KHO_CONSTANT.COMPANY,
+      field: WAREHOUSES_FIELD_CONSTANT.COMPANY,
       columnTitle: 'Địa Chỉ',
       pipeValue: customBindingCompany,
     },
@@ -62,7 +62,7 @@ export function GET_TABLE_CONFIG_KHO(): ITableConfig {
       },
     }
   );
-  displayedColumns.push(FIELD_KHO_CONSTANT.COMPANY, 'actioncolumn');
+  displayedColumns.push(WAREHOUSES_FIELD_CONSTANT.COMPANY, 'actioncolumn');
   return {
     columns: columns,
     dataSource: [{}],

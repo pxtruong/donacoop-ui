@@ -2,7 +2,7 @@ import { StoreDataKeys } from '../../../core/models/store-data.model';
 import { StoreDataService } from '../../../core/services/store-data.service';
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input';
 import { SharedSelect } from '../../../shared/components/shared-select/shared-select';
-import { FIELD_XE_TAI_CONSTANT } from './field-danh-sach-xe-tai.constant';
+import { TRUCK_FIELD_CONSTANT } from './trucks-field.constant';
 import { WEIGHT_METHOD_OPTIONS } from './truck.constant';
 
 export function GET_CONFIG_ADD_NEW_XE_TAI() {
@@ -22,35 +22,35 @@ export function GET_CONFIG_ADD_NEW_XE_TAI() {
   }
   return [
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.BIEN_SO_XE,
+      fieldName: TRUCK_FIELD_CONSTANT.BIEN_SO_XE,
       iComponent: SharedInputComponent,
       label: 'Biển Số Xe',
       iParams: {},
       className: 'col-12',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.MA_SO_XE,
+      fieldName: TRUCK_FIELD_CONSTANT.MA_SO_XE,
       iComponent: SharedInputComponent,
       label: 'Mã Số Xe',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.LOAI_XE,
+      fieldName: TRUCK_FIELD_CONSTANT.LOAI_XE,
       iComponent: SharedInputComponent,
       label: 'Loại Xe',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.GROUP,
+      fieldName: TRUCK_FIELD_CONSTANT.GROUP,
       iComponent: SharedInputComponent,
       label: 'Nhóm',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.CAN_XAC,
+      fieldName: TRUCK_FIELD_CONSTANT.CAN_XAC,
       iComponent: SharedSelect,
       label: 'Cân Xác',
       iParams: {
@@ -60,21 +60,21 @@ export function GET_CONFIG_ADD_NEW_XE_TAI() {
       className: 'col-4',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.VI_TRI_CAN,
+      fieldName: TRUCK_FIELD_CONSTANT.VI_TRI_CAN,
       iComponent: SharedInputComponent,
       label: 'Vị Trí Cân',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.TAI_TRONG_CHO_PHEP,
+      fieldName: TRUCK_FIELD_CONSTANT.TAI_TRONG_CHO_PHEP,
       iComponent: SharedInputComponent,
       label: 'Tải Trọng Cho Phép',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.TAI_XE,
+      fieldName: TRUCK_FIELD_CONSTANT.TAI_XE,
       iComponent: SharedSelect,
       label: 'Tài Xế',
       iParams: {
@@ -84,7 +84,7 @@ export function GET_CONFIG_ADD_NEW_XE_TAI() {
       className: 'col-6',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.THUOC_CONG_TY,
+      fieldName: TRUCK_FIELD_CONSTANT.THUOC_CONG_TY,
       iComponent: SharedSelect,
       label: 'Thuộc Công Ty',
       iParams: {
@@ -94,7 +94,7 @@ export function GET_CONFIG_ADD_NEW_XE_TAI() {
       className: 'col-6',
     },
     {
-      fieldName: FIELD_XE_TAI_CONSTANT.MO_TA,
+      fieldName: TRUCK_FIELD_CONSTANT.MO_TA,
       iComponent: SharedInputComponent,
       label: 'Mô Tả',
       iParams: {},

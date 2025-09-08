@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
-import { tableConfigLoaiDa } from '../../constants/loai-da-table.constant';
+import { tableConfigLoaiDa } from '../../constants/stone-type-table.constant';
 import { CONFIG_ADD_LOAI_DA } from '../../constants/stone-type-add-new-config.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 

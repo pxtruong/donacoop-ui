@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
-import { GET_ADD_NEW_CONFIG_CONG_TY } from '../../constants/cong-ty-add-new-config.constant';
+import { GET_ADD_NEW_CONFIG_CONG_TY } from '../../constants/company-add-new-config.constant';
 import { MasterDataService } from '../../services/master-data.service';
 
 @Component({

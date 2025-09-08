@@ -1,4 +1,4 @@
-export const FIELD_NHAN_SU_CONSTANT = {
+export const USER_FIELD_CONSTANT = {
   TEN_NHAN_VIEN: 'fullName',
   CHUC_VU: 'roles',
   CONG_VIEC_HIEN_TAI: 'currentJob',

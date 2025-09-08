@@ -8,9 +8,9 @@ import { ITableConfig } from '../../../../shared/models/table.model';
 import {
   GET_ADD_MEW_DIEM_DEN,
   GET_ADD_NEW_CONFIG_CONG_TY,
-} from '../../constants/cong-ty-add-new-config.constant';
-import { tableConfigCongTy } from '../../constants/cong-ty-table.constant';
-import { FIELD_CONG_TY_CONSTANT } from '../../constants/field-cong-ty.constant';
+} from '../../constants/company-add-new-config.constant';
+import { tableConfigCongTy } from '../../constants/company-table.constant';
+import { COMPANY_FIELD_CONSTANT } from '../../constants/company-field.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({
@@ -35,8 +35,8 @@ export class CompanyComponent extends MasterDataBaseComponent {
             showData.push(i);
             i.deliveryPoints.forEach((deliveryPoint: any) => {
               showData.push({
-                [FIELD_CONG_TY_CONSTANT.DIA_DIEM_GIAO_HANG]: deliveryPoint.name,
-                [FIELD_CONG_TY_CONSTANT.QUANG_DUONG]: deliveryPoint.distance,
+                [COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG]: deliveryPoint.name,
+                [COMPANY_FIELD_CONSTANT.QUANG_DUONG]: deliveryPoint.distance,
                 [`actioncolumnHideComponent`]: true,
               });
             });
@@ -75,10 +75,10 @@ export class CompanyComponent extends MasterDataBaseComponent {
         }
         deliveryPoints.push({
           name: data[property],
-          distance: data[`${FIELD_CONG_TY_CONSTANT.QUANG_DUONG}${match[0]}`],
+          distance: data[`${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${match[0]}`],
         });
         delete request[property];
-        delete request[`${FIELD_CONG_TY_CONSTANT.QUANG_DUONG}${match[0]}`];
+        delete request[`${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${match[0]}`];
       }
     }
     request.deliveryPoints = deliveryPoints;
@@ -98,9 +98,9 @@ export class CompanyComponent extends MasterDataBaseComponent {
         formConfig: GET_ADD_MEW_DIEM_DEN(record, this._formGroupAddNew),
         confirmAction: (data: any) => {
           const request = {
-            name: data[FIELD_CONG_TY_CONSTANT.DIA_DIEM_GIAO_HANG],
-            [FIELD_CONG_TY_CONSTANT.QUANG_DUONG]:
-              data[FIELD_CONG_TY_CONSTANT.QUANG_DUONG],
+            name: data[COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG],
+            [COMPANY_FIELD_CONSTANT.QUANG_DUONG]:
+              data[COMPANY_FIELD_CONSTANT.QUANG_DUONG],
             companyId: record.id,
           };
           return this._masterDataService

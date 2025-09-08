@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
-import { GET_ADD_NEW_CONFIG_CHUC_VU } from '../../constants/chuc-vu-add-new-config.constant';
-import { GET_TABLE_CONFIG_ROLE } from '../../constants/chuc-vu-table.constant';
+import { GET_ADD_NEW_CONFIG_CHUC_VU } from '../../constants/role-add-new-config.constant';
+import { GET_TABLE_CONFIG_ROLE } from '../../constants/role-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({

@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
-import { FIELD_CONG_TY_CONSTANT } from '../../master-data/constants/field-cong-ty.constant';
+import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
 import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from './registrations-field.constant';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
@@ -61,36 +61,36 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const customBindingCompanyName = new CustomBindingPipe();
   customBindingCompanyName.customFunction = displayFn(
     'buyerCompany',
-    FIELD_CONG_TY_CONSTANT.TEN_CONG_TY
+    COMPANY_FIELD_CONSTANT.TEN_CONG_TY
   );
 
   const customBindingCompanyAddress = new CustomBindingPipe();
   customBindingCompanyAddress.customFunction = displayFn(
     'buyerCompany',
-    FIELD_CONG_TY_CONSTANT.DIA_CHI
+    COMPANY_FIELD_CONSTANT.DIA_CHI
   );
 
   const customBindingCompanyEmail = new CustomBindingPipe();
   customBindingCompanyEmail.customFunction = displayFn(
     'buyerCompany',
-    FIELD_CONG_TY_CONSTANT.EMAIL_CO_QUAN
+    COMPANY_FIELD_CONSTANT.EMAIL_CO_QUAN
   );
   const customBindingCompanPhone = new CustomBindingPipe();
   customBindingCompanPhone.customFunction = displayFn(
     'buyerCompany',
-    FIELD_CONG_TY_CONSTANT.SO_DIEN_THOAI_CO_QUAN
+    COMPANY_FIELD_CONSTANT.SO_DIEN_THOAI_CO_QUAN
   );
 
   const customBindingCompanyCity = new CustomBindingPipe();
   customBindingCompanyCity.customFunction = displayFn(
     'buyerCompany',
-    FIELD_CONG_TY_CONSTANT.THANH_PHO
+    COMPANY_FIELD_CONSTANT.THANH_PHO
   );
 
   const customBindingCompanyPostalcode = new CustomBindingPipe();
   customBindingCompanyPostalcode.customFunction = displayFn(
     'buyerCompany',
-    FIELD_CONG_TY_CONSTANT.MA_BUU_CHINH
+    COMPANY_FIELD_CONSTANT.MA_BUU_CHINH
   );
   // #region binding deploy point
   const customBindingDeployPoint = new CustomBindingPipe();

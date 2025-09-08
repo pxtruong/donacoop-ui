@@ -8,7 +8,7 @@ import { SharedSelect } from '../../../../shared/components/shared-select/shared
 import { BasicExtends } from '../../../../shared/models/basic-extends.model';
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { ISelectionOption } from '../../../../shared/models/selection-option.model';
-import { CONG_TY_OPTIONS } from '../../constants/cong-ty-options.constant';
+import { CONG_TY_OPTIONS } from '../../constants/company-options.constant';
 
 @Component({
   selector: 'master-data',

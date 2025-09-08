@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
-import { GET_ADD_NEW_MACHINERIES } from '../../constants/xe-co-gioi-add-new-config.constant';
-import { GET_TABLE_CONFIG_MACHINERIES } from '../../constants/xe-co-gioi-table.constant';
+import { GET_ADD_NEW_MACHINERIES } from '../../constants/machineries-add-new-config.constant';
+import { MACHINERIES_FIELD_CONSTANT } from '../../constants/machineries-field.constant';
+import { GET_TABLE_CONFIG_MACHINERIES } from '../../constants/machineries-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
-import { FIELD_XE_CO_GIOI_CONSTANT } from '../../constants/field-xe-co-gioi.constant';
 
 @Component({
   selector: 'md-machineries',
@@ -44,7 +44,7 @@ export class MachineriesComponent extends MasterDataBaseComponent {
   protected override _prepareEditData(record: any) {
     const _record: any = { ...record };
     if (_record.company) {
-      _record[FIELD_XE_CO_GIOI_CONSTANT.TEN_CONG_TY] = _record.company.id;
+      _record[MACHINERIES_FIELD_CONSTANT.TEN_CONG_TY] = _record.company.id;
     }
     return _record;
   }

@@ -1,11 +1,11 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
-import { FIELD_LOAI_DA_CONSTANT } from './field-loai-da.constant';
+import { STONE_TYPE_FIELD_CONSTANT } from './stone-type-field.constant';
 
 export const tableConfigLoaiDa: ITableConfig = {
   columns: [
     {
-      field: FIELD_LOAI_DA_CONSTANT.TEN_LOAI_DA,
+      field: STONE_TYPE_FIELD_CONSTANT.TEN_LOAI_DA,
       columnTitle: 'Tên Loại Đá',
     },
     {
@@ -30,7 +30,7 @@ export const tableConfigLoaiDa: ITableConfig = {
     },
   ],
   dataSource: [{}],
-  displayedColumns: [FIELD_LOAI_DA_CONSTANT.TEN_LOAI_DA, 'actioncolumn'],
+  displayedColumns: [STONE_TYPE_FIELD_CONSTANT.TEN_LOAI_DA, 'actioncolumn'],
   pageSizeOptions: [5, 10, 25, 100],
   pageSize: 10,
   length: 0,

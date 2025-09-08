@@ -4,8 +4,8 @@ import { SharedDatePicker } from '../../../shared/components/shared-date-picker/
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input';
 import { SharedSelect } from '../../../shared/components/shared-select/shared-select';
 import { SharedTimePicker } from '../../../shared/components/shared-time-picker/shared-time-picker';
-import { FIELD_CONG_TY_CONSTANT } from '../../master-data/constants/field-cong-ty.constant';
-import { FIELD_XE_TAI_CONSTANT } from '../../master-data/constants/field-danh-sach-xe-tai.constant';
+import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
+import { TRUCK_FIELD_CONSTANT } from '../../master-data/constants/trucks-field.constant';
 import { REVENUE_TYPE_OPTIONS } from './registrations-constant';
 import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from './registrations-field.constant';
 
@@ -13,15 +13,15 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI() {
   const truckList = StoreDataService.getValue(StoreDataKeys.TRUCK_LIST);
   const truckOptions = truckList.map((i: any) => {
     return {
-      label: `${i[FIELD_XE_TAI_CONSTANT.BIEN_SO_XE]} - ${
-        i[FIELD_XE_TAI_CONSTANT.MA_SO_XE]
-      } - ${i[FIELD_XE_TAI_CONSTANT.LOAI_XE]} - ${
-        i[FIELD_XE_TAI_CONSTANT.GROUP]
+      label: `${i[TRUCK_FIELD_CONSTANT.BIEN_SO_XE]} - ${
+        i[TRUCK_FIELD_CONSTANT.MA_SO_XE]
+      } - ${i[TRUCK_FIELD_CONSTANT.LOAI_XE]} - ${
+        i[TRUCK_FIELD_CONSTANT.GROUP]
       } - ${
-        i[FIELD_XE_TAI_CONSTANT.CAN_XAC]
-          ? i[FIELD_XE_TAI_CONSTANT.CAN_XAC]
+        i[TRUCK_FIELD_CONSTANT.CAN_XAC]
+          ? i[TRUCK_FIELD_CONSTANT.CAN_XAC]
           : 'empty'
-      } - ${i[FIELD_XE_TAI_CONSTANT.VI_TRI_CAN]}`,
+      } - ${i[TRUCK_FIELD_CONSTANT.VI_TRI_CAN]}`,
       value: i.id,
     };
   });
@@ -43,7 +43,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI() {
           (deliveryPoint: { id: number; name: string; distance: number }) => {
             companyOptions.push({
               value: `${i.id}-${deliveryPoint.id}`,
-              label: `${i[FIELD_CONG_TY_CONSTANT.TEN_CONG_TY]} - ${
+              label: `${i[COMPANY_FIELD_CONSTANT.TEN_CONG_TY]} - ${
                 deliveryPoint.name
               } -  ${deliveryPoint.distance}(km)`,
             });

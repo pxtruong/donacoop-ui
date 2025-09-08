@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
-import { GET_TABLE_CONFIG_XE_TAI } from '../../constants/danh-sach-xe-tai-table.constant';
-import { FIELD_XE_TAI_CONSTANT } from '../../constants/field-danh-sach-xe-tai.constant';
-import { GET_CONFIG_ADD_NEW_XE_TAI } from '../../constants/xe-tai-add-new-config.constant';
+import { GET_CONFIG_ADD_NEW_XE_TAI } from '../../constants/trucks-add-new-config.constant';
+import { TRUCK_FIELD_CONSTANT } from '../../constants/trucks-field.constant';
+import { GET_TABLE_CONFIG_XE_TAI } from '../../constants/trucks-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({
@@ -41,7 +41,7 @@ export class TruckComponent extends MasterDataBaseComponent {
   protected override _prepareEditData(record: any) {
     const _record: any = { ...record };
     if (_record.company) {
-      _record[FIELD_XE_TAI_CONSTANT.THUOC_CONG_TY] = _record.company.id;
+      _record[TRUCK_FIELD_CONSTANT.THUOC_CONG_TY] = _record.company.id;
     }
     return _record;
   }

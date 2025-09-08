@@ -1,4 +1,4 @@
-export const FIELD_KHO_CONSTANT = {
+export const WAREHOUSES_FIELD_CONSTANT = {
   TEN_KHO: 'name',
   LOAI_DA: 'stoneTypeId',
   SO_LUONG: 'quantity',

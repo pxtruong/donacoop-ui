@@ -1,44 +1,44 @@
 import { FormGroup } from '@angular/forms';
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input';
-import { FIELD_CONG_TY_CONSTANT } from './field-cong-ty.constant';
+import { COMPANY_FIELD_CONSTANT } from './company-field.constant';
 const ADD_NEW_CONFIG_CONG_TY = [
   {
-    fieldName: FIELD_CONG_TY_CONSTANT.TEN_CONG_TY,
+    fieldName: COMPANY_FIELD_CONSTANT.TEN_CONG_TY,
     iComponent: SharedInputComponent,
     label: 'Tên Công Ty',
     iParams: {},
     className: 'col-12',
   },
   {
-    fieldName: FIELD_CONG_TY_CONSTANT.EMAIL_CO_QUAN,
+    fieldName: COMPANY_FIELD_CONSTANT.EMAIL_CO_QUAN,
     iComponent: SharedInputComponent,
     label: 'Email Cơ Quan',
     iParams: {},
     className: 'col-6',
   },
   {
-    fieldName: FIELD_CONG_TY_CONSTANT.SO_DIEN_THOAI_CO_QUAN,
+    fieldName: COMPANY_FIELD_CONSTANT.SO_DIEN_THOAI_CO_QUAN,
     iComponent: SharedInputComponent,
     label: 'Số Điện Thoại Cơ Quan',
     iParams: {},
     className: 'col-6',
   },
   {
-    fieldName: FIELD_CONG_TY_CONSTANT.DIA_CHI,
+    fieldName: COMPANY_FIELD_CONSTANT.DIA_CHI,
     iComponent: SharedInputComponent,
     label: 'Địa Chỉ',
     iParams: {},
     className: 'col-12',
   },
   {
-    fieldName: FIELD_CONG_TY_CONSTANT.THANH_PHO,
+    fieldName: COMPANY_FIELD_CONSTANT.THANH_PHO,
     iComponent: SharedInputComponent,
     label: 'Thành Phố',
     iParams: {},
     className: 'col-6',
   },
   {
-    fieldName: FIELD_CONG_TY_CONSTANT.MA_BUU_CHINH,
+    fieldName: COMPANY_FIELD_CONSTANT.MA_BUU_CHINH,
     iComponent: SharedInputComponent,
     label: 'Mã Bưu Chính',
     iParams: {},
@@ -57,14 +57,14 @@ export function GET_ADD_NEW_CONFIG_CONG_TY(record: any, formGroup: FormGroup) {
   //     config.clickBTN = () => {
   //       const addMore: any = [
   //         {
-  //           fieldName: `${FIELD_CONG_TY_CONSTANT.DIA_DIEM_GIAO_HANG}${indexButton}`,
+  //           fieldName: `${COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG}${indexButton}`,
   //           iComponent: SharedInputComponent,
   //           label: 'Địa Điểm Giao Hàng',
   //           iParams: {},
   //           className: 'col-6',
   //         },
   //         {
-  //           fieldName: `${FIELD_CONG_TY_CONSTANT.QUANG_DUONG}${indexButton}`,
+  //           fieldName: `${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${indexButton}`,
   //           iComponent: SharedInputComponent,
   //           label: 'Quảng Đường',
   //           iParams: {},
@@ -91,14 +91,14 @@ export function GET_ADD_NEW_CONFIG_CONG_TY(record: any, formGroup: FormGroup) {
 export function GET_ADD_MEW_DIEM_DEN(record: any, formGroup: FormGroup) {
   return [
     {
-      fieldName: FIELD_CONG_TY_CONSTANT.DIA_DIEM_GIAO_HANG,
+      fieldName: COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG,
       iComponent: SharedInputComponent,
       label: 'Địa Điểm Giao Hàng',
       iParams: {},
       className: 'col-6',
     },
     {
-      fieldName: FIELD_CONG_TY_CONSTANT.QUANG_DUONG,
+      fieldName: COMPANY_FIELD_CONSTANT.QUANG_DUONG,
       iComponent: SharedInputComponent,
       label: 'Quảng Đường',
       iParams: {},

@@ -1,4 +1,4 @@
-export const FIELD_XE_CO_GIOI_CONSTANT = {
+export const MACHINERIES_FIELD_CONSTANT = {
   TEN_XE: 'name',
   TEN_CONG_TY: 'companyId',
   TAI_KHOAN: 'account',

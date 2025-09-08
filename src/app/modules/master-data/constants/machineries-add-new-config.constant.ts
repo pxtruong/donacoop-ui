@@ -2,7 +2,7 @@ import { StoreDataKeys } from '../../../core/models/store-data.model';
 import { StoreDataService } from '../../../core/services/store-data.service';
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input';
 import { SharedSelect } from '../../../shared/components/shared-select/shared-select';
-import { FIELD_XE_CO_GIOI_CONSTANT } from './field-xe-co-gioi.constant';
+import { MACHINERIES_FIELD_CONSTANT } from './machineries-field.constant';
 
 export function GET_ADD_NEW_MACHINERIES() {
   const companyList = StoreDataService.getValue(StoreDataKeys.COMPANY_LIST);
@@ -21,14 +21,14 @@ export function GET_ADD_NEW_MACHINERIES() {
   }
   return [
     {
-      fieldName: FIELD_XE_CO_GIOI_CONSTANT.TEN_XE,
+      fieldName: MACHINERIES_FIELD_CONSTANT.TEN_XE,
       iComponent: SharedInputComponent,
       label: 'Tên Xe',
       iParams: {},
       className: 'col-12',
     },
     {
-      fieldName: FIELD_XE_CO_GIOI_CONSTANT.TAI_XE,
+      fieldName: MACHINERIES_FIELD_CONSTANT.TAI_XE,
       iComponent: SharedSelect,
       label: 'Tài Xế',
       iParams: {
@@ -38,7 +38,7 @@ export function GET_ADD_NEW_MACHINERIES() {
       className: 'col-6',
     },
     {
-      fieldName: FIELD_XE_CO_GIOI_CONSTANT.TEN_CONG_TY,
+      fieldName: MACHINERIES_FIELD_CONSTANT.TEN_CONG_TY,
       iComponent: SharedSelect,
       label: 'Tên Công Ty',
       iParams: {
@@ -48,14 +48,14 @@ export function GET_ADD_NEW_MACHINERIES() {
       className: 'col-6',
     },
     {
-      fieldName: FIELD_XE_CO_GIOI_CONSTANT.TAI_KHOAN,
+      fieldName: MACHINERIES_FIELD_CONSTANT.TAI_KHOAN,
       iComponent: SharedInputComponent,
       label: 'Tài Khoản',
       iParams: {},
       className: 'col-12',
     },
     {
-      fieldName: FIELD_XE_CO_GIOI_CONSTANT.MAT_KHAU,
+      fieldName: MACHINERIES_FIELD_CONSTANT.MAT_KHAU,
       iComponent: SharedInputComponent,
       label: 'Mật Khẩu',
       iParams: {},
