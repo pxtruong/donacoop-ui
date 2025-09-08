@@ -67,7 +67,7 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     if (!this.tableConfig || !Array.isArray(data)) {
       return;
     }
-    data.forEach((i) => {
+    data.forEach((i, index: number) => {
       if (i.truck.isActive) {
         i[`${FIELD_DANH_SACH_XE_TAI_DANG_KY.STT}remarkConfig`] = {
           className: 'remark-green',
@@ -77,6 +77,7 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
           className: 'remark-red',
         };
       }
+      i[FIELD_DANH_SACH_XE_TAI_DANG_KY.STT] = index + 1;
     });
     this.tableConfig.dataSource = [...data];
   }
@@ -109,10 +110,10 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     }
     // map stone and warehouses
     if (data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID]) {
-      const divideWarehouses =
+      const originalWarehouses =
         data[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID].split('-');
-      const destinationWarehouseId = divideWarehouses[0];
-      const stoneTypeId = divideWarehouses[1];
+      const destinationWarehouseId = originalWarehouses[0];
+      const stoneTypeId = originalWarehouses[1];
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID] = stoneTypeId;
       request[FIELD_DAN_SACH_XE_TAI_ADD_NEW.WAREHOUSES_ID] =
         destinationWarehouseId;
@@ -150,10 +151,10 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
         FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID
       ] = `${_resData.buyerCompany.id}-${_resData.destination.id}`;
     }
-    if (_resData.destinationWarehouse && _resData.stoneType) {
+    if (_resData.originWarehouse && _resData.stoneType) {
       _resData[
         FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID
-      ] = `${_resData.destinationWarehouse.id}-${_resData.stoneType.id}`;
+      ] = `${_resData.originWarehouse.id}-${_resData.stoneType.id}`;
     }
 
     if (_resData.pickupPosition) {

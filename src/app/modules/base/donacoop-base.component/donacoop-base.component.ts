@@ -47,7 +47,7 @@ export class DonacoopBaseComponent extends BasicExtends implements OnInit {
       this.addCircle(record);
       return;
     }
-    if (iIcon === 'disabled_by_default') {
+    if (iIcon === 'block') {
       this._inactivePopup(record);
       return;
     }

@@ -17,6 +17,20 @@
     .mat-mdc-header-row {
         background-color: variables.$primary-hover;
     }
+    .mdc-button {
+        min-width: 32px;
+        padding: 0px;
+        border-radius: 30px;
+        width: 32px;
+        height: 32px;
+        .mat-mdc-button-base .mat-icon {
+            margin: 0px !important;
+        }
+    }
+    --mat-button-outlined-container-height: 32px;
+    .mat-mdc-outlined-button .mat-mdc-button-touch-target {
+        min-width: 32px;
+    }
 }
 
 body {

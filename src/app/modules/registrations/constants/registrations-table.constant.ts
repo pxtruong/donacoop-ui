@@ -110,6 +110,12 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   );
 
   // #region binding warehouses
+  const customBindingOriginWarehouse = new CustomBindingPipe();
+  customBindingOriginWarehouse.customFunction = displayFn(
+    'originWarehouse',
+    FIELD_DANH_SACH_XE_TAI_DANG_KY.NAME
+  );
+
   const customBindingWarehouses = new CustomBindingPipe();
   customBindingWarehouses.customFunction = displayFn(
     'destinationWarehouse',
@@ -175,7 +181,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
       {
         field: FIELD_DANH_SACH_XE_TAI_DANG_KY.KHO,
         columnTitle: 'Từ Kho',
-        pipeValue: customBindingWarehouses,
+        pipeValue: customBindingOriginWarehouse,
       },
       {
         field: FIELD_DANH_SACH_XE_TAI_DANG_KY.LOAI_DA,
@@ -259,7 +265,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
               iColorIcon: 'primary',
             },
             {
-              iIcon: 'disabled_by_default',
+              iIcon: 'block',
               iCustomClass: 'border-none',
               iColorIcon: 'warn',
             },

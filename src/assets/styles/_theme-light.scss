@@ -12,6 +12,14 @@ body {
                 height: 46px;
             }
         }
+        .mat-mdc-outlined-button .mat-mdc-button-touch-target {
+            outline: none;
+        }
+        button {
+            &:focus, &:focus-visible {   
+                outline: none;
+            }
+        }
         .wrapper-header {
             border-bottom: solid 1px;
             background:  variables.$core-background;
