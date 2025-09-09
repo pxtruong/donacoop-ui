@@ -10,7 +10,7 @@ import {
   REVENUE_TYPE_OPTIONS,
   REVENUE_TYPE_VALUE,
 } from './registrations-constant';
-import { FIELD_DAN_SACH_XE_TAI_ADD_NEW } from './registrations-field.constant';
+import { TRUCK_FIELD_ADD_NEW } from './registrations-field.constant';
 
 export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
   const truckList = StoreDataService.getValue(StoreDataKeys.TRUCK_LIST);
@@ -83,11 +83,10 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
   }
   const isDiDoi =
     record &&
-    record[FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE] ===
-      REVENUE_TYPE_VALUE.DI_DOI;
+    record[TRUCK_FIELD_ADD_NEW.REVENUE_TYPE] === REVENUE_TYPE_VALUE.DI_DOI;
   return [
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.TRUCK_ID,
+      fieldName: TRUCK_FIELD_ADD_NEW.TRUCK_ID,
       iComponent: SharedSelect,
       label: 'Chọn Xe Tải',
       iParams: {
@@ -97,28 +96,28 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
       className: 'col-12',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_DATE,
+      fieldName: TRUCK_FIELD_ADD_NEW.TO_DATE,
       iComponent: SharedDatePicker,
       label: 'Ngày Đến',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.FROM_TIME,
+      fieldName: TRUCK_FIELD_ADD_NEW.FROM_TIME,
       iComponent: SharedTimePicker,
       label: 'Từ Giờ',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_TIME,
+      fieldName: TRUCK_FIELD_ADD_NEW.TO_TIME,
       iComponent: SharedTimePicker,
       label: 'Đến Giờ',
       iParams: {},
       className: 'col-4',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.STONE_TYPE_ID,
+      fieldName: TRUCK_FIELD_ADD_NEW.STONE_TYPE_ID,
       iComponent: SharedSelect,
       label: 'Chọn Loại Đá',
       iParams: {
@@ -128,7 +127,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
       className: 'col-6',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.MACHINERIES_ID,
+      fieldName: TRUCK_FIELD_ADD_NEW.MACHINERIES_ID,
       iComponent: SharedSelect,
       label: 'Chọn Vị Trí Lấy Đá',
       iParams: {
@@ -138,7 +137,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
       className: 'col-6',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.REVENUE_TYPE,
+      fieldName: TRUCK_FIELD_ADD_NEW.REVENUE_TYPE,
       iComponent: SharedSelect,
       label: 'Doanh Thu',
       iParams: {
@@ -148,7 +147,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
       className: 'col-12',
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.TO_WAREHOUSES_ID,
+      fieldName: TRUCK_FIELD_ADD_NEW.TO_WAREHOUSES_ID,
       iComponent: SharedSelect,
       label: 'Kho',
       iParams: {
@@ -159,7 +158,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
       defaultDisabled: !isDiDoi,
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.BUYER_COMPANY_ID,
+      fieldName: TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID,
       iComponent: SharedSelect,
       label: 'Công Ty Mua',
       iParams: {
@@ -170,7 +169,7 @@ export function GET_ADD_NEW_DANG_KY_XE_TAI(record: any) {
       defaultDisabled: isDiDoi,
     },
     {
-      fieldName: FIELD_DAN_SACH_XE_TAI_ADD_NEW.MO_TA,
+      fieldName: TRUCK_FIELD_ADD_NEW.MO_TA,
       iComponent: SharedInputComponent,
       label: 'Mô Tả',
       iParams: {},

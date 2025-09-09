@@ -13,6 +13,7 @@ import { ISelectionOption } from '../../../../shared/models/selection-option.mod
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { GET_TABLE_CONFIG_PLANT } from '../../constants/ke-hoach-table.constant';
+import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 @Component({
   selector: 'app-ke-hoach.component',
   imports: [BaseLayoutComponent, SharedTable, SharedForm],
@@ -20,8 +21,8 @@ import { GET_TABLE_CONFIG_PLANT } from '../../constants/ke-hoach-table.constant'
   styleUrl: './ke-hoach.component.scss',
 })
 export class KeHoachComponent extends DonacoopBaseComponent {
-  private masterDataFormGroup = new FormGroup({
-    xeXuc: new FormControl(''),
+  private plantFormGroup = new FormGroup({
+    machineries: new FormControl(''),
     ngay: new FormControl(''),
     gio: new FormControl(''),
   });
@@ -30,12 +31,12 @@ export class KeHoachComponent extends DonacoopBaseComponent {
   public override tableConfig: ITableConfig = GET_TABLE_CONFIG_PLANT();
   private _dataSource = [];
   protected override _loadData() {
-    this._dataSource = StoreDataService.getValue(StoreDataKeys.ACTIVITIES);
-    this._initForm();
-    const showData = this._dataSource.filter((i: any) => {
+    const data = StoreDataService.getValue(StoreDataKeys.ACTIVITIES);
+    this._dataSource = data.filter((i: any) => {
       return !i.gateOutTime;
     });
-    this.tableConfig.dataSource = showData;
+    this.tableConfig.dataSource = [...this._dataSource];
+    this._initForm();
   }
 
   private _initForm() {
@@ -55,14 +56,19 @@ export class KeHoachComponent extends DonacoopBaseComponent {
       });
       existsMachineries[pickupPosition.id] = true;
     });
+    machineriesOptions.push({
+      label: 'test',
+      value: 99,
+    });
     this.formConfig = [
       {
-        fieldName: 'xeXuc',
+        fieldName: 'machineries',
         iComponent: SharedSelect,
         label: 'Chọn Xe Xúc',
         iParams: {
-          iControl: this.masterDataFormGroup.get('xeXuc'),
+          iControl: this.plantFormGroup.get('machineries'),
           dataSource: machineriesOptions,
+          applyFieldValue: 'value',
         },
         className: 'col-3',
         onTriggerSearch: (data: ISelectionOption) => {
@@ -74,7 +80,7 @@ export class KeHoachComponent extends DonacoopBaseComponent {
         iComponent: SharedDatePicker,
         label: 'Chọn Ngày',
         iParams: {
-          iControl: this.masterDataFormGroup.get('ngay'),
+          iControl: this.plantFormGroup.get('ngay'),
         },
         className: 'col-3',
         onTriggerSearch: (data: ISelectionOption) => {
@@ -86,13 +92,41 @@ export class KeHoachComponent extends DonacoopBaseComponent {
         iComponent: SharedTimePicker,
         label: 'Chọn Giờ',
         iParams: {
-          iControl: this.masterDataFormGroup.get('gio'),
+          iControl: this.plantFormGroup.get('gio'),
         },
         className: 'col-3',
         onTriggerSearch: (data: ISelectionOption) => {
           console.log('Trigger search in Master Data with data:', data);
         },
       },
+      {
+        fieldName: 'btnAccept',
+        iComponent: ButtonAcceppt,
+        label: '',
+        iParams: {
+          iControl: null,
+          iIcon: '',
+          iText: 'Tìm',
+          iCustomClass: 'mt-4',
+        },
+        className: 'col-1',
+        clickBTN: () => {
+          this._filterData();
+          this.logLevel.debug('Click tìm in activities');
+        },
+      },
+    ];
+  }
+
+  private _filterData() {
+    const filterData = this._clearNullData(this.plantFormGroup.value);
+    if (!filterData) {
+      return;
+    }
+    this.tableConfig.dataSource = [
+      ...this._dataSource.filter((i: any) => {
+        return filterData.machineries === i.pickupPosition.id;
+      }),
     ];
   }
 }

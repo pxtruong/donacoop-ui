@@ -1,4 +1,4 @@
-export const FIELD_DANH_SACH_XE_TAI_DANG_KY = {
+export const REGISTRATIONS_FIELD = {
   STT: 'tripNumber',
   BIEN_SO_XE: 'licensePlate',
   MA_SO_XE: 'code',
@@ -26,7 +26,7 @@ export const FIELD_DANH_SACH_XE_TAI_DANG_KY = {
   DELIVERY_POINT_DESCRIPTION: 'deliveryPointDescription',
 };
 
-export const FIELD_DAN_SACH_XE_TAI_ADD_NEW = {
+export const TRUCK_FIELD_ADD_NEW = {
   TRUCK_ID: 'truckId',
   TO_DATE: 'arrivalDate',
   FROM_TIME: 'fromArrivalTime',

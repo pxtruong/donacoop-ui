@@ -1,4 +1,4 @@
-export const FIELD_THEO_DOI_HOAT_DONG_CONSTANTS = {
+export const ACTIVITIES_FIELD = {
   REGISTRATION_ID: 'registrationId',
   VI_TRI_CAN: 'viTriCan',
   LOAI_DA: 'stoneTypeId',

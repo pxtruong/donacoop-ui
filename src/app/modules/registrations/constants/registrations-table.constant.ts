@@ -4,7 +4,7 @@ import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
-import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from './registrations-field.constant';
+import { REGISTRATIONS_FIELD } from './registrations-field.constant';
 export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const displayFn = (field: string, fieldName: string) => {
     return (value: any, args: any) => {
@@ -18,43 +18,43 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const customBindingLicensePlate = new CustomBindingPipe();
   customBindingLicensePlate.customFunction = displayFn(
     'truck',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.BIEN_SO_XE
+    REGISTRATIONS_FIELD.BIEN_SO_XE
   );
 
   const customBindingCode = new CustomBindingPipe();
   customBindingCode.customFunction = displayFn(
     'truck',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.MA_SO_XE
+    REGISTRATIONS_FIELD.MA_SO_XE
   );
 
   const customBindingTruckType = new CustomBindingPipe();
   customBindingTruckType.customFunction = displayFn(
     'truck',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.LOAI_XE
+    REGISTRATIONS_FIELD.LOAI_XE
   );
 
   const customBindingTruckGroup = new CustomBindingPipe();
   customBindingTruckGroup.customFunction = displayFn(
     'truck',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.GROUP
+    REGISTRATIONS_FIELD.GROUP
   );
 
   const customBindingTruckWeightMethod = new CustomBindingPipe();
   customBindingTruckWeightMethod.customFunction = displayFn(
     'truck',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.CAN_XAC
+    REGISTRATIONS_FIELD.CAN_XAC
   );
 
   const customBindingTruckWeightPosition = new CustomBindingPipe();
   customBindingTruckWeightPosition.customFunction = displayFn(
     'truck',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.VI_TRI_CAN
+    REGISTRATIONS_FIELD.VI_TRI_CAN
   );
   // #region binding stone type
   const customBindingStoneType = new CustomBindingPipe();
   customBindingStoneType.customFunction = displayFn(
     'stoneType',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.NAME
+    REGISTRATIONS_FIELD.NAME
   );
 
   // #region binding company
@@ -96,160 +96,160 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const customBindingDeployPoint = new CustomBindingPipe();
   customBindingDeployPoint.customFunction = displayFn(
     'destination',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.NAME
+    REGISTRATIONS_FIELD.NAME
   );
   const customBindingDeployDistance = new CustomBindingPipe();
   customBindingDeployDistance.customFunction = displayFn(
     'destination',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.QUANG_DUONG
+    REGISTRATIONS_FIELD.QUANG_DUONG
   );
   const customBindingDeployDescription = new CustomBindingPipe();
   customBindingDeployDescription.customFunction = displayFn(
     'destination',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.MO_TA
+    REGISTRATIONS_FIELD.MO_TA
   );
 
   // #region binding warehouses
   const customBindingOriginWarehouse = new CustomBindingPipe();
   customBindingOriginWarehouse.customFunction = displayFn(
     'originWarehouse',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.NAME
+    REGISTRATIONS_FIELD.NAME
   );
 
   const customBindingWarehouses = new CustomBindingPipe();
   customBindingWarehouses.customFunction = displayFn(
     'destinationWarehouse',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.NAME
+    REGISTRATIONS_FIELD.NAME
   );
 
   // #region machine
   const customBindingMachineries = new CustomBindingPipe();
   customBindingMachineries.customFunction = displayFn(
     'pickupPosition',
-    FIELD_DANH_SACH_XE_TAI_DANG_KY.NAME
+    REGISTRATIONS_FIELD.NAME
   );
   const pipeTime = new CustomDatePipe();
   pipeTime.formatDate = 'HH:mm';
   return {
     columns: [
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.STT,
+        field: REGISTRATIONS_FIELD.STT,
         columnTitle: 'Số Thứ Tự',
         sticky: true,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.BIEN_SO_XE,
+        field: REGISTRATIONS_FIELD.BIEN_SO_XE,
         columnTitle: 'Biển Số Xe',
         sticky: true,
         pipeValue: customBindingLicensePlate,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.MA_SO_XE,
+        field: REGISTRATIONS_FIELD.MA_SO_XE,
         columnTitle: 'Mã Số Xe',
         pipeValue: customBindingCode,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.LOAI_XE,
+        field: REGISTRATIONS_FIELD.LOAI_XE,
         columnTitle: 'Loại Xe',
         pipeValue: customBindingTruckType,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.GROUP,
+        field: REGISTRATIONS_FIELD.GROUP,
         columnTitle: 'Group',
         pipeValue: customBindingTruckGroup,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.CAN_XAC,
+        field: REGISTRATIONS_FIELD.CAN_XAC,
         columnTitle: 'Cân Xác',
         pipeValue: customBindingTruckWeightMethod,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.VI_TRI_CAN,
+        field: REGISTRATIONS_FIELD.VI_TRI_CAN,
         columnTitle: 'Vị Trí Cân',
         pipeValue: customBindingTruckWeightPosition,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.NGAY_TOI,
+        field: REGISTRATIONS_FIELD.NGAY_TOI,
         columnTitle: 'Ngày Tới',
         pipeValue: new CustomDatePipe(),
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.THOI_GIAN_TOI,
+        field: REGISTRATIONS_FIELD.THOI_GIAN_TOI,
         columnTitle: 'Thời Gian Tới',
         // pipeValue: pipeTime,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.KHO,
+        field: REGISTRATIONS_FIELD.KHO,
         columnTitle: 'Từ Kho',
         pipeValue: customBindingOriginWarehouse,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.LOAI_DA,
+        field: REGISTRATIONS_FIELD.LOAI_DA,
         columnTitle: 'Loại Đá',
         pipeValue: customBindingStoneType,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.VI_TRI_LAY_DA,
+        field: REGISTRATIONS_FIELD.VI_TRI_LAY_DA,
         columnTitle: 'Vị Trí Lấy Đá',
         pipeValue: customBindingMachineries,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.DOANH_THU,
+        field: REGISTRATIONS_FIELD.DOANH_THU,
         columnTitle: 'Doanh Thu',
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.TO_KHO,
+        field: REGISTRATIONS_FIELD.TO_KHO,
         columnTitle: 'Đến Kho',
         pipeValue: customBindingWarehouses,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.CONG_TY_MUA,
+        field: REGISTRATIONS_FIELD.CONG_TY_MUA,
         columnTitle: 'Công Ty Mua',
         pipeValue: customBindingCompanyName,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.DIEM_DEN,
+        field: REGISTRATIONS_FIELD.DIEM_DEN,
         columnTitle: 'Điểm Đến',
         pipeValue: customBindingDeployPoint,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.DELIVERY_POINT_DESCRIPTION,
+        field: REGISTRATIONS_FIELD.DELIVERY_POINT_DESCRIPTION,
         columnTitle: 'Thông Tin Điểm Giao Hàng',
         pipeValue: customBindingDeployDescription,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.QUANG_DUONG,
+        field: REGISTRATIONS_FIELD.QUANG_DUONG,
         columnTitle: 'Quãng Đường',
         pipeValue: customBindingDeployDistance,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.EMAIL_CO_QUAN,
+        field: REGISTRATIONS_FIELD.EMAIL_CO_QUAN,
         columnTitle: 'Email Cơ Quan',
         pipeValue: customBindingCompanyEmail,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.DIEN_THOAI_CO_QUAN,
+        field: REGISTRATIONS_FIELD.DIEN_THOAI_CO_QUAN,
         columnTitle: 'Điện Thoại Cơ Quan',
         minWidth: 160,
         pipeValue: customBindingCompanPhone,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.DIA_CHI,
+        field: REGISTRATIONS_FIELD.DIA_CHI,
         columnTitle: 'Địa Chỉ',
         pipeValue: customBindingCompanyAddress,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.THANH_PHO,
+        field: REGISTRATIONS_FIELD.THANH_PHO,
         columnTitle: 'Thành Phố',
         pipeValue: customBindingCompanyCity,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.MA_BUU_CHINH,
+        field: REGISTRATIONS_FIELD.MA_BUU_CHINH,
         columnTitle: 'Mã Bưu Chính',
         pipeValue: customBindingCompanyPostalcode,
       },
       {
-        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.MO_TA,
+        field: REGISTRATIONS_FIELD.MO_TA,
         columnTitle: 'Mô Tả',
       },
       {
@@ -275,30 +275,30 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
     ],
     dataSource: [{}],
     displayedColumns: [
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.STT,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.BIEN_SO_XE,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.MA_SO_XE,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.LOAI_XE,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.GROUP,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.CAN_XAC,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.VI_TRI_CAN,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.NGAY_TOI,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.THOI_GIAN_TOI,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.KHO,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.LOAI_DA,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.VI_TRI_LAY_DA,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.DOANH_THU,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.TO_KHO,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.CONG_TY_MUA,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.DIEM_DEN,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.DELIVERY_POINT_DESCRIPTION,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.QUANG_DUONG,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.EMAIL_CO_QUAN,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.DIEN_THOAI_CO_QUAN,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.DIA_CHI,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.THANH_PHO,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.MA_BUU_CHINH,
-      FIELD_DANH_SACH_XE_TAI_DANG_KY.MO_TA,
+      REGISTRATIONS_FIELD.STT,
+      REGISTRATIONS_FIELD.BIEN_SO_XE,
+      REGISTRATIONS_FIELD.MA_SO_XE,
+      REGISTRATIONS_FIELD.LOAI_XE,
+      REGISTRATIONS_FIELD.GROUP,
+      REGISTRATIONS_FIELD.CAN_XAC,
+      REGISTRATIONS_FIELD.VI_TRI_CAN,
+      REGISTRATIONS_FIELD.NGAY_TOI,
+      REGISTRATIONS_FIELD.THOI_GIAN_TOI,
+      REGISTRATIONS_FIELD.KHO,
+      REGISTRATIONS_FIELD.LOAI_DA,
+      REGISTRATIONS_FIELD.VI_TRI_LAY_DA,
+      REGISTRATIONS_FIELD.DOANH_THU,
+      REGISTRATIONS_FIELD.TO_KHO,
+      REGISTRATIONS_FIELD.CONG_TY_MUA,
+      REGISTRATIONS_FIELD.DIEM_DEN,
+      REGISTRATIONS_FIELD.DELIVERY_POINT_DESCRIPTION,
+      REGISTRATIONS_FIELD.QUANG_DUONG,
+      REGISTRATIONS_FIELD.EMAIL_CO_QUAN,
+      REGISTRATIONS_FIELD.DIEN_THOAI_CO_QUAN,
+      REGISTRATIONS_FIELD.DIA_CHI,
+      REGISTRATIONS_FIELD.THANH_PHO,
+      REGISTRATIONS_FIELD.MA_BUU_CHINH,
+      REGISTRATIONS_FIELD.MO_TA,
       COMMON_FIELD.ACTION,
     ],
     pageSizeOptions: [5, 10, 25, 100],

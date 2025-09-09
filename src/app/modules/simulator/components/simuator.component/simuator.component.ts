@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
   standalone: true,
 })
 export class SimuatorComponent extends DonacoopBaseComponent {
+  // #region GROUP 1
   public formGroup = new FormGroup({
     cam1: new FormControl(''),
     beforeLicensePlate: new FormControl(''),
@@ -25,7 +26,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   });
   formConfig: IDynamicFormModel[] = [];
   public signalLight1: string = 'red';
-
+  // #region group 2
   public formGroup2 = new FormGroup({
     cam1: new FormControl(''),
     beforeLicensePlate: new FormControl(''),
@@ -37,11 +38,27 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   });
   formConfig2: IDynamicFormModel[] = [];
   public signalLight2: string = 'green';
+  // #region group 3
+  public formGroup3 = new FormGroup({
+    cam1: new FormControl(''),
+    beforeLicensePlate: new FormControl(''),
+    afterLicensePlate: new FormControl(''),
+    beforeCommand: new FormControl(''),
+    afterCommand: new FormControl(''),
+  });
+  formConfig3: IDynamicFormModel[] = [];
+  public signalLight3: string = 'red';
   constructor(
     protected override _dialog: MatDialog,
     protected override _builder: FormBuilder
   ) {
     super(_dialog, _builder);
+    this._config1();
+    this._config2();
+    this._config3();
+  }
+
+  private _config1() {
     this.formConfig = [
       {
         fieldName: 'cam1',
@@ -104,6 +121,9 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         },
       },
     ];
+  }
+
+  private _config2() {
     this.formConfig2 = [
       {
         fieldName: 'cam1',
@@ -165,6 +185,71 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         label: 'Hiệu lênh xe sau',
         iParams: {
           iControl: this.formGroup2.controls.afterCommand,
+        },
+        className: 'col-6',
+      },
+      {
+        fieldName: 'btnAccept',
+        iComponent: ButtonAcceppt,
+        label: '',
+        iParams: {
+          iControl: null,
+          iIcon: '',
+          iText: 'Cập Nhật',
+          iCustomClass: 'mt-4',
+        },
+        className: 'col-12',
+        clickBTN: () => {
+          this.logLevel.debug(`click`);
+        },
+      },
+    ];
+  }
+
+  private _config3() {
+    this.formConfig3 = [
+      {
+        fieldName: 'cam1',
+        iComponent: SharedInputComponent,
+        label: 'Camera đọc biển số',
+        iParams: {
+          iControl: this.formGroup3.controls.cam1,
+        },
+        className: 'col-12',
+      },
+      {
+        fieldName: 'beforeLicensePlate',
+        iComponent: SharedInputComponent,
+        label: 'Biển số xe trước',
+        iParams: {
+          iControl: this.formGroup3.controls.beforeLicensePlate,
+        },
+        className: 'col-6',
+      },
+      {
+        fieldName: 'beforeCommand',
+        iComponent: SharedInputComponent,
+        label: 'Hiệu lênh xe trước',
+        iParams: {
+          iControl: this.formGroup3.controls.beforeLicensePlate,
+        },
+        className: 'col-6',
+      },
+      {
+        fieldName: 'afterLicensePlate',
+        iComponent: SharedInputComponent,
+        label: 'Biển số xe sau',
+        iParams: {
+          iControl: this.formGroup3.controls.afterLicensePlate,
+        },
+        className: 'col-6',
+      },
+      {
+        fieldName: 'afterCommand',
+        iComponent: SharedInputComponent,
+        label: 'Hiệu lênh xe sau',
+        iParams: {
+          iControl: this.formGroup3.controls.afterCommand,
         },
         className: 'col-6',
       },
