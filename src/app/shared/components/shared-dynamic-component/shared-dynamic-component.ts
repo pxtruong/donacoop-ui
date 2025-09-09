@@ -106,6 +106,7 @@ export class SharedDynamicComponent
       _SharedAction: ['clickBTN'],
     };
     const listAction = configComponent[this.iComponent.name];
+    console.log(`this.iComponent.name--`, this.iComponent.name);
     if (!Array.isArray(listAction)) {
       return;
     }
