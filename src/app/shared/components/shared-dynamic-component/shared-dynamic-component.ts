@@ -99,14 +99,7 @@ export class SharedDynamicComponent
     if (!this._componentRef) {
       return;
     }
-    let configComponent: any = {
-      _ActionComponentComponent: ['clickBTN'],
-      _SharedSelect: ['triggerSearch'],
-      _ButtonAcceppt: ['clickBTN'],
-      _SharedAction: ['clickBTN'],
-    };
-    const listAction = configComponent[this.iComponent.name];
-    console.log(`this.iComponent.name--`, this.iComponent.name);
+    const listAction = ['triggerSearch', 'clickBTN'];
     if (!Array.isArray(listAction)) {
       return;
     }
