@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BasicExtends } from '../../shared/models/basic-extends.model';
-
 export class HTTPService extends BasicExtends {
   protected _apiBaseURL: string = '';
   constructor(protected _httpClient: HttpClient) {
