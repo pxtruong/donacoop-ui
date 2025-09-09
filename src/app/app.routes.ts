@@ -16,7 +16,7 @@ export const routes: Routes = [
       ...KeHoachRoutes,
       ...RegistrationActivitiesRoutes,
       ...SimulatorRoutes,
-      { path: '', redirectTo: 'master-data', pathMatch: 'full' },
     ],
   },
+  { path: '', redirectTo: 'page/master-data', pathMatch: 'full' },
 ];
