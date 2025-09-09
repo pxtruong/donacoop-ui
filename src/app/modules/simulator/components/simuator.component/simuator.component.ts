@@ -8,6 +8,9 @@ import { SharedInputComponent } from '../../../../shared/components/shared-input
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { SimulatorService } from '../../servies/simulator.service';
+import { SharedSelect } from '../../../../shared/components/shared-select/shared-select';
+import { StoreDataService } from '../../../../core/services/store-data.service';
+import { StoreDataKeys } from '../../../../core/models/store-data.model';
 
 @Component({
   selector: 'simuator.component',
@@ -71,9 +74,24 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     super(_dialog, _builder);
     this._config1();
     this._config2();
-    this._config3();
-    this._config4();
-    this._config5();
+    const warehouses = StoreDataService.getValue(StoreDataKeys.WAREHOUSES);
+    const stoneTypeOptions: any[] = [];
+    if (Array.isArray(warehouses)) {
+      warehouses.forEach((i: any) => {
+        if (!Array.isArray(i.stocks)) {
+          return;
+        }
+        i.stocks.forEach((stock: any) => {
+          stoneTypeOptions.push({
+            label: `${i.name} - ${stock.stoneType.name}`,
+            value: `${i.id}-${stock.id}-${stock.stoneType.id}`,
+          });
+        });
+      });
+    }
+    this._config3(stoneTypeOptions);
+    this._config4(stoneTypeOptions);
+    this._config5(stoneTypeOptions);
   }
 
   private _config1() {
@@ -176,7 +194,8 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     ];
   }
 
-  private _config3() {
+  private _config3(stoneTypeList: any[]) {
+    console.log(`stoneTypeList--`, stoneTypeList);
     this.formConfig3 = [
       {
         fieldName: 'cam1',
@@ -198,10 +217,11 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       },
       {
         fieldName: 'stoneType',
-        iComponent: SharedInputComponent,
+        iComponent: SharedSelect,
         label: 'Loại Đá',
         iParams: {
           iControl: this.formGroup3.controls.stoneType,
+          dataSource: stoneTypeList,
         },
         className: 'col-6',
       },
@@ -244,7 +264,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     ];
   }
 
-  private _config4() {
+  private _config4(stoneTypeList: any[]) {
     this.formConfig4 = [
       {
         fieldName: 'cam1',
@@ -266,10 +286,11 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       },
       {
         fieldName: 'stoneType',
-        iComponent: SharedInputComponent,
+        iComponent: SharedSelect,
         label: 'Loại Đá',
         iParams: {
           iControl: this.formGroup4.controls.stoneType,
+          dataSource: stoneTypeList,
         },
         className: 'col-6',
       },
@@ -312,7 +333,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     ];
   }
 
-  private _config5() {
+  private _config5(stoneTypeList: any[]) {
     this.formConfig5 = [
       {
         fieldName: 'cam1',
@@ -334,10 +355,11 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       },
       {
         fieldName: 'stoneType',
-        iComponent: SharedInputComponent,
+        iComponent: SharedSelect,
         label: 'Loại Đá',
         iParams: {
           iControl: this.formGroup5.controls.stoneType,
+          dataSource: stoneTypeList,
         },
         className: 'col-6',
       },
