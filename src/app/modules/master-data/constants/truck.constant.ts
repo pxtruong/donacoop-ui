@@ -1,7 +1,7 @@
 export const WEIGHT_METHOD_OPTIONS_VALUE = {
-  CAN_MOI_DAU_NGAY: 'Cân Mõi Đầu Ngày',
-  CAN_1_LAN: 'Cân 1 Lần',
-  CAN_MOI_CHUYEN: 'Cân Mõi Chuyến',
+  CAN_MOI_DAU_NGAY: 'Cân mỗi chuyến',
+  CAN_1_LAN: 'Cân 1 lần',
+  CAN_MOI_CHUYEN: 'Cân mỗi chuyến',
 };
 export const WEIGHT_METHOD_OPTIONS = [
   {

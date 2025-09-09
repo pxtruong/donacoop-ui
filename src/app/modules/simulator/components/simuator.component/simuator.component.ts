@@ -75,18 +75,13 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     super(_dialog, _builder);
     this._config1();
     this._config2();
-    const warehouses = StoreDataService.getValue(StoreDataKeys.WAREHOUSES);
+    const stoneList = StoreDataService.getValue(StoreDataKeys.STONE_TYPE);
     const stoneTypeOptions: any[] = [];
-    if (Array.isArray(warehouses)) {
-      warehouses.forEach((i: any) => {
-        if (!Array.isArray(i.stocks)) {
-          return;
-        }
-        i.stocks.forEach((stock: any) => {
-          stoneTypeOptions.push({
-            label: `${i.name} - ${stock.stoneType.name}`,
-            value: `${i.id}-${stock.id}-${stock.stoneType.id}`,
-          });
+    if (Array.isArray(stoneList)) {
+      stoneList.forEach((i: any) => {
+        stoneTypeOptions.push({
+          label: `${i.name}`,
+          value: `${i.id}`,
         });
       });
     }
@@ -439,21 +434,12 @@ export class SimuatorComponent extends DonacoopBaseComponent {
 
   private _handleApi3() {
     const res = this.formGroup3.value;
-    const divideData = res.stoneType?.split('-');
-    let warehousesId = undefined;
-    let stockId = undefined;
-    let stoneTypeId = undefined;
-    if (divideData) {
-      warehousesId = divideData[0];
-      stockId = divideData[1];
-      stoneTypeId = divideData[2];
-    }
     const cam = res.cam1;
     this.logLevel.debug(`call function _handleApi3`, this.formGroup3.value);
     this.subcribe(
       this._simulatorService.weightStation({
         licensePlate: cam,
-        stoneTypeId,
+        stoneTypeId: res.stoneType,
         weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_1,
         weight: res.weight,
       }),
@@ -469,21 +455,12 @@ export class SimuatorComponent extends DonacoopBaseComponent {
 
   private _handleApi4() {
     const res = this.formGroup4.value;
-    const divideData = res.stoneType?.split('-');
-    let warehousesId = undefined;
-    let stockId = undefined;
-    let stoneTypeId = undefined;
-    if (divideData) {
-      warehousesId = divideData[0];
-      stockId = divideData[1];
-      stoneTypeId = divideData[2];
-    }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup4.value);
     const cam = res.cam1;
     this.subcribe(
       this._simulatorService.weightStation({
         licensePlate: cam,
-        stoneTypeId,
+        stoneTypeId: res.stoneType,
         weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_2,
         weight: res.weight,
       }),
@@ -499,21 +476,12 @@ export class SimuatorComponent extends DonacoopBaseComponent {
 
   private _handleApi5() {
     const res = this.formGroup5.value;
-    const divideData = res.stoneType?.split('-');
-    let warehousesId = undefined;
-    let stockId = undefined;
-    let stoneTypeId = undefined;
-    if (divideData) {
-      warehousesId = divideData[0];
-      stockId = divideData[1];
-      stoneTypeId = divideData[2];
-    }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup5.value);
     const cam = res.cam1;
     this.subcribe(
       this._simulatorService.weightStation({
         licensePlate: cam,
-        stoneTypeId,
+        stoneTypeId: res.stoneType,
         weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_3,
         weight: res.weight,
       }),

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ROUTE_CONSTANTS } from '../../shared/constants/route.constant';
-import { WarehousesResolver } from '../master-data/resolvers/warehouses.resolver';
+import { StoneTypeResolver } from '../master-data/resolvers/stone-type.resolver';
 
 export const SimulatorRoutes: Routes = [
   {
@@ -9,6 +9,6 @@ export const SimulatorRoutes: Routes = [
       import('./components/simuator.component/simuator.component').then(
         (m) => m.SimuatorComponent
       ),
-    resolve: [WarehousesResolver],
+    resolve: [StoneTypeResolver],
   },
 ];
