@@ -55,7 +55,9 @@ export class CompanyComponent extends MasterDataBaseComponent {
         this._uppdateTableData(showData);
         StoreDataService.update(StoreDataKeys.COMPANY_LIST, res);
       },
-      (error) => {}
+      (error) => {
+        console.log(`error--`, error);
+      }
     );
   }
 
