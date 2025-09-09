@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
+import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedInputComponent } from '../../../../shared/components/shared-input/shared-input';
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
-import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
-import { MatDialog } from '@angular/material/dialog';
 import { SimulatorService } from '../../servies/simulator.service';
 
 @Component({
@@ -20,30 +20,24 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   // #region GROUP 1
   public formGroup = new FormGroup({
     cam1: new FormControl(''),
-    beforeLicensePlate: new FormControl(''),
-    afterLicensePlate: new FormControl(''),
-    beforeCommand: new FormControl(''),
-    afterCommand: new FormControl(''),
+    licensePlate: new FormControl(''),
+    command: new FormControl(''),
   });
   formConfig: IDynamicFormModel[] = [];
   public signalLight1: string = 'red';
   // #region group 2
   public formGroup2 = new FormGroup({
     cam1: new FormControl(''),
-    beforeLicensePlate: new FormControl(''),
-    afterLicensePlate: new FormControl(''),
-    beforeCommand: new FormControl(''),
-    afterCommand: new FormControl(''),
+    licensePlate: new FormControl(''),
+    command: new FormControl(''),
   });
   formConfig2: IDynamicFormModel[] = [];
   public signalLight2: string = 'red';
   // #region group 3
   public formGroup3 = new FormGroup({
     cam1: new FormControl(''),
-    beforeLicensePlate: new FormControl(''),
-    afterLicensePlate: new FormControl(''),
-    beforeCommand: new FormControl(''),
-    afterCommand: new FormControl(''),
+    licensePlate: new FormControl(''),
+    command: new FormControl(''),
     weight: new FormControl(''),
     stoneType: new FormControl(''),
   });
@@ -52,10 +46,8 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   // #region group 4
   public formGroup4 = new FormGroup({
     cam1: new FormControl(''),
-    beforeLicensePlate: new FormControl(''),
-    afterLicensePlate: new FormControl(''),
-    beforeCommand: new FormControl(''),
-    afterCommand: new FormControl(''),
+    licensePlate: new FormControl(''),
+    command: new FormControl(''),
     weight: new FormControl(''),
     stoneType: new FormControl(''),
   });
@@ -64,10 +56,8 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   // #region group 5
   public formGroup5 = new FormGroup({
     cam1: new FormControl(''),
-    beforeLicensePlate: new FormControl(''),
-    afterLicensePlate: new FormControl(''),
-    beforeCommand: new FormControl(''),
-    afterCommand: new FormControl(''),
+    licensePlate: new FormControl(''),
+    command: new FormControl(''),
     weight: new FormControl(''),
     stoneType: new FormControl(''),
   });
@@ -114,47 +104,28 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         },
       },
       {
-        fieldName: 'beforeLicensePlate',
+        fieldName: 'licensePlate',
         iComponent: SharedInputComponent,
-        label: 'Biển số xe trước',
+        label: 'Biển số xe',
         iParams: {
-          iControl: this.formGroup.controls.beforeLicensePlate,
+          iControl: this.formGroup.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
       {
-        fieldName: 'beforeCommand',
+        fieldName: 'command',
         iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe trước',
+        label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup.controls.beforeLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterLicensePlate',
-        iComponent: SharedInputComponent,
-        label: 'Biển số xe sau',
-        iParams: {
-          iControl: this.formGroup.controls.afterLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterCommand',
-        iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe sau',
-        iParams: {
-          iControl: this.formGroup.controls.afterCommand,
+          iControl: this.formGroup.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
     ];
   }
+
   private _config2() {
     this.formConfig2 = [
       {
@@ -183,41 +154,21 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         },
       },
       {
-        fieldName: 'beforeLicensePlate',
+        fieldName: 'licensePlate',
         iComponent: SharedInputComponent,
-        label: 'Biển số xe trước',
+        label: 'Biển số xe',
         iParams: {
-          iControl: this.formGroup2.controls.beforeLicensePlate,
+          iControl: this.formGroup2.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
       {
-        fieldName: 'beforeCommand',
+        fieldName: 'command',
         iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe trước',
+        label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup2.controls.beforeLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterLicensePlate',
-        iComponent: SharedInputComponent,
-        label: 'Biển số xe sau',
-        iParams: {
-          iControl: this.formGroup2.controls.afterLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterCommand',
-        iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe sau',
-        iParams: {
-          iControl: this.formGroup2.controls.afterCommand,
+          iControl: this.formGroup2.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
@@ -271,47 +222,28 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         },
       },
       {
-        fieldName: 'beforeLicensePlate',
+        fieldName: 'licensePlate',
         iComponent: SharedInputComponent,
-        label: 'Biển số xe trước',
+        label: 'Biển số xe',
         iParams: {
-          iControl: this.formGroup3.controls.beforeLicensePlate,
+          iControl: this.formGroup3.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
       {
-        fieldName: 'beforeCommand',
+        fieldName: 'command',
         iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe trước',
+        label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup3.controls.beforeLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterLicensePlate',
-        iComponent: SharedInputComponent,
-        label: 'Biển số xe sau',
-        iParams: {
-          iControl: this.formGroup3.controls.afterLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterCommand',
-        iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe sau',
-        iParams: {
-          iControl: this.formGroup3.controls.afterCommand,
+          iControl: this.formGroup3.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
     ];
   }
+
   private _config4() {
     this.formConfig4 = [
       {
@@ -358,41 +290,21 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         },
       },
       {
-        fieldName: 'beforeLicensePlate',
+        fieldName: 'licensePlate',
         iComponent: SharedInputComponent,
-        label: 'Biển số xe trước',
+        label: 'Biển số xe',
         iParams: {
-          iControl: this.formGroup4.controls.beforeLicensePlate,
+          iControl: this.formGroup4.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
       {
-        fieldName: 'beforeCommand',
+        fieldName: 'command',
         iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe trước',
+        label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup4.controls.beforeLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterLicensePlate',
-        iComponent: SharedInputComponent,
-        label: 'Biển số xe sau',
-        iParams: {
-          iControl: this.formGroup4.controls.afterLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterCommand',
-        iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe sau',
-        iParams: {
-          iControl: this.formGroup4.controls.afterCommand,
+          iControl: this.formGroup4.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
@@ -446,41 +358,21 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         },
       },
       {
-        fieldName: 'beforeLicensePlate',
+        fieldName: 'licensePlate',
         iComponent: SharedInputComponent,
-        label: 'Biển số xe trước',
+        label: 'Biển số xe',
         iParams: {
-          iControl: this.formGroup5.controls.beforeLicensePlate,
+          iControl: this.formGroup5.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
       },
       {
-        fieldName: 'beforeCommand',
+        fieldName: 'command',
         iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe trước',
+        label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup5.controls.beforeLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterLicensePlate',
-        iComponent: SharedInputComponent,
-        label: 'Biển số xe sau',
-        iParams: {
-          iControl: this.formGroup5.controls.afterLicensePlate,
-          isDisabled: true,
-        },
-        className: 'col-6',
-      },
-      {
-        fieldName: 'afterCommand',
-        iComponent: SharedInputComponent,
-        label: 'Hiệu lênh xe sau',
-        iParams: {
-          iControl: this.formGroup5.controls.afterCommand,
+          iControl: this.formGroup5.controls.licensePlate,
           isDisabled: true,
         },
         className: 'col-6',
@@ -491,15 +383,19 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   private _handleApi1() {
     this.logLevel.debug(`call function _handleApi1`, this.formGroup.value);
   }
+
   private _handleApi2() {
     this.logLevel.debug(`call function _handleApi2`, this.formGroup2.value);
   }
+
   private _handleApi3() {
     this.logLevel.debug(`call function _handleApi3`, this.formGroup3.value);
   }
+
   private _handleApi4() {
     this.logLevel.debug(`call function _handleApi3`, this.formGroup4.value);
   }
+
   private _handleApi5() {
     this.logLevel.debug(`call function _handleApi3`, this.formGroup5.value);
   }
