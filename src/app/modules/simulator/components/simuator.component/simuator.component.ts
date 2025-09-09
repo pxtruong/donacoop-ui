@@ -411,7 +411,11 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       this._simulatorService.enterGate(
         this.formGroup.value.cam1 ? this.formGroup.value.cam1 : ''
       ),
-      (res) => {},
+      (res) => {
+        const { licensePlate, message } = res;
+        this.formGroup.controls.command.setValue(message);
+        this.formGroup.controls.licensePlate.setValue(licensePlate);
+      },
       (error) => {
         this.logLevel.debug(`error--`, error);
       }
@@ -424,7 +428,11 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       this._simulatorService.exitGate(
         this.formGroup2.value.cam1 ? this.formGroup2.value.cam1 : ''
       ),
-      (res) => {},
+      (res) => {
+        const { licensePlate, message } = res;
+        this.formGroup2.controls.command.setValue(message);
+        this.formGroup2.controls.licensePlate.setValue(licensePlate);
+      },
       (error) => {}
     );
   }
@@ -440,7 +448,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       stockId = divideData[1];
       stoneTypeId = divideData[2];
     }
-    const cam = res.licensePlate;
+    const cam = res.cam1;
     this.logLevel.debug(`call function _handleApi3`, this.formGroup3.value);
     this.subcribe(
       this._simulatorService.weightStation({
@@ -449,7 +457,12 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_1,
         weight: res.weight,
       }),
-      (res) => {},
+      (res) => {
+        const controls = this.formGroup3.controls;
+        const { licensePlate, message } = res;
+        controls.licensePlate.setValue(licensePlate);
+        controls.command.setValue(message);
+      },
       (error) => {}
     );
   }
@@ -466,7 +479,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       stoneTypeId = divideData[2];
     }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup4.value);
-    const cam = res.licensePlate;
+    const cam = res.cam1;
     this.subcribe(
       this._simulatorService.weightStation({
         licensePlate: cam,
@@ -474,7 +487,12 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_2,
         weight: res.weight,
       }),
-      (res) => {},
+      (res) => {
+        const controls = this.formGroup4.controls;
+        const { licensePlate, message } = res;
+        controls.licensePlate.setValue(licensePlate);
+        controls.command.setValue(message);
+      },
       (error) => {}
     );
   }
@@ -491,7 +509,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
       stoneTypeId = divideData[2];
     }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup5.value);
-    const cam = res.licensePlate;
+    const cam = res.cam1;
     this.subcribe(
       this._simulatorService.weightStation({
         licensePlate: cam,
@@ -499,7 +517,12 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_3,
         weight: res.weight,
       }),
-      (res) => {},
+      (res) => {
+        const controls = this.formGroup5.controls;
+        const { licensePlate, message } = res;
+        controls.licensePlate.setValue(licensePlate);
+        controls.command.setValue(message);
+      },
       (error) => {}
     );
   }

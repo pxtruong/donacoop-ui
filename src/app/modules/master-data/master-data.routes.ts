@@ -32,7 +32,7 @@ export const MasterDataRoutes: Routes = [
       {
         path: ROUTE_CONSTANTS.PAGE.MASTER_DATA.CHILDREN.TRUCKS.PATH,
         component: TruckComponent,
-        resolve: [UserResolver],
+        resolve: [UserResolver, CompanyResolver],
       },
       {
         path: ROUTE_CONSTANTS.PAGE.MASTER_DATA.CHILDREN.MACHINERIES.PATH,

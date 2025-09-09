@@ -6,6 +6,7 @@ import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/butt
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
+import { IMessagePopup } from '../../../../shared/models/popup.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
@@ -14,12 +15,12 @@ import {
   REVENUE_TYPE_VALUE,
 } from '../../constants/registrations-constant';
 import {
-  TRUCK_FIELD_ADD_NEW,
   REGISTRATIONS_FIELD,
+  TRUCK_FIELD_ADD_NEW,
 } from '../../constants/registrations-field.constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
-import { IMessagePopup } from '../../../../shared/models/popup.model';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'registrations',
@@ -97,12 +98,14 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     });
     this.tableConfig.dataSource = [...data];
   }
+
   override updateAPI(id: any, record: any) {
     return this._registrationsService.updateRegistrations(
       id,
       this._prepareData(record)
     );
   }
+
   protected override _getContentEditPopup(record: any): IMessagePopup {
     return {
       title: `Sửa chuyến xe ${record.truck.licensePlate}`,
@@ -172,7 +175,11 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       request[TRUCK_FIELD_ADD_NEW.WAREHOUSES_ID] = originalWarehouseId;
     }
     // map field
-    request[TRUCK_FIELD_ADD_NEW.TO_DATE] = record[TRUCK_FIELD_ADD_NEW.TO_DATE];
+    request[TRUCK_FIELD_ADD_NEW.TO_DATE] = `${record[
+      TRUCK_FIELD_ADD_NEW.TO_DATE
+    ].getFullYear()}-${
+      record[TRUCK_FIELD_ADD_NEW.TO_DATE].getMonth() + 1
+    }-${record[TRUCK_FIELD_ADD_NEW.TO_DATE].getDate()}T00:00:00.000Z`;
     request[TRUCK_FIELD_ADD_NEW.TRIP_NUM] =
       record[TRUCK_FIELD_ADD_NEW.TRIP_NUM];
     request[TRUCK_FIELD_ADD_NEW.TRUCK_ID] =

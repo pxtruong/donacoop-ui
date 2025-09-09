@@ -16,7 +16,7 @@ export class SimulatorService extends HTTPService {
   public enterGate(licensePlate: string) {
     return this.post('/activities/enter-gate', { licensePlate }).pipe(
       map((res) => {
-        return res.data;
+        return res;
       })
     );
   }
@@ -24,7 +24,7 @@ export class SimulatorService extends HTTPService {
   public exitGate(licensePlate: string) {
     return this.post('/activities/exit-gate', { licensePlate }).pipe(
       map((res) => {
-        return res.data;
+        return res;
       })
     );
   }
@@ -35,9 +35,9 @@ export class SimulatorService extends HTTPService {
     stoneTypeId: string | undefined | null;
     weighStation: string | undefined | null;
   }) {
-    return this.post('/activities/exit-gate', data).pipe(
+    return this.post('/activities/weigh-station', data).pipe(
       map((res) => {
-        return res.data;
+        return res;
       })
     );
   }
