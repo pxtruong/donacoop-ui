@@ -3,6 +3,7 @@ import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
+import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from '../../registrations/constants/registrations-field.constant';
 import { FIELD_THEO_DOI_HOAT_DONG_CONSTANTS } from './activities-field.constant';
 export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
   const customBindingTruckLicensePlate = new CustomBindingPipe();
@@ -33,7 +34,19 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
   datePipe.formatDate = 'dd-MM-yyyy HH:mm';
   const timePipe = new CustomDatePipe();
   timePipe.formatDate = 'HH:mm';
-  // buyerCompany
+
+  const customBindingWarehouses = new CustomBindingPipe();
+  customBindingWarehouses.customFunction = (value: any, args: any) => {
+    return args[1]?.destinationWarehouse?.name;
+  };
+
+  const customBindingweightOfGoods = new CustomBindingPipe();
+  customBindingweightOfGoods.customFunction = (value: any, args: any) => {
+    if (!args[1]?.weight2 || args[1]?.weight1) {
+      return '';
+    }
+    return args[1]?.weight2 - args[1]?.weight1;
+  };
   return {
     columns: [
       {
@@ -65,6 +78,11 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
         field: FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.DOANH_THU,
         columnTitle: 'Doanh Thu',
         minWidth: 120,
+      },
+      {
+        field: FIELD_DANH_SACH_XE_TAI_DANG_KY.TO_KHO,
+        columnTitle: 'Đến Kho',
+        pipeValue: customBindingWarehouses,
       },
       {
         field: FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.CONG_TY_MUA,
@@ -149,6 +167,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.LOAI_DA,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_LAY_DA,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.DOANH_THU,
+      FIELD_DANH_SACH_XE_TAI_DANG_KY.TO_KHO,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.CONG_TY_MUA,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_VAO_CONG,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_1,
@@ -157,6 +176,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_CAN_LAN_2,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.VI_TRI_CAN_LAN_2,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.KHOI_LUONG2,
+      FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.TRONG_LUONG_HANG,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG,
       COMMON_FIELD.ACTION,
     ],

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ROUTE_CONSTANTS } from '../../shared/constants/route.constant';
+import { ActivitiesResolver } from '../theo-doi-hoat-dong/resolvers/activities.resolver';
 
 export const KeHoachRoutes: Routes = [
   {
@@ -8,5 +9,6 @@ export const KeHoachRoutes: Routes = [
       import('./components/ke-hoach.component/ke-hoach.component').then(
         (m) => m.KeHoachComponent
       ),
+    resolve: [ActivitiesResolver],
   },
 ];

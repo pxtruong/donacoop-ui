@@ -42,27 +42,34 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
     super(_dialog, _builder);
   }
   protected override _loadData() {
-    this._initForm();
     this.subcribe(
       this._activitiesService.getActivities(),
       (res) => {
         this._uppdateTableData(res);
+        this._initForm();
       },
       (error) => {}
     );
   }
 
   protected _initForm() {
-    const truckList = StoreDataService.getValue(StoreDataKeys.TRUCK_LIST);
-    let truckOptions: any[] = [];
-    if (Array.isArray(truckList)) {
-      truckList.forEach((i) => {
-        truckOptions.push({
-          value: i.id,
-          label: `${i.licensePlate} - ${i.type} - ${i.driver.fullName}`,
-        });
+    const machineriesOptions: any[] = [];
+    const existsMachineries: any = {};
+    this.tableConfig.dataSource.forEach((i: any) => {
+      if (!i.truck) {
+        return;
+      }
+      const truck = i.truck;
+      if (existsMachineries[truck.id]) {
+        return;
+      }
+      machineriesOptions.push({
+        label: `${truck.licensePlate} - ${truck.group} - ${truck.code}`,
+        value: truck.id,
       });
-    }
+      existsMachineries[truck.id] = true;
+    });
+
     this.formConfig = [
       {
         fieldName: 'xeXuc',
@@ -70,7 +77,7 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
         label: 'Biển Số Xe',
         iParams: {
           iControl: this.masterDataFormGroup.get('xeXuc'),
-          dataSource: truckOptions,
+          dataSource: machineriesOptions,
         },
         className: 'col-3',
       },
