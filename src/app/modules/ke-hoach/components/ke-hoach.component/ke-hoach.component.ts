@@ -32,7 +32,10 @@ export class KeHoachComponent extends DonacoopBaseComponent {
   protected override _loadData() {
     this._dataSource = StoreDataService.getValue(StoreDataKeys.ACTIVITIES);
     this._initForm();
-    this.tableConfig.dataSource = [...this._dataSource];
+    const showData = this._dataSource.filter((i: any) => {
+      return !i.gateOutTime;
+    });
+    this.tableConfig.dataSource = showData;
   }
 
   private _initForm() {

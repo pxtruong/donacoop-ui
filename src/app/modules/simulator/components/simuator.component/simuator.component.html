@@ -1,0 +1,21 @@
+<base-layout>
+  <div body class="w-100 h-100 simulator-wrapper s-content">
+    <h5>Mô Phỏng Thông Tin</h5>
+    <div class="dynamic-form d-flex">
+      <div class="group-cmd">
+        <shared-form [iFormConfig]="formConfig"></shared-form>
+        <div class="d-flex">
+          <div>Tín Hiệu Đèn</div>
+          <div class="signal-light {{ signalLight1 }}"></div>
+        </div>
+      </div>
+      <div class="group-cmd">
+        <shared-form [iFormConfig]="formConfig2"></shared-form>
+        <div class="d-flex">
+          <div>Tín Hiệu Đèn</div>
+          <div class="signal-light {{ signalLight2 }}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</base-layout>

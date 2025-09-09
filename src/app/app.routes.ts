@@ -4,6 +4,7 @@ import { CoreRoutes } from './core/core.routes';
 import { KeHoachRoutes } from './modules/ke-hoach/ke-hoach.routes';
 import { MasterDataRoutes } from './modules/master-data/master-data.routes';
 import { RegistrationActivitiesRoutes } from './modules/registrations-and-activities/registrations-and-activities.routes';
+import { SimulatorRoutes } from './modules/simulator/simulator.routes';
 
 export const routes: Routes = [
   ...CoreRoutes,
@@ -14,6 +15,7 @@ export const routes: Routes = [
       ...MasterDataRoutes,
       ...KeHoachRoutes,
       ...RegistrationActivitiesRoutes,
+      ...SimulatorRoutes,
       { path: '', redirectTo: 'master-data', pathMatch: 'full' },
     ],
   },

@@ -55,5 +55,9 @@ export const ROUTE_CONSTANTS = {
         },
       },
     },
+    SIMULATOR: {
+      PATH: 'simulator',
+      FULL_PATH: 'page/simulator',
+    },
   },
 };

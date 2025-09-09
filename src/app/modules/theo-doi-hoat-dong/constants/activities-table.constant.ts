@@ -1,8 +1,6 @@
-import { SharedAction } from '../../../shared/components/shared-action/shared-action';
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
-import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { FIELD_DANH_SACH_XE_TAI_DANG_KY } from '../../registrations/constants/registrations-field.constant';
 import { FIELD_THEO_DOI_HOAT_DONG_CONSTANTS } from './activities-field.constant';
 export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
@@ -139,26 +137,6 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
         columnTitle: 'Trọng Lượng Hàng',
         minWidth: 160,
       },
-      {
-        field: COMMON_FIELD.ACTION,
-        columnTitle: 'Action',
-        stickyEnd: true,
-        showComponent: SharedAction,
-        params: {
-          actionList: [
-            {
-              iIcon: 'edit',
-              iCustomClass: 'border-none',
-              iColorIcon: 'primary',
-            },
-            {
-              iIcon: 'delete',
-              iCustomClass: 'border-none',
-              iColorIcon: 'warn',
-            },
-          ],
-        },
-      },
     ],
     dataSource: [{}],
     displayedColumns: [
@@ -178,7 +156,6 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.KHOI_LUONG2,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.TRONG_LUONG_HANG,
       FIELD_THEO_DOI_HOAT_DONG_CONSTANTS.THOI_GIAN_RA_CONG,
-      COMMON_FIELD.ACTION,
     ],
     pageSizeOptions: [5, 10, 25, 100],
     pageSize: 10,

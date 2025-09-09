@@ -1,0 +1,25 @@
+
+.simulator-wrapper {
+    .dynamic-form {
+        .group-cmd {
+            width: 50%;
+            padding: 32px;
+            .signal-light {
+                width: 20px;
+                height: 20px;
+                border-radius: 20px;
+                margin-left: 16px;
+                &.red {
+                    background-color: red;
+                }
+                &.green {
+                    background-color: green;
+                }
+            }
+        }
+        .group-cmd:nth-child(1) {
+            border-right: solid 1px black;
+        }
+
+    }
+}

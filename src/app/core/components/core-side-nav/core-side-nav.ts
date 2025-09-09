@@ -120,13 +120,13 @@ export class CoreSideNav extends BasicExtends {
       icon: 'assignment',
       customClass: 'icon-white',
     },
-    // {
-    //   isDisabled: false,
-    //   link: `/${ROUTE_CONSTANTS.PAGE.THEO_DOI_HOAT_DONG.FULL_PATH}`,
-    //   label: 'Theo Dõi Hoạt Động',
-    //   icon: 'work_history',
-    //   customClass: 'icon-white',
-    // },
+    {
+      isDisabled: false,
+      link: `/${ROUTE_CONSTANTS.PAGE.SIMULATOR.FULL_PATH}`,
+      label: 'Giả Lập Tín Hiệu',
+      icon: 'queue_play_next',
+      customClass: 'icon-white',
+    },
   ];
 
   onMouseEnter() {
