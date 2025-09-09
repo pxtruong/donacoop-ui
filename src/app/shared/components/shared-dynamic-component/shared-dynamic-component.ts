@@ -104,6 +104,7 @@ export class SharedDynamicComponent
       return;
     }
     const instance = this._componentRef.instance;
+    console.log(listAction, instance);
     if (!instance) {
       return;
     }
