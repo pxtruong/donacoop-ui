@@ -66,7 +66,7 @@ export class KeHoachComponent extends DonacoopBaseComponent {
         },
         className: 'col-3',
         onTriggerSearch: (data: ISelectionOption) => {
-          console.log('Trigger search in Master Data with data:', data);
+          this.logLevel.debug('Trigger search in Master Data with data:', data);
         },
       },
       {
