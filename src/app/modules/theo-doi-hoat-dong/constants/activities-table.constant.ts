@@ -28,6 +28,11 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
   customBindingBuyerCompany.customFunction = (value: any, args: any) => {
     return args[1]?.buyerCompany?.name;
   };
+
+  const customBindingDeliveryPoint = new CustomBindingPipe();
+  customBindingDeliveryPoint.customFunction = (value: any, args: any) => {
+    return args[1]?.buyerCompany?.name;
+  };
   const datePipe = new CustomDatePipe();
   datePipe.formatDate = 'dd-MM-yyyy HH:mm';
   const timePipe = new CustomDatePipe();
@@ -78,15 +83,16 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
         minWidth: 120,
       },
       {
-        field: REGISTRATIONS_FIELD.TO_KHO,
-        columnTitle: 'Đến Kho',
-        pipeValue: customBindingWarehouses,
-      },
-      {
         field: ACTIVITIES_FIELD.CONG_TY_MUA,
         columnTitle: 'Công Ty Mua',
         minWidth: 120,
         pipeValue: customBindingBuyerCompany,
+      },
+      {
+        field: ACTIVITIES_FIELD.DIEM_DEN,
+        columnTitle: 'Điểm Đến',
+        minWidth: 120,
+        pipeValue: customBindingDeliveryPoint,
       },
       {
         field: ACTIVITIES_FIELD.THOI_GIAN_VAO_CONG,
@@ -145,8 +151,8 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       ACTIVITIES_FIELD.LOAI_DA,
       ACTIVITIES_FIELD.VI_TRI_LAY_DA,
       ACTIVITIES_FIELD.DOANH_THU,
-      REGISTRATIONS_FIELD.TO_KHO,
       ACTIVITIES_FIELD.CONG_TY_MUA,
+      ACTIVITIES_FIELD.DIEM_DEN,
       ACTIVITIES_FIELD.THOI_GIAN_VAO_CONG,
       ACTIVITIES_FIELD.THOI_GIAN_CAN_LAN_1,
       ACTIVITIES_FIELD.VI_TRI_CAN_LAN_1,

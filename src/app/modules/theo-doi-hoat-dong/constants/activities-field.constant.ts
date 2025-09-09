@@ -16,4 +16,5 @@ export const ACTIVITIES_FIELD = {
   THOI_GIAN_RA_CONG: 'gateOutTime',
   GIO_VAO_CONG: 'gateTimeIn',
   GIO_RA_CONG: 'gateTimeOut',
+  DIEM_DEN: 'deliveryPonint',
 };

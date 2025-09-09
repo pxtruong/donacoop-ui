@@ -26,7 +26,7 @@ export const tableConfigCongTy: ITableConfig = {
     },
     {
       field: COMPANY_FIELD_CONSTANT.QUANG_DUONG,
-      columnTitle: 'Quãng Đường',
+      columnTitle: 'Quãng Đường(km)',
     },
     {
       field: COMPANY_FIELD_CONSTANT.SO_DIEN_THOAI_CO_QUAN,

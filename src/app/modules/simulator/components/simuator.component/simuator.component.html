@@ -1,26 +1,44 @@
 <base-layout>
   <div body class="w-100 h-100 simulator-wrapper s-content">
     <h5>Mô Phỏng Thông Tin</h5>
-    <div class="dynamic-form d-flex">
-      <div class="group-cmd">
-        <shared-form [iFormConfig]="formConfig"></shared-form>
-        <div class="d-flex">
-          <div>Tín Hiệu Đèn</div>
-          <div class="signal-light {{ signalLight1 }}"></div>
+    <div class="simulator-content">
+      <div class="dynamic-form d-flex">
+        <div class="group-cmd border-right">
+          <shared-form [iFormConfig]="formConfig"></shared-form>
+          <div class="d-flex">
+            <div>Tín Hiệu Đèn</div>
+            <div class="signal-light {{ signalLight1 }}"></div>
+          </div>
+        </div>
+        <div class="group-cmd">
+          <shared-form [iFormConfig]="formConfig2"></shared-form>
+          <div class="d-flex">
+            <div>Tín Hiệu Đèn</div>
+            <div class="signal-light {{ signalLight2 }}"></div>
+          </div>
         </div>
       </div>
-      <div class="group-cmd">
-        <shared-form [iFormConfig]="formConfig2"></shared-form>
-        <div class="d-flex">
-          <div>Tín Hiệu Đèn</div>
-          <div class="signal-light {{ signalLight2 }}"></div>
+      <div class="dynamic-form d-flex">
+        <div class="group-cmd border-right">
+          <shared-form [iFormConfig]="formConfig3"></shared-form>
+          <div class="d-flex">
+            <div>Tín Hiệu Đèn</div>
+            <div class="signal-light {{ signalLight3 }}"></div>
+          </div>
         </div>
-      </div>
-      <div class="group-cmd">
-        <shared-form [iFormConfig]="formConfig3"></shared-form>
-        <div class="d-flex">
-          <div>Tín Hiệu Đèn</div>
-          <div class="signal-light {{ signalLight3 }}"></div>
+        <div class="group-cmd border-right">
+          <shared-form [iFormConfig]="formConfig4"></shared-form>
+          <div class="d-flex">
+            <div>Tín Hiệu Đèn</div>
+            <div class="signal-light {{ signalLight4 }}"></div>
+          </div>
+        </div>
+        <div class="group-cmd">
+          <shared-form [iFormConfig]="formConfig5"></shared-form>
+          <div class="d-flex">
+            <div>Tín Hiệu Đèn</div>
+            <div class="signal-light {{ signalLight5 }}"></div>
+          </div>
         </div>
       </div>
     </div>

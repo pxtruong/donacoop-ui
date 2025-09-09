@@ -26,21 +26,21 @@ export function GET_TABLE_CONFIG_PLANT(): ITableConfig {
         pipeValue: customBindingTruckLicensePlate,
       },
       {
-        field: FIELD_KE_HOACH.LOAI_DA,
-        columnTitle: 'Loại Đá',
-        pipeValue: customBindingStoneType,
-      },
-      {
         field: FIELD_KE_HOACH.MA_SO_XE,
         columnTitle: 'Mã Số Xe',
         pipeValue: customBindingTruckCode,
+      },
+      {
+        field: FIELD_KE_HOACH.LOAI_DA,
+        columnTitle: 'Loại Đá',
+        pipeValue: customBindingStoneType,
       },
     ],
     dataSource: [],
     displayedColumns: [
       FIELD_KE_HOACH.BIEN_SO_XE,
-      FIELD_KE_HOACH.LOAI_DA,
       FIELD_KE_HOACH.MA_SO_XE,
+      FIELD_KE_HOACH.LOAI_DA,
     ],
     pageSizeOptions: [5, 10, 25, 100],
     pageSize: 10,

@@ -23,8 +23,6 @@ import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/butt
 export class KeHoachComponent extends DonacoopBaseComponent {
   private plantFormGroup = new FormGroup({
     machineries: new FormControl(''),
-    ngay: new FormControl(''),
-    gio: new FormControl(''),
   });
   public formConfig: IDynamicFormModel[] = [];
 
@@ -56,10 +54,6 @@ export class KeHoachComponent extends DonacoopBaseComponent {
       });
       existsMachineries[pickupPosition.id] = true;
     });
-    machineriesOptions.push({
-      label: 'test',
-      value: 99,
-    });
     this.formConfig = [
       {
         fieldName: 'machineries',
@@ -69,30 +63,6 @@ export class KeHoachComponent extends DonacoopBaseComponent {
           iControl: this.plantFormGroup.get('machineries'),
           dataSource: machineriesOptions,
           applyFieldValue: 'value',
-        },
-        className: 'col-3',
-        onTriggerSearch: (data: ISelectionOption) => {
-          console.log('Trigger search in Master Data with data:', data);
-        },
-      },
-      {
-        fieldName: 'ngay',
-        iComponent: SharedDatePicker,
-        label: 'Chọn Ngày',
-        iParams: {
-          iControl: this.plantFormGroup.get('ngay'),
-        },
-        className: 'col-3',
-        onTriggerSearch: (data: ISelectionOption) => {
-          console.log('Trigger search in Master Data with data:', data);
-        },
-      },
-      {
-        fieldName: 'gio',
-        iComponent: SharedTimePicker,
-        label: 'Chọn Giờ',
-        iParams: {
-          iControl: this.plantFormGroup.get('gio'),
         },
         className: 'col-3',
         onTriggerSearch: (data: ISelectionOption) => {

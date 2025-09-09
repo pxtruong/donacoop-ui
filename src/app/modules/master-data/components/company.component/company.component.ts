@@ -32,8 +32,8 @@ export class CompanyComponent extends MasterDataBaseComponent {
         }
         const showData: any[] = [];
         res.forEach((i) => {
+          i[`${COMMON_FIELD.ACTION}add_circle_outlineShow`] = true;
           if (Array.isArray(i.deliveryPoints) && i.deliveryPoints.length > 0) {
-            i[`${COMMON_FIELD.ACTION}add_circle_outlineShow`] = true;
             showData.push(i);
             i.deliveryPoints.forEach((deliveryPoint: any) => {
               showData.push({
