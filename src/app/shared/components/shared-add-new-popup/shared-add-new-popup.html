@@ -2,7 +2,7 @@
   <span header>{{ title }}</span>
   <div body class="dynamic-form">
     @if(message) {
-    {{ message }}
+    <span class="black-color">{{ message }}</span>
     } @else {
     <shared-form [iFormConfig]="formConfig"></shared-form>
 

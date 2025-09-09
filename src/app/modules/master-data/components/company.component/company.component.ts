@@ -170,7 +170,7 @@ export class CompanyComponent extends MasterDataBaseComponent {
     this._formGroupAddNew = this._builder.group({});
     this._dialog.open(SharedAddNewPopup, {
       data: {
-        title: `Sửa Sửa Công Ty`,
+        title: `Sửa Công Ty`,
         confirmBTNText: `Xác nhận`,
         formConfig: this.getFormConfig(record),
         confirmAction: (data: any) => {

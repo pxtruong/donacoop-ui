@@ -19,6 +19,7 @@ import {
 } from '../../constants/registrations-field.constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
+import { IMessagePopup } from '../../../../shared/models/popup.model';
 
 @Component({
   selector: 'registrations',
@@ -102,12 +103,35 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       this._prepareData(record)
     );
   }
+  protected override _getContentEditPopup(record: any): IMessagePopup {
+    return {
+      title: `Sửa chuyến xe ${record.truck.licensePlate}`,
+    };
+  }
 
   override inactiveAPI(record: any) {
     let request = { registrationStatus: RegistrationStatus.INACTIVE };
     return this._registrationsService.updateRegistrations(record.id, request);
   }
 
+  protected override _getContentInactivePopup(record: any): IMessagePopup {
+    return {
+      message: `Bạn muốn ngừng hoạt động chuyến xe ${record.truck.licensePlate}?`,
+      title: 'Ngừng hoạt động',
+    };
+  }
+
+  protected override activeAPI(record: any) {
+    let request = { registrationStatus: RegistrationStatus.PENDING };
+    return this._registrationsService.updateRegistrations(record.id, request);
+  }
+
+  protected override _getContentActivePopup(record: any): IMessagePopup {
+    return {
+      message: `Bạn muốn hoạt động lại chuyến xe ${record.truck.licensePlate}?`,
+      title: 'Kích hoạt',
+    };
+  }
   override createAPI(record: any) {
     return this._registrationsService.createRegistrations(
       this._prepareData(record)
