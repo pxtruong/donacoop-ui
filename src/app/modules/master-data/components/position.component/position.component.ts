@@ -4,6 +4,7 @@ import { ITableConfig } from '../../../../shared/models/table.model';
 import { GET_ADD_NEW_CONFIG_CHUC_VU } from '../../constants/role-add-new-config.constant';
 import { GET_TABLE_CONFIG_ROLE } from '../../constants/role-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
+import { ROLE_FIELD_CONSTANT } from '../../constants/role-field.constant';
 
 @Component({
   selector: 'md-position',
@@ -30,6 +31,11 @@ export class PositionComponent extends MasterDataBaseComponent {
     return GET_ADD_NEW_CONFIG_CHUC_VU(record, this._formGroupAddNew);
   }
   protected override updateAPI(id: any, data: any) {
+    if (data[ROLE_FIELD_CONSTANT.TEN_CHUC_VU]) {
+      data[ROLE_FIELD_CONSTANT.KEY] = data[ROLE_FIELD_CONSTANT.TEN_CHUC_VU]
+        .toLowerCase()
+        .replace(/\s/g, '_');
+    }
     return this._masterDataService.updateRoles(id, data);
   }
 
@@ -37,6 +43,11 @@ export class PositionComponent extends MasterDataBaseComponent {
     return this._masterDataService.deleteRoles(id);
   }
   override createAPI(data: any) {
+    if (data[ROLE_FIELD_CONSTANT.TEN_CHUC_VU]) {
+      data[ROLE_FIELD_CONSTANT.KEY] = data[ROLE_FIELD_CONSTANT.TEN_CHUC_VU]
+        .toLowerCase()
+        .replace(/\s/g, '_');
+    }
     return this._masterDataService.createRoles(data);
   }
 }
