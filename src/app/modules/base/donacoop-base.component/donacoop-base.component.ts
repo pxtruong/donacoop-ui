@@ -129,7 +129,7 @@ export class DonacoopBaseComponent
         title: `Ngừng hoạt động`,
         confirmBTNText: `Xác nhận`,
         confirmAction: () => {
-          return this.deleteAPI(record.id).pipe(
+          return this.inactiveAPI(record).pipe(
             finalize(() => {
               this._loadData();
             })
@@ -141,7 +141,7 @@ export class DonacoopBaseComponent
     });
   }
 
-  protected inactiveAPI(id: any) {
+  protected inactiveAPI(record: any) {
     return of(null);
   }
 

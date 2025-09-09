@@ -17,3 +17,10 @@ export const REVENUE_TYPE_OPTIONS = [
     value: REVENUE_TYPE_VALUE.DI_DOI,
   },
 ];
+
+export enum RegistrationStatus {
+  PENDING = 'pending', // chưa vào cổng (vàng)
+  ENTERED = 'entered', // mới vào cổng (xanh dương)
+  EXITED = 'exited', // ra khỏi cổng (xanh lá)
+  INACTIVE = 'inactive', // không hoạt động (đỏ)
+}

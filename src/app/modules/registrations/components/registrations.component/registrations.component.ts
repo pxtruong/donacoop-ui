@@ -9,7 +9,10 @@ import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model'
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
-import { REVENUE_TYPE_VALUE } from '../../constants/registrations-constant';
+import {
+  RegistrationStatus,
+  REVENUE_TYPE_VALUE,
+} from '../../constants/registrations-constant';
 import {
   TRUCK_FIELD_ADD_NEW,
   REGISTRATIONS_FIELD,
@@ -67,12 +70,24 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     if (!this.tableConfig || !Array.isArray(data)) {
       return;
     }
+
     data.forEach((i, index: number) => {
-      if (i.truck.isActive) {
+      if (i.registrationStatus === RegistrationStatus.PENDING) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-yellow',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.ENTERED) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-blue',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.EXITED) {
         i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
           className: 'remark-green',
         };
-      } else {
+      }
+      if (i.registrationStatus === RegistrationStatus.INACTIVE) {
         i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
           className: 'remark-red',
         };
@@ -81,28 +96,34 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     });
     this.tableConfig.dataSource = [...data];
   }
-  override updateAPI(id: any, data: any) {
+  override updateAPI(id: any, record: any) {
     return this._registrationsService.updateRegistrations(
       id,
-      this._prepareData(data)
+      this._prepareData(record)
     );
   }
 
-  override inactiveAPI(id: any) {
-    return this._registrationsService.deleteRegistrations(id);
+  override inactiveAPI(record: any) {
+    // let request = {...record};
+    request.registrationStatus = RegistrationStatus.INACTIVE;
+    return this._registrationsService.updateRegistrations(
+      record.id,
+      this._prepareData(record)
+    );
   }
-  override createAPI(data: any) {
+
+  override createAPI(record: any) {
     return this._registrationsService.createRegistrations(
-      this._prepareData(data)
+      this._prepareData(record)
     );
   }
 
-  private _prepareData(data: any) {
+  private _prepareData(record: any) {
     let request: any = {};
     // map company
-    if (data[TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID]) {
+    if (record[TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID]) {
       const divideCompany =
-        data[TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID].split('-');
+        record[TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID].split('-');
       const companyId = divideCompany[0];
       const destinationId = divideCompany[1];
       request[TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID] = companyId;
@@ -110,36 +131,38 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     }
     // map bussines revenue type
     request[TRUCK_FIELD_ADD_NEW.REVENUE_TYPE] =
-      data[TRUCK_FIELD_ADD_NEW.REVENUE_TYPE];
+      record[TRUCK_FIELD_ADD_NEW.REVENUE_TYPE];
     if (
       request[TRUCK_FIELD_ADD_NEW.REVENUE_TYPE] === REVENUE_TYPE_VALUE.DI_DOI
     ) {
       request[TRUCK_FIELD_ADD_NEW.TO_WAREHOUSES_ID] =
-        data[TRUCK_FIELD_ADD_NEW.TO_WAREHOUSES_ID];
+        record[TRUCK_FIELD_ADD_NEW.TO_WAREHOUSES_ID];
       request[TRUCK_FIELD_ADD_NEW.BUYER_COMPANY_ID] = null;
       request[TRUCK_FIELD_ADD_NEW.DEPLOY_POINT] = null;
     } else {
       request[TRUCK_FIELD_ADD_NEW.TO_WAREHOUSES_ID] = null;
     }
     // map stone and warehouses
-    if (data[TRUCK_FIELD_ADD_NEW.STONE_TYPE_ID]) {
+    if (record[TRUCK_FIELD_ADD_NEW.STONE_TYPE_ID]) {
       const originalWarehouses =
-        data[TRUCK_FIELD_ADD_NEW.STONE_TYPE_ID].split('-');
+        record[TRUCK_FIELD_ADD_NEW.STONE_TYPE_ID].split('-');
       const originalWarehouseId = originalWarehouses[0];
       const stoneTypeId = originalWarehouses[1];
       request[TRUCK_FIELD_ADD_NEW.STONE_TYPE_ID] = stoneTypeId;
       request[TRUCK_FIELD_ADD_NEW.WAREHOUSES_ID] = originalWarehouseId;
     }
     // map field
-    request[TRUCK_FIELD_ADD_NEW.TO_DATE] = data[TRUCK_FIELD_ADD_NEW.TO_DATE];
-    request[TRUCK_FIELD_ADD_NEW.TRIP_NUM] = data[TRUCK_FIELD_ADD_NEW.TRIP_NUM];
-    request[TRUCK_FIELD_ADD_NEW.TRUCK_ID] = data[TRUCK_FIELD_ADD_NEW.TRUCK_ID];
-    request[TRUCK_FIELD_ADD_NEW.MO_TA] = data[TRUCK_FIELD_ADD_NEW.MO_TA];
+    request[TRUCK_FIELD_ADD_NEW.TO_DATE] = record[TRUCK_FIELD_ADD_NEW.TO_DATE];
+    request[TRUCK_FIELD_ADD_NEW.TRIP_NUM] =
+      record[TRUCK_FIELD_ADD_NEW.TRIP_NUM];
+    request[TRUCK_FIELD_ADD_NEW.TRUCK_ID] =
+      record[TRUCK_FIELD_ADD_NEW.TRUCK_ID];
+    request[TRUCK_FIELD_ADD_NEW.MO_TA] = record[TRUCK_FIELD_ADD_NEW.MO_TA];
     request[TRUCK_FIELD_ADD_NEW.MACHINERIES_ID] =
-      data[TRUCK_FIELD_ADD_NEW.MACHINERIES_ID];
+      record[TRUCK_FIELD_ADD_NEW.MACHINERIES_ID];
     // map time
-    const toTime = data[TRUCK_FIELD_ADD_NEW.TO_TIME];
-    const fromTime = data[TRUCK_FIELD_ADD_NEW.FROM_TIME];
+    const toTime = record[TRUCK_FIELD_ADD_NEW.TO_TIME];
+    const fromTime = record[TRUCK_FIELD_ADD_NEW.FROM_TIME];
     request[
       TRUCK_FIELD_ADD_NEW.TO_TIME
     ] = `${fromTime.getHours()}:${fromTime.getMinutes()} - ${toTime.getHours()}:${toTime.getMinutes()}`;
