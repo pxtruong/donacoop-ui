@@ -15,7 +15,7 @@ export const CONG_TY_OPTIONS = [
   },
   {
     value: ROUTE_CONSTANTS.PAGE.MASTER_DATA.CHILDREN.MACHINERIES.FULL_PATH,
-    label: 'Xe Cơ Giới',
+    label: 'Xe Công Trình',
   },
   {
     value: ROUTE_CONSTANTS.PAGE.MASTER_DATA.CHILDREN.WAREHOUSES.FULL_PATH,

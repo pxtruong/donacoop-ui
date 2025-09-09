@@ -3,17 +3,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
 import { StoreDataKeys } from '../../../../core/models/store-data.model';
 import { StoreDataService } from '../../../../core/services/store-data.service';
-import { SharedDatePicker } from '../../../../shared/components/shared-date-picker/shared-date-picker';
+import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedSelect } from '../../../../shared/components/shared-select/shared-select';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
-import { SharedTimePicker } from '../../../../shared/components/shared-time-picker/shared-time-picker';
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { ISelectionOption } from '../../../../shared/models/selection-option.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { GET_TABLE_CONFIG_PLANT } from '../../constants/ke-hoach-table.constant';
-import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 @Component({
   selector: 'app-ke-hoach.component',
   imports: [BaseLayoutComponent, SharedTable, SharedForm],
@@ -30,9 +28,17 @@ export class KeHoachComponent extends DonacoopBaseComponent {
   private _dataSource = [];
   protected override _loadData() {
     const data = StoreDataService.getValue(StoreDataKeys.ACTIVITIES);
-    this._dataSource = data.filter((i: any) => {
-      return !i.gateOutTime;
-    });
+    this._dataSource = data
+      .filter((i: any) => {
+        return !i.gateOutTime && i.gateInTime;
+      })
+      .sort((a: any, b: any) => {
+        if (!b.gateInTime) return -1;
+        else if (!a.gateInTime) return 1;
+        return (
+          new Date(b.gateInTime).getTime() - new Date(a.gateInTime).getTime()
+        );
+      });
     this.tableConfig.dataSource = [...this._dataSource];
     this._initForm();
   }

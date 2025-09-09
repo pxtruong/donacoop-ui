@@ -136,7 +136,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iComponent: SharedInputComponent,
         label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup.controls.licensePlate,
+          iControl: this.formGroup.controls.command,
           isDisabled: true,
         },
         className: 'col-6',
@@ -186,7 +186,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iComponent: SharedInputComponent,
         label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup2.controls.licensePlate,
+          iControl: this.formGroup2.controls.command,
           isDisabled: true,
         },
         className: 'col-6',
@@ -195,7 +195,6 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   }
 
   private _config3(stoneTypeList: any[]) {
-    console.log(`stoneTypeList--`, stoneTypeList);
     this.formConfig3 = [
       {
         fieldName: 'cam1',
@@ -222,6 +221,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iParams: {
           iControl: this.formGroup3.controls.stoneType,
           dataSource: stoneTypeList,
+          applyFieldValue: 'value',
         },
         className: 'col-6',
       },
@@ -256,7 +256,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iComponent: SharedInputComponent,
         label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup3.controls.licensePlate,
+          iControl: this.formGroup3.controls.command,
           isDisabled: true,
         },
         className: 'col-6',
@@ -291,6 +291,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iParams: {
           iControl: this.formGroup4.controls.stoneType,
           dataSource: stoneTypeList,
+          applyFieldValue: 'value',
         },
         className: 'col-6',
       },
@@ -325,7 +326,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iComponent: SharedInputComponent,
         label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup4.controls.licensePlate,
+          iControl: this.formGroup4.controls.command,
           isDisabled: true,
         },
         className: 'col-6',
@@ -360,6 +361,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iParams: {
           iControl: this.formGroup5.controls.stoneType,
           dataSource: stoneTypeList,
+          applyFieldValue: 'value',
         },
         className: 'col-6',
       },
@@ -394,7 +396,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         iComponent: SharedInputComponent,
         label: 'Hiệu lênh xe',
         iParams: {
-          iControl: this.formGroup5.controls.licensePlate,
+          iControl: this.formGroup5.controls.command,
           isDisabled: true,
         },
         className: 'col-6',
@@ -411,14 +413,44 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   }
 
   private _handleApi3() {
+    const res = this.formGroup3.value;
+    const divideData = res.stoneType?.split('-');
+    let warehousesId = undefined;
+    let stockId = undefined;
+    let stoneTypeId = undefined;
+    if (divideData) {
+      warehousesId = divideData[0];
+      stockId = divideData[1];
+      stoneTypeId = divideData[2];
+    }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup3.value);
   }
 
   private _handleApi4() {
+    const res = this.formGroup4.value;
+    const divideData = res.stoneType?.split('-');
+    let warehousesId = undefined;
+    let stockId = undefined;
+    let stoneTypeId = undefined;
+    if (divideData) {
+      warehousesId = divideData[0];
+      stockId = divideData[1];
+      stoneTypeId = divideData[2];
+    }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup4.value);
   }
 
   private _handleApi5() {
+    const res = this.formGroup5.value;
+    const divideData = res.stoneType?.split('-');
+    let warehousesId = undefined;
+    let stockId = undefined;
+    let stoneTypeId = undefined;
+    if (divideData) {
+      warehousesId = divideData[0];
+      stockId = divideData[1];
+      stoneTypeId = divideData[2];
+    }
     this.logLevel.debug(`call function _handleApi3`, this.formGroup5.value);
   }
 }

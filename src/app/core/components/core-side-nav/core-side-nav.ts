@@ -79,7 +79,7 @@ export class CoreSideNav extends BasicExtends {
         {
           isDisabled: false,
           link: `/${ROUTE_CONSTANTS.PAGE.MASTER_DATA.CHILDREN.MACHINERIES.FULL_PATH}`,
-          label: 'Xe Cơ Giới',
+          label: 'Xe Công Trình',
           icon: 'precision_manufacturing',
           customClass: 'icon-white',
         },
