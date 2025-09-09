@@ -7,6 +7,7 @@ import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model'
 import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SimulatorService } from '../../servies/simulator.service';
 
 @Component({
   selector: 'simuator.component',
@@ -74,7 +75,8 @@ export class SimuatorComponent extends DonacoopBaseComponent {
   public signalLight5: string = 'green';
   constructor(
     protected override _dialog: MatDialog,
-    protected override _builder: FormBuilder
+    protected override _builder: FormBuilder,
+    private _simulatorService: SimulatorService
   ) {
     super(_dialog, _builder);
     this._config1();
@@ -108,6 +110,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         className: 'col-6',
         clickBTN: () => {
           this.logLevel.debug(`click`);
+          this._handleApi1();
         },
       },
       {
@@ -176,6 +179,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         className: 'col-6',
         clickBTN: () => {
           this.logLevel.debug(`click`);
+          this._handleApi2();
         },
       },
       {
@@ -263,6 +267,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         className: 'col-6',
         clickBTN: () => {
           this.logLevel.debug(`click`);
+          this._handleApi3();
         },
       },
       {
@@ -349,6 +354,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         className: 'col-6',
         clickBTN: () => {
           this.logLevel.debug(`click`);
+          this._handleApi4();
         },
       },
       {
@@ -436,6 +442,7 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         className: 'col-6',
         clickBTN: () => {
           this.logLevel.debug(`click`);
+          this._handleApi5();
         },
       },
       {
@@ -479,5 +486,21 @@ export class SimuatorComponent extends DonacoopBaseComponent {
         className: 'col-6',
       },
     ];
+  }
+
+  private _handleApi1() {
+    this.logLevel.debug(`call function _handleApi1`, this.formGroup.value);
+  }
+  private _handleApi2() {
+    this.logLevel.debug(`call function _handleApi2`, this.formGroup2.value);
+  }
+  private _handleApi3() {
+    this.logLevel.debug(`call function _handleApi3`, this.formGroup3.value);
+  }
+  private _handleApi4() {
+    this.logLevel.debug(`call function _handleApi3`, this.formGroup4.value);
+  }
+  private _handleApi5() {
+    this.logLevel.debug(`call function _handleApi3`, this.formGroup5.value);
   }
 }
