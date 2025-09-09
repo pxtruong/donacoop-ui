@@ -16,6 +16,7 @@ export class ButtonBase extends BaseComponent {
   @Output() clickBTN = new EventEmitter();
   @Input() iDisabled: boolean = false;
   onClick() {
+    this.logLevel.debug('onClick BTN');
     this.clickBTN.emit();
   }
 }

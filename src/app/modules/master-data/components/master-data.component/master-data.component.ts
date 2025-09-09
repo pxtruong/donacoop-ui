@@ -54,7 +54,6 @@ export class MasterDataComponent extends DonacoopBaseComponent {
         if (!currentComponent) {
           return;
         }
-        console.log('Click thêm mới in Master Data');
         currentComponent.addNewPopup();
       },
     },

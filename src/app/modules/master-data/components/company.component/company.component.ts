@@ -56,7 +56,7 @@ export class CompanyComponent extends MasterDataBaseComponent {
         StoreDataService.update(StoreDataKeys.COMPANY_LIST, res);
       },
       (error) => {
-        console.log(`error--`, error);
+        this.logLevel.debug('load data error', error);
       }
     );
   }
@@ -170,7 +170,7 @@ export class CompanyComponent extends MasterDataBaseComponent {
     this._formGroupAddNew = this._builder.group({});
     this._dialog.open(SharedAddNewPopup, {
       data: {
-        title: `Sửa Sửa Công Ty`,
+        title: `Sửa Công Ty`,
         confirmBTNText: `Xác nhận`,
         formConfig: this.getFormConfig(record),
         confirmAction: (data: any) => {

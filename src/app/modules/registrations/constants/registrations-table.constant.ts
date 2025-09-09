@@ -4,6 +4,7 @@ import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../master-data/constants/company-field.constant';
+import { RegistrationStatus } from './registrations-constant';
 import { REGISTRATIONS_FIELD } from './registrations-field.constant';
 export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
   const displayFn = (field: string, fieldName: string) => {
@@ -268,11 +269,25 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
               iIcon: 'block',
               iCustomClass: 'border-none',
               iColorIcon: 'warn',
+              cbShow: (record: any) => {
+                return record.registrationStatus === RegistrationStatus.PENDING;
+              },
+            },
+            {
+              iIcon: 'flash_on',
+              iCustomClass: 'border-none',
+              iColorIcon: 'primary',
+              cbShow: (record: any) => {
+                return (
+                  record.registrationStatus === RegistrationStatus.INACTIVE
+                );
+              },
             },
           ],
         },
       },
     ],
+
     dataSource: [{}],
     displayedColumns: [
       REGISTRATIONS_FIELD.STT,

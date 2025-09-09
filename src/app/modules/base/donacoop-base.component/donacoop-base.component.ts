@@ -5,6 +5,7 @@ import { finalize, of } from 'rxjs';
 import { SharedAddNewPopup } from '../../../shared/components/shared-add-new-popup/shared-add-new-popup';
 import { BasicExtends } from '../../../shared/models/basic-extends.model';
 import { ITableConfig } from '../../../shared/models/table.model';
+import { IMessagePopup } from '../../../shared/models/popup.model';
 
 @Component({
   selector: 'app-donacoop-base.component',
@@ -60,6 +61,10 @@ export class DonacoopBaseComponent
       this._inactivePopup(record);
       return;
     }
+    if (iIcon === 'flash_on') {
+      this._activePopup(record);
+      return;
+    }
   }
 
   protected addCircle(record: any) {}
@@ -77,12 +82,19 @@ export class DonacoopBaseComponent
   protected _prepareCircle(record: any) {
     return { ...record };
   }
+
+  protected _getContentEditPopup(record: any): IMessagePopup {
+    return {
+      title: 'Sửa',
+    };
+  }
   protected _editPopup(record: any) {
+    const messageContent = this._getContentEditPopup(record);
     this._formGroupAddNew = this._builder.group({});
     this._prepareEventEdit();
     this._dialog.open(SharedAddNewPopup, {
       data: {
-        title: `Sửa`,
+        title: messageContent.title,
         confirmBTNText: `Xác nhận`,
         formConfig: this.getFormConfig(record),
         confirmAction: (data: any) => {
@@ -122,11 +134,23 @@ export class DonacoopBaseComponent
     });
   }
 
+  protected deleteAPI(id: any) {
+    return of(null);
+  }
+
+  protected _getContentInactivePopup(record: any): IMessagePopup {
+    return {
+      message: 'Bạn muốn ngừng hoạt động ?',
+      title: 'Ngừng hoạt động',
+    };
+  }
+
   protected _inactivePopup(record: any) {
+    const messageContent = this._getContentInactivePopup(record);
     this._dialog.open(SharedAddNewPopup, {
       data: {
-        message: `Bạn muốn ngừng hoạt động ?`,
-        title: `Ngừng hoạt động`,
+        message: messageContent.message,
+        title: messageContent.title,
         confirmBTNText: `Xác nhận`,
         confirmAction: () => {
           return this.inactiveAPI(record).pipe(
@@ -145,10 +169,35 @@ export class DonacoopBaseComponent
     return of(null);
   }
 
-  protected deleteAPI(id: any) {
-    return of(null);
+  protected _getContentActivePopup(record: any): IMessagePopup {
+    return {
+      message: `Bạn muốn hoạt động lại?`,
+      title: 'Kích hoạt',
+    };
+  }
+  protected _activePopup(record: any) {
+    const messageContent = this._getContentActivePopup(record);
+    this._dialog.open(SharedAddNewPopup, {
+      data: {
+        message: messageContent.message,
+        title: messageContent.title,
+        confirmBTNText: `Xác nhận`,
+        confirmAction: () => {
+          return this.activeAPI(record).pipe(
+            finalize(() => {
+              this._loadData();
+            })
+          );
+        },
+        initData: record,
+      },
+      panelClass: ['common-popup-3xx'],
+    });
   }
 
+  protected activeAPI(record: any) {
+    return of(null);
+  }
   protected _prepareEventAddNew() {}
   protected _prepareEventEdit() {}
 
