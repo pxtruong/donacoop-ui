@@ -50,6 +50,7 @@ export class MasterDataComponent extends DonacoopBaseComponent {
       className: 'col-12 col-md-6',
       clickBTN: () => {
         this.logLevel.debug('Click thêm mới in Master Data');
+        console.log('Click thêm mới in Master Data', this.outlet);
         const currentComponent: any = this.outlet.component;
         if (!currentComponent) {
           return;
