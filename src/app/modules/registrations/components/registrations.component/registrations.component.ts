@@ -104,12 +104,8 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
   }
 
   override inactiveAPI(record: any) {
-    // let request = {...record};
-    // request.registrationStatus = RegistrationStatus.INACTIVE;
-    return this._registrationsService.updateRegistrations(
-      record.id,
-      this._prepareData(record)
-    );
+    let request = { registrationStatus: RegistrationStatus.INACTIVE };
+    return this._registrationsService.updateRegistrations(record.id, request);
   }
 
   override createAPI(record: any) {
