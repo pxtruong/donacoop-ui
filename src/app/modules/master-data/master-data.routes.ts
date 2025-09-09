@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { MandantoryResolver } from '../../core/resolver/mandantory-load.resolver';
 import { ROUTE_CONSTANTS } from '../../shared/constants/route.constant';
 import { CompanyComponent } from './components/company.component/company.component';
 import { MachineriesComponent } from './components/machineries.component/machineries.component';
@@ -59,6 +58,5 @@ export const MasterDataRoutes: Routes = [
         pathMatch: 'full',
       },
     ],
-    resolve: [MandantoryResolver],
   },
 ];
