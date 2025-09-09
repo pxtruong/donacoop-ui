@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
 import { StoreDataKeys } from '../../../../core/models/store-data.model';
 import { StoreDataService } from '../../../../core/services/store-data.service';
 import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
+import { ButtonCancel } from '../../../../shared/components/button-cancel/button-cancel';
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedSelect } from '../../../../shared/components/shared-select/shared-select';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
@@ -12,6 +13,8 @@ import { ISelectionOption } from '../../../../shared/models/selection-option.mod
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { GET_TABLE_CONFIG_PLANT } from '../../constants/ke-hoach-table.constant';
+import { ActivitiesService } from '../../../theo-doi-hoat-dong/services/activities.services';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-ke-hoach.component',
   imports: [BaseLayoutComponent, SharedTable, SharedForm],
@@ -43,6 +46,13 @@ export class KeHoachComponent extends DonacoopBaseComponent {
     this._initForm();
   }
 
+  constructor(
+    private _activitiesService: ActivitiesService,
+    protected override _dialog: MatDialog,
+    protected override _builder: FormBuilder
+  ) {
+    super(_dialog, _builder);
+  }
   private _initForm() {
     const machineriesOptions: any[] = [];
     const existsMachineries: any = {};
@@ -88,7 +98,29 @@ export class KeHoachComponent extends DonacoopBaseComponent {
         className: 'col-1',
         clickBTN: () => {
           this._filterData();
-          this.logLevel.debug('Click tìm in activities');
+          this.logLevel.debug('Click tìm in KẾ Hoạch');
+        },
+      },
+      {
+        fieldName: 'btnAcceptRefresh',
+        iComponent: ButtonCancel,
+        label: '',
+        iParams: {
+          iControl: null,
+          iIcon: 'autorenew',
+          iText: '',
+          iCustomClass: 'mt-4',
+        },
+        className: 'col-1',
+        clickBTN: () => {
+          this.subcribe(
+            this._activitiesService.getActivities(),
+            (res) => {
+              this._loadData();
+            },
+            (error) => {}
+          );
+          this.logLevel.debug('Click Tải Lại Trang KẾ Hoạch');
         },
       },
     ];

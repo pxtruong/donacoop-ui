@@ -77,6 +77,10 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     this._config2();
     const stoneList = StoreDataService.getValue(StoreDataKeys.STONE_TYPE);
     const stoneTypeOptions: any[] = [];
+    stoneTypeOptions.push({
+      label: '',
+      value: '',
+    });
     if (Array.isArray(stoneList)) {
       stoneList.forEach((i: any) => {
         stoneTypeOptions.push({
@@ -437,12 +441,14 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     const cam = res.cam1;
     this.logLevel.debug(`call function _handleApi3`, this.formGroup3.value);
     this.subcribe(
-      this._simulatorService.weightStation({
-        licensePlate: cam,
-        stoneTypeId: res.stoneType,
-        weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_1,
-        weight: res.weight,
-      }),
+      this._simulatorService.weightStation(
+        this._clearNullData({
+          licensePlate: cam,
+          stoneTypeId: res.stoneType,
+          weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_1,
+          weight: res.weight,
+        })
+      ),
       (res) => {
         const controls = this.formGroup3.controls;
         const { licensePlate, message } = res;
@@ -458,12 +464,14 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     this.logLevel.debug(`call function _handleApi3`, this.formGroup4.value);
     const cam = res.cam1;
     this.subcribe(
-      this._simulatorService.weightStation({
-        licensePlate: cam,
-        stoneTypeId: res.stoneType,
-        weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_2,
-        weight: res.weight,
-      }),
+      this._simulatorService.weightStation(
+        this._clearNullData({
+          licensePlate: cam,
+          stoneTypeId: res.stoneType,
+          weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_2,
+          weight: res.weight,
+        })
+      ),
       (res) => {
         const controls = this.formGroup4.controls;
         const { licensePlate, message } = res;
@@ -479,12 +487,14 @@ export class SimuatorComponent extends DonacoopBaseComponent {
     this.logLevel.debug(`call function _handleApi3`, this.formGroup5.value);
     const cam = res.cam1;
     this.subcribe(
-      this._simulatorService.weightStation({
-        licensePlate: cam,
-        stoneTypeId: res.stoneType,
-        weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_3,
-        weight: res.weight,
-      }),
+      this._simulatorService.weightStation(
+        this._clearNullData({
+          licensePlate: cam,
+          stoneTypeId: res.stoneType,
+          weighStation: WEIGHT_POSITION_OPTIONS_VALUE.CAN_3,
+          weight: res.weight,
+        })
+      ),
       (res) => {
         const controls = this.formGroup5.controls;
         const { licensePlate, message } = res;

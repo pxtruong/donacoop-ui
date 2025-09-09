@@ -111,18 +111,18 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       },
       {
         field: ACTIVITIES_FIELD.THOI_GIAN_CAN_LAN_1,
-        columnTitle: 'Thời Gian Cân Lần 1',
+        columnTitle: 'Thời Gian Cân Xác',
         minWidth: 160,
         pipeValue: timePipe,
       },
       {
         field: ACTIVITIES_FIELD.VI_TRI_CAN_LAN_1,
-        columnTitle: 'Vị Trí Cân Lần 1',
+        columnTitle: 'Vị Trí Cân Xác',
         minWidth: 160,
       },
       {
         field: ACTIVITIES_FIELD.KHOI_LUONG1,
-        columnTitle: 'Khối Lượng 1',
+        columnTitle: 'Khối Lượng Xác',
         minWidth: 120,
       },
       {
@@ -138,7 +138,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       },
       {
         field: ACTIVITIES_FIELD.KHOI_LUONG2,
-        columnTitle: 'Khối Lượng 2',
+        columnTitle: 'Khối Lượng Cân Lần 2',
         minWidth: 120,
       },
       {
