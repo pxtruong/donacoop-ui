@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ConfigService } from '@nestjs/config';
 
@@ -9,12 +9,12 @@ export class AppController {
     private configService: ConfigService,
   ) {}
 
-  @Get('heathy')
-  getHello() {
-    const buildVersion = this.configService.get('BUILD_VERSION');
-    if (buildVersion) {
-      return { buildVersion: `${buildVersion}` };
-    }
-    return 'Page Not Found';
-  }
+  // @Get('heathy')
+  // getHello() {
+  //   const buildVersion = this.configService.get('BUILD_VERSION');
+  //   if (buildVersion) {
+  //     return { buildVersion: `${buildVersion}` };
+  //   }
+  //   return 'Page Not Found';
+  // }
 }
