@@ -10,7 +10,6 @@ export class ControlInputBase {
   @Input() label: string = '';
   @Input() iControl!: FormGroup | FormControl;
   @Input() dataSource!: Array<any>;
-  @Input() valueFn!: any;
   @Input() set isDisabled(value: boolean) {
     if (this.iControl) {
       if (value) {

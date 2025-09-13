@@ -1,6 +1,7 @@
 import { FormGroup } from '@angular/forms';
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input';
 import { COMPANY_FIELD_CONSTANT } from './company-field.constant';
+import { CDyanamicValidation } from '../../../shared/models/dynamic-form.model';
 const ADD_NEW_CONFIG_CONG_TY = [
   {
     fieldName: COMPANY_FIELD_CONSTANT.TEN_CONG_TY,
@@ -8,6 +9,9 @@ const ADD_NEW_CONFIG_CONG_TY = [
     label: 'Tên Công Ty',
     iParams: {},
     className: 'col-12',
+    validations: [
+      CDyanamicValidation.required(COMPANY_FIELD_CONSTANT.TEN_CONG_TY),
+    ],
   },
   {
     fieldName: COMPANY_FIELD_CONSTANT.EMAIL_CO_QUAN,

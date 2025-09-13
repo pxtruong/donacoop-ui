@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BasicExtends } from './basic-extends.model';
 import { ControlInputBase } from './control-input-base.model';
@@ -16,7 +16,6 @@ export class ControlBase
   @Input() label: string = '';
   @Input() iControl!: FormGroup | FormControl;
   @Input() dataSource!: Array<any>;
-  @Input() valueFn!: any;
 
   @Input() set isDisabled(value: boolean) {
     if (this.iControl) {

@@ -11,3 +11,8 @@ export enum CellType {
   Checkbox = 'checkbox',
   Textarea = 'textarea',
 }
+
+export interface IValidation {
+  name: string;
+  fnValidation: Function;
+}

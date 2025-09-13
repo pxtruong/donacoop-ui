@@ -10,6 +10,14 @@
       "
       (clickBTN)="config.clickBTN ? config.clickBTN() : null"
     ></shared-dynamic-component>
+
+    @if(config.iParams.iControl && config.iParams.iControl.errors &&
+    config.iParams.iControl.touched ) {
+
+    <div class="break-line mt-2 red-text">
+      {{ config.iParams.iControl.errors | dyanmicFormErrorPipe }}
+    </div>
+    }
   </div>
   }
 </div>

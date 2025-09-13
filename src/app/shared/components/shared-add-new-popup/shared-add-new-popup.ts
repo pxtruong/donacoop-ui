@@ -1,5 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BaseComponent } from '../../../core/components/base/base.component';
 import { CoreDialogComponent } from '../../../core/components/core-dialog/core-dialog.component';
@@ -57,17 +62,22 @@ export class SharedAddNewPopup extends BaseComponent {
       return;
     }
     this.formConfig.forEach((item) => {
-      if (item.iParams) {
-        this._formGroup.addControl(
-          item.fieldName,
-          new FormControl(initData[item.fieldName])
-        );
-        item.iParams.iControl = this._formGroup.get(
-          item.fieldName
-        ) as FormControl;
-        if (item.defaultDisabled) {
-          this._formGroup.get(item.fieldName)?.disable();
-        }
+      if (!item.iParams) {
+        return;
+      }
+      let validations: ValidatorFn[] = [];
+      if (item.validations) {
+        validations = [...item.validations];
+      }
+      this._formGroup.addControl(
+        item.fieldName,
+        new FormControl(initData[item.fieldName], validations)
+      );
+      item.iParams.iControl = this._formGroup.get(
+        item.fieldName
+      ) as FormControl;
+      if (item.defaultDisabled) {
+        this._formGroup.get(item.fieldName)?.disable();
       }
     });
   }
@@ -77,6 +87,9 @@ export class SharedAddNewPopup extends BaseComponent {
   }
 
   public async confirmed() {
+    if (this._formGroup.invalid) {
+      return;
+    }
     if (this.data.confirmAction) {
       this.data.confirmAction(this._formGroup?.value).subscribe(() => {
         this._snackService.showSnack({
