@@ -221,9 +221,11 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     // map time
     const toTime = record[TRUCK_FIELD_ADD_NEW.TO_TIME];
     const fromTime = record[TRUCK_FIELD_ADD_NEW.FROM_TIME];
-    request[
-      TRUCK_FIELD_ADD_NEW.TO_TIME
-    ] = `${fromTime.getHours()}:${fromTime.getMinutes()} - ${toTime.getHours()}:${toTime.getMinutes()}`;
+    if (toTime && fromTime) {
+      request[
+        TRUCK_FIELD_ADD_NEW.TO_TIME
+      ] = `${fromTime.getHours()}:${fromTime.getMinutes()} - ${toTime.getHours()}:${toTime.getMinutes()}`;
+    }
     return request;
   }
 

@@ -22,14 +22,12 @@ export class WarehousesResolver implements Resolve<any> {
 
   async waitingForLoadPage() {
     return new Promise((resolve, reject) => {
-      forkJoin([this._masterDataService.getWarehouses()]).subscribe(
-        ([warehouses]) => {
-          if (Array.isArray(warehouses)) {
-            StoreDataService.update(StoreDataKeys.WAREHOUSES, warehouses);
-          }
-          resolve(null);
+      forkJoin([this._masterDataService.getWarehouses()]).subscribe(([res]) => {
+        if (Array.isArray(res.data)) {
+          StoreDataService.update(StoreDataKeys.WAREHOUSES, res.data);
         }
-      );
+        resolve(null);
+      });
     });
   }
 }

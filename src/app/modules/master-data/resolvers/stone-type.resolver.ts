@@ -22,14 +22,12 @@ export class StoneTypeResolver implements Resolve<any> {
 
   async waitingForLoadPage() {
     return new Promise((resolve, reject) => {
-      forkJoin([this._masterDataService.getStoneType()]).subscribe(
-        ([stoneType]) => {
-          if (Array.isArray(stoneType)) {
-            StoreDataService.update(StoreDataKeys.STONE_TYPE, stoneType);
-          }
-          resolve(null);
+      forkJoin([this._masterDataService.getStoneType()]).subscribe(([res]) => {
+        if (Array.isArray(res.data)) {
+          StoreDataService.update(StoreDataKeys.STONE_TYPE, res.data);
         }
-      );
+        resolve(null);
+      });
     });
   }
 }

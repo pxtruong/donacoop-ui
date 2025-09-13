@@ -23,9 +23,9 @@ export class MachineriesResolver implements Resolve<any> {
   async waitingForLoadPage() {
     return new Promise((resolve, reject) => {
       forkJoin([this._masterDataService.getMachineries()]).subscribe(
-        ([machineries]) => {
-          if (Array.isArray(machineries)) {
-            StoreDataService.update(StoreDataKeys.MACHINERIES, machineries);
+        ([res]) => {
+          if (Array.isArray(res.data)) {
+            StoreDataService.update(StoreDataKeys.MACHINERIES, res.data);
           }
           resolve(null);
         }
