@@ -9,7 +9,7 @@ import { join } from 'path';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public', 'UI'), // đường dẫn tới Angular build
+      rootPath: join(__dirname, '..', 'public', 'UI', 'browser'), // đường dẫn tới Angular build
       exclude: ['/api*'], // nếu bạn có API, đừng để route UI ăn hết
     }),
   ],
