@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:gateway": "npm --prefix gateway run start:dev",
-    "build:gateway:prod": "npm --prefix gateway run install && npm --prefix gateway run build",
+    "build:gateway:prod": "npm --prefix gateway install && npm --prefix gateway run build",
     "start:gateway:prod": "npm --prefix gateway run start:prod"
   },
   "prettier": {
