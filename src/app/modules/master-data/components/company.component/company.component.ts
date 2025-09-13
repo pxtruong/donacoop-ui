@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
 import { IResponsePaging } from '../../../../core/models/http-service.model';
-import { StoreDataKeys } from '../../../../core/models/store-data.model';
-import { StoreDataService } from '../../../../core/services/store-data.service';
 import { SharedAddNewPopup } from '../../../../shared/components/shared-add-new-popup/shared-add-new-popup';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { COMMON_FIELD } from '../../../base/donacoop-base.component/constants/donacoop-base.constant';
+import { CDanaCoopBase } from '../../../base/models/basic-item.model';
 import {
   GET_ADD_MEW_DIEM_DEN,
   GET_ADD_NEW_CONFIG_CONG_TY,
 } from '../../constants/company-add-new-config.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../constants/company-field.constant';
 import { tableConfigCongTy } from '../../constants/company-table.constant';
-import { ICompanyModel, IRequestCompany } from '../../models/company.model';
+import { IRequestCompany } from '../../models/company.model';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 @Component({
   selector: 'company',
@@ -24,42 +23,39 @@ import { MasterDataBaseComponent } from '../master-data-base.component/master-da
 })
 export class CompanyComponent extends MasterDataBaseComponent {
   override tableConfig: ITableConfig = tableConfigCongTy;
-  protected override _loadData() {
-    this.subcribe(
-      this._masterDataService.getCompanyList(),
-      (res: IResponsePaging<ICompanyModel>) => {
-        const listCompany = res?.data;
-        if (!Array.isArray(listCompany)) {
-          return;
-        }
-        const showData: any[] = [];
-        listCompany.forEach((i) => {
-          i[`${COMMON_FIELD.ACTION}add_circle_outlineShow`] = true;
-          if (Array.isArray(i.deliveryPoints) && i.deliveryPoints.length > 0) {
-            showData.push(i);
-            i.deliveryPoints.forEach((deliveryPoint: any) => {
-              showData.push({
-                [COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG]: deliveryPoint.name,
-                [COMPANY_FIELD_CONSTANT.QUANG_DUONG]: deliveryPoint.distance,
-                [COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG]:
-                  deliveryPoint[
-                    COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG
-                  ],
-                isDeliveryPoints: true,
-                id: deliveryPoint.id,
-                companyId: i.id,
-              });
-            });
-          } else {
-            showData.push(i);
-          }
+  protected override _prepareApplyTable(res: IResponsePaging<any>) {
+    const listCompany = res?.data;
+    if (!Array.isArray(listCompany)) {
+      return [];
+    }
+    const showData: any[] = [];
+    listCompany.forEach((i) => {
+      i[`${COMMON_FIELD.ACTION}add_circle_outlineShow`] = true;
+      if (Array.isArray(i.deliveryPoints) && i.deliveryPoints.length > 0) {
+        showData.push(i);
+        i.deliveryPoints.forEach((deliveryPoint: any) => {
+          showData.push({
+            [COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG]: deliveryPoint.name,
+            [COMPANY_FIELD_CONSTANT.QUANG_DUONG]: deliveryPoint.distance,
+            [COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG]:
+              deliveryPoint[COMPANY_FIELD_CONSTANT.THONG_TIN_DIEM_GIAO_HANG],
+            isDeliveryPoints: true,
+            id: deliveryPoint.id,
+            companyId: i.id,
+          });
         });
-        this._uppdateTableData(showData);
-        StoreDataService.update(StoreDataKeys.COMPANY_LIST, res);
-      },
-      (error) => {
-        this.logLevel.debug('load data error', error);
+      } else {
+        showData.push(i);
       }
+    });
+    return showData;
+  }
+  protected override _apiLoadData() {
+    if (!this.tableConfig.paginationConfig) {
+      return this._masterDataService.getCompanyList();
+    }
+    return this._masterDataService.getCompanyListPaging(
+      CDanaCoopBase.makeRequestPaging(this.tableConfig.paginationConfig)
     );
   }
 

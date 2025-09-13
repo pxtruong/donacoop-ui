@@ -42,9 +42,6 @@ export function GET_TABLE_CONFIG_PLANT(): ITableConfig {
       FIELD_KE_HOACH.MA_SO_XE,
       FIELD_KE_HOACH.LOAI_DA,
     ],
-    pageSizeOptions: [5, 10, 25, 100],
-    pageSize: 10,
-    length: 0,
     isLoading: false,
   };
 }

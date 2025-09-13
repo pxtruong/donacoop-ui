@@ -9,6 +9,7 @@ import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model'
 import { IMessagePopup } from '../../../../shared/models/popup.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
+import { CDanaCoopBase } from '../../../base/models/basic-item.model';
 import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
 import {
   RegistrationStatus,
@@ -20,7 +21,7 @@ import {
 } from '../../constants/registrations-field.constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
-import { of } from 'rxjs';
+import { IResponsePaging } from '../../../../core/models/http-service.model';
 
 @Component({
   selector: 'registrations',
@@ -57,15 +58,45 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     super(_dialog, _builder);
   }
 
-  protected override _loadData() {
-    this.subcribe(
-      this._registrationsService.getRegistrations(),
-      (res) => {
-        // remarkConfig
-        this._uppdateTableData(res);
-      },
-      (error) => {}
+  protected override _apiLoadData() {
+    if (!this.tableConfig.paginationConfig) {
+      return this._registrationsService.getRegistrations();
+    }
+    return this._registrationsService.getRegistrationsPaging(
+      CDanaCoopBase.makeRequestPaging(this.tableConfig.paginationConfig)
     );
+  }
+
+  protected override _prepareApplyTable(res: IResponsePaging<any>) {
+    const data = res?.data;
+    if (!this.tableConfig || !Array.isArray(data)) {
+      return [];
+    }
+
+    data.forEach((i, index: number) => {
+      if (i.registrationStatus === RegistrationStatus.PENDING) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-yellow',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.ENTERED) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-blue',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.EXITED) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-green',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.INACTIVE) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-red',
+        };
+      }
+      i[REGISTRATIONS_FIELD.STT] = index + 1;
+    });
+    return res.data;
   }
 
   protected override _uppdateTableData(data: any[]) {

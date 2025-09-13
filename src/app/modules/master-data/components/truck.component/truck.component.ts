@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
+import { CDanaCoopBase } from '../../../base/models/basic-item.model';
 import { GET_CONFIG_ADD_NEW_XE_TAI } from '../../constants/trucks-add-new-config.constant';
 import { TRUCK_FIELD_CONSTANT } from '../../constants/trucks-field.constant';
 import { GET_TABLE_CONFIG_XE_TAI } from '../../constants/trucks-table.constant';
@@ -15,13 +16,12 @@ import { MasterDataBaseComponent } from '../master-data-base.component/master-da
 })
 export class TruckComponent extends MasterDataBaseComponent {
   override tableConfig: ITableConfig = GET_TABLE_CONFIG_XE_TAI();
-  protected override _loadData() {
-    this.subcribe(
-      this._masterDataService.getTruckList(),
-      (res) => {
-        this._uppdateTableData(res?.data);
-      },
-      (error) => {}
+  protected override _apiLoadData() {
+    if (!this.tableConfig.paginationConfig) {
+      return this._masterDataService.getTruckList();
+    }
+    return this._masterDataService.getTruckListPaging(
+      CDanaCoopBase.makeRequestPaging(this.tableConfig.paginationConfig)
     );
   }
   override updateAPI(id: any, data: any) {

@@ -1,5 +1,8 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
-import { ITableConfig } from '../../../shared/models/table.model';
+import {
+  ITableConfig,
+  PaginationDefault,
+} from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
 import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
@@ -316,9 +319,7 @@ export function GET_TABLE_CONFIG_REGISTRATTIONS(): ITableConfig {
       REGISTRATIONS_FIELD.MO_TA,
       COMMON_FIELD.ACTION,
     ],
-    pageSizeOptions: [5, 10, 25, 100],
-    pageSize: 10,
-    length: 0,
+    paginationConfig: { ...PaginationDefault },
     isLoading: false,
   };
 }

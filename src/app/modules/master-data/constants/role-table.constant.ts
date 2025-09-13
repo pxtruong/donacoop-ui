@@ -33,9 +33,6 @@ export function GET_TABLE_CONFIG_ROLE(): ITableConfig {
     ],
     dataSource: [{}],
     displayedColumns: [ROLE_FIELD_CONSTANT.TEN_CHUC_VU, COMMON_FIELD.ACTION],
-    pageSizeOptions: [5, 10, 25, 100],
-    pageSize: 10,
-    length: 0,
     isLoading: false,
   };
 }

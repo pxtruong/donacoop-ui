@@ -6,6 +6,7 @@ import {
   HTTPService,
   IResponsePaging,
 } from '../../../core/models/http-service.model';
+import { IPagination } from '../../../shared/models/table.model';
 import { ICompanyModel } from '../models/company.model';
 import { IMachineriesModel } from '../models/machineries.model';
 import { IRoleModel } from '../models/role.model';
@@ -13,6 +14,7 @@ import { IStoneTypeModel } from '../models/stone-type.model';
 import { ITruck } from '../models/truck.model';
 import { IUser } from '../models/user.model';
 import { IWarehousesModel } from '../models/warehouses.model';
+import { IRequestPaging } from '../../base/models/basic-item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +26,15 @@ export class MasterDataService extends HTTPService {
   }
   // #region company
   public getCompanyList() {
-    return this.get('/companies').pipe(
+    return this.get(`/companies`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
+      })
+    );
+  }
+  public getCompanyListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/companies?${queryString}`).pipe(
       map((res: IResponsePaging<ICompanyModel>) => {
         return res;
       })
@@ -60,6 +70,14 @@ export class MasterDataService extends HTTPService {
       })
     );
   }
+  public getUserListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/users?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
+      })
+    );
+  }
   public createUser(data: any) {
     return this.post('/users', data);
   }
@@ -75,6 +93,14 @@ export class MasterDataService extends HTTPService {
   public getTruckList() {
     return this.get('/trucks').pipe(
       map((res: IResponsePaging<ITruck>) => {
+        return res;
+      })
+    );
+  }
+  public getTruckListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/trucks?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
         return res;
       })
     );
@@ -98,6 +124,14 @@ export class MasterDataService extends HTTPService {
       })
     );
   }
+  public getMachineriesListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/machineries?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
+      })
+    );
+  }
   public createMachineries(data: any) {
     return this.post('/machineries', data);
   }
@@ -112,6 +146,14 @@ export class MasterDataService extends HTTPService {
   public getWarehouses() {
     return this.get('/warehouses').pipe(
       map((res: IResponsePaging<IWarehousesModel>) => {
+        return res;
+      })
+    );
+  }
+  public getWarehousesListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/warehouses?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
         return res;
       })
     );
@@ -143,6 +185,14 @@ export class MasterDataService extends HTTPService {
       })
     );
   }
+  public getStoneTypeListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/stone_types?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
+      })
+    );
+  }
   public createStoneType(data: any) {
     return this.post('/stone_types', data);
   }
@@ -158,6 +208,14 @@ export class MasterDataService extends HTTPService {
   public getRoles() {
     return this.get('/roles').pipe(
       map((res: IRoleModel[]) => {
+        return res;
+      })
+    );
+  }
+  public getRoleListListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/roles?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
         return res;
       })
     );

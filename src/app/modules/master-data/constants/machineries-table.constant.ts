@@ -1,5 +1,8 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
-import { ITableConfig } from '../../../shared/models/table.model';
+import {
+  ITableConfig,
+  PaginationDefault,
+} from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { MACHINERIES_FIELD_CONSTANT } from './machineries-field.constant';
@@ -67,9 +70,7 @@ export function GET_TABLE_CONFIG_MACHINERIES(): ITableConfig {
       MACHINERIES_FIELD_CONSTANT.TAI_XE,
       COMMON_FIELD.ACTION,
     ],
-    pageSizeOptions: [5, 10, 25, 100],
-    pageSize: 10,
-    length: 0,
+    paginationConfig: { ...PaginationDefault },
     isLoading: false,
   };
 }

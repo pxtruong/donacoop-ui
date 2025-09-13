@@ -24,8 +24,19 @@ export interface ITableConfig {
   columns: ITableColumn[];
   dataSource: any[];
   displayedColumns: string[];
-  pageSizeOptions?: number[];
-  pageSize?: number;
-  length?: number;
+  paginationConfig?: IPagination;
   isLoading?: boolean;
 }
+export interface IPagination {
+  pageSizeOptions: number[];
+  pageSize: number;
+  total: number;
+  pageIndex: number;
+}
+
+export const PaginationDefault = {
+  pageSizeOptions: [5, 10, 25, 100],
+  pageSize: 10,
+  total: 0,
+  pageIndex: 0,
+};

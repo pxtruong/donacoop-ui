@@ -1,7 +1,9 @@
-import { ITableConfig } from '../../../shared/models/table.model';
+import {
+  ITableConfig,
+  PaginationDefault,
+} from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
-import { REGISTRATIONS_FIELD } from '../../registrations/constants/registrations-field.constant';
 import { ACTIVITIES_FIELD } from './activities-field.constant';
 export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
   const customBindingTruckLicensePlate = new CustomBindingPipe();
@@ -173,9 +175,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       ACTIVITIES_FIELD.TRONG_LUONG_HANG,
       ACTIVITIES_FIELD.THOI_GIAN_RA_CONG,
     ],
-    pageSizeOptions: [5, 10, 25, 100],
-    pageSize: 10,
-    length: 0,
+    paginationConfig: { ...PaginationDefault },
     isLoading: false,
   };
 }
