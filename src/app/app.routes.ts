@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { CoreLayoutComponent } from './core/components/core-layout/core-layout';
 import { CoreRoutes } from './core/core.routes';
-import { PlantRoutes } from './modules/ke-hoach/plant.routes';
 import { MasterDataRoutes } from './modules/master-data/master-data.routes';
+import { PlantRoutes } from './modules/plant/plant.routes';
 import { RegistrationActivitiesRoutes } from './modules/registrations-and-activities/registrations-and-activities.routes';
 import { SimulatorRoutes } from './modules/simulator/simulator.routes';
 import { ROUTE_CONSTANTS } from './shared/constants/route.constant';

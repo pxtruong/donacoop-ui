@@ -19,7 +19,11 @@ export class UserComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getUserList(),
       (res) => {
-        this._uppdateTableData(res);
+        const data = res?.data;
+        if (!Array.isArray(data)) {
+          return;
+        }
+        this._uppdateTableData(data);
       },
       (error) => {}
     );

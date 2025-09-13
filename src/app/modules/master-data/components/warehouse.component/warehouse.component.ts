@@ -10,6 +10,7 @@ import {
 import { WAREHOUSES_FIELD_CONSTANT } from '../../constants/warehouses-field.constant';
 import { GET_TABLE_CONFIG_KHO } from '../../constants/warehouses-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
+import { IStockModel } from '../../models/warehouses.model';
 
 @Component({
   selector: 'md-warehouse',
@@ -25,20 +26,19 @@ export class WarehouseComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getWarehouses(),
       (res) => {
-        if (!Array.isArray(res)) {
+        const data = res?.data;
+        if (!Array.isArray(data)) {
           return;
         }
-        res.forEach((i) => {
+        data.forEach((i) => {
           if (!Array.isArray(i.stocks)) {
             return;
           }
-          i.stocks.forEach(
-            (stock: { stoneType: { id: number }; quantity: number }) => {
-              i[stock.stoneType.id] = stock.quantity;
-            }
-          );
+          i.stocks.forEach((stock: IStockModel) => {
+            i[stock.stoneType.id] = stock.quantity;
+          });
         });
-        this._uppdateTableData(res);
+        this._uppdateTableData(data);
       },
       (error) => {}
     );

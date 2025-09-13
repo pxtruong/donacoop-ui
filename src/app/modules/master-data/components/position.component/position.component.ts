@@ -19,10 +19,11 @@ export class PositionComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getRoles(),
       (res) => {
-        if (!Array.isArray(res)) {
+        const data = res?.data;
+        if (!Array.isArray(data)) {
           return;
         }
-        this._uppdateTableData(res);
+        this._uppdateTableData(data);
       },
       (error) => {}
     );

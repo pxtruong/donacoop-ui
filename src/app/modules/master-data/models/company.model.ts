@@ -1,13 +1,12 @@
-export interface ICompanyModel {
-  id: number;
+import { IBasicModel } from '../../base/models/basic-item.model';
+
+export interface ICompanyModel extends IBasicModel {
   address: string;
   city: string;
   email: string;
   name: string;
   phone: string;
   postalCode: string;
-  updatedAt: string;
-  createdAt: string;
   type: string; // 'seller', 'buyer', 'other' based on CTY Dona/Mua/khác
   deliveryPoints: any[];
   [key: string]: any;
@@ -26,14 +25,11 @@ export interface IRequestCompany {
   deliveryPoints: [];
 }
 
-export interface IDeliveryPoint {
-  id: number;
+export interface IDeliveryPoint extends IBasicModel {
   name: string; // e.g., điểm A, điểm B
   description: string; // Thông tin điểm giao hàng
   distance: number; // km
   company: ICompanyModel;
-  createdAt: string;
-  updatedAt: string;
 }
 export interface IEditDeliveryPoint {
   [key: string]: any;

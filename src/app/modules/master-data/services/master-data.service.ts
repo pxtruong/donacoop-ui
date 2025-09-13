@@ -7,6 +7,12 @@ import {
   IResponsePaging,
 } from '../../../core/models/http-service.model';
 import { ICompanyModel } from '../models/company.model';
+import { IMachineriesModel } from '../models/machineries.model';
+import { ITruck } from '../models/truck.model';
+import { IUser } from '../models/user.model';
+import { IWarehousesModel } from '../models/warehouses.model';
+import { IStoneTypeModel } from '../models/stone-type.model';
+import { IRoleModel } from '../models/role.model';
 
 @Injectable({
   providedIn: 'root',
@@ -49,8 +55,8 @@ export class MasterDataService extends HTTPService {
   // #region user
   public getUserList() {
     return this.get('/users').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IUser>) => {
+        return res;
       })
     );
   }
@@ -68,8 +74,8 @@ export class MasterDataService extends HTTPService {
   // #region truck
   public getTruckList() {
     return this.get('/trucks').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<ITruck>) => {
+        return res;
       })
     );
   }
@@ -87,8 +93,8 @@ export class MasterDataService extends HTTPService {
   // #region Machineries
   public getMachineries() {
     return this.get('/machineries').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IMachineriesModel>) => {
+        return res;
       })
     );
   }
@@ -105,8 +111,8 @@ export class MasterDataService extends HTTPService {
   // #region Warehouses
   public getWarehouses() {
     return this.get('/warehouses').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IWarehousesModel>) => {
+        return res;
       })
     );
   }
@@ -132,8 +138,8 @@ export class MasterDataService extends HTTPService {
   // #region Stone Type
   public getStoneType() {
     return this.get('/stone_types').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IStoneTypeModel>) => {
+        return res;
       })
     );
   }
@@ -151,7 +157,7 @@ export class MasterDataService extends HTTPService {
   // #region role
   public getRoles() {
     return this.get('/roles').pipe(
-      map((res) => {
+      map((res: IResponsePaging<IRoleModel>) => {
         return res;
       })
     );

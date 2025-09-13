@@ -18,7 +18,11 @@ export class StoneTypeComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getStoneType(),
       (res) => {
-        this._uppdateTableData(res);
+        const data = res?.data;
+        if (!Array.isArray(data)) {
+          return;
+        }
+        this._uppdateTableData(data);
       },
       (error) => {}
     );

@@ -5,6 +5,8 @@ import { GET_ADD_NEW_MACHINERIES } from '../../constants/machineries-add-new-con
 import { MACHINERIES_FIELD_CONSTANT } from '../../constants/machineries-field.constant';
 import { GET_TABLE_CONFIG_MACHINERIES } from '../../constants/machineries-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
+import { IResponsePaging } from '../../../../core/models/http-service.model';
+import { IMachineriesModel } from '../../models/machineries.model';
 
 @Component({
   selector: 'md-machineries',
@@ -18,8 +20,12 @@ export class MachineriesComponent extends MasterDataBaseComponent {
   protected override _loadData() {
     this.subcribe(
       this._masterDataService.getMachineries(),
-      (res) => {
-        this._uppdateTableData(res);
+      (res: IResponsePaging<IMachineriesModel>) => {
+        const data = res?.data;
+        if (!Array.isArray(data)) {
+          return;
+        }
+        this._uppdateTableData(data);
       },
       (error) => {}
     );
