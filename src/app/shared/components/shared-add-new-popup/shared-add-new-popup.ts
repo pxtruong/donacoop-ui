@@ -87,7 +87,7 @@ export class SharedAddNewPopup extends BaseComponent {
   }
 
   public async confirmed() {
-    if (this._formGroup.invalid) {
+    if (this._formGroup && this._formGroup.invalid) {
       return;
     }
     if (this.data.confirmAction) {

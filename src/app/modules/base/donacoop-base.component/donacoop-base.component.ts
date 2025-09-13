@@ -8,6 +8,7 @@ import { SharedAddNewPopup } from '../../../shared/components/shared-add-new-pop
 import { BasicExtends } from '../../../shared/models/basic-extends.model';
 import { IMessagePopup } from '../../../shared/models/popup.model';
 import { ITableConfig } from '../../../shared/models/table.model';
+import { BaseComponent } from '../../../core/components/base/base.component';
 
 @Component({
   selector: 'donacoop-base',
@@ -16,17 +17,13 @@ import { ITableConfig } from '../../../shared/models/table.model';
   styleUrl: './donacoop-base.component.scss',
 })
 export class DonacoopBaseComponent
-  extends BasicExtends
+  extends BaseComponent
   implements OnInit, OnDestroy
 {
   tableConfig!: ITableConfig;
   protected _formGroupAddNew!: FormGroup;
   constructor(protected _dialog: MatDialog, protected _builder: FormBuilder) {
     super();
-  }
-
-  ngOnInit(): void {
-    this._loadData();
   }
 
   ngOnDestroy(): void {
@@ -47,7 +44,7 @@ export class DonacoopBaseComponent
     return of({});
   }
 
-  protected _loadData() {
+  protected override _loadData() {
     this.subcribe(
       this._apiLoadData(),
       (res: IResponsePaging<any>) => {
@@ -265,7 +262,12 @@ export class DonacoopBaseComponent
   }
 
   public pagingChange(event: PageEvent) {
-    console.log(`event--`, event);
+    if (!this.tableConfig || !this.tableConfig.paginationConfig) {
+      return;
+    }
+    this.tableConfig.paginationConfig.pageSize = event.pageSize;
+    this.tableConfig.paginationConfig.pageIndex = event.pageIndex;
+    this._loadData();
   }
 
   protected _setupPaging(res: IResponsePaging<any>) {

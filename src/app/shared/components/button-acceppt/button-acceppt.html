@@ -1,5 +1,5 @@
 <button
-  [disabled]="iDisabled"
+  [disabled]="iDisabled || isLoading"
   class="{{ iCustomClass }}"
   matButton="filled"
   color="{{ iColor }}"

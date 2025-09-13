@@ -17,13 +17,12 @@ export class SharedAction extends ButtonBase {
   @Input() actionList: any[] = [];
   @Input() iElement: any;
   @Input() iColumn!: ITableColumn;
-  public isLoading: boolean = false;
 
   public onActionClick(action: any) {
     this.clickBTN.emit(action);
   }
 
-  protected override prepareData() {
+  protected override _loadData() {
     this.subcribe(
       StoreDataService.getSubcribe(StoreDataKeys.IS_LOADING),
       (isLoading) => {

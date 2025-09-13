@@ -17,9 +17,10 @@ export class BaseComponent extends BasicExtends implements OnInit {
   public get BTNType() {
     return BTNType;
   }
+
   ngOnInit(): void {
-    this.prepareData();
+    this._loadData();
   }
   // virtual
-  protected prepareData() {}
+  protected _loadData() {}
 }
