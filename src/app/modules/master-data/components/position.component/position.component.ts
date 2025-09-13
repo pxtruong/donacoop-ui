@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { GET_ADD_NEW_CONFIG_CHUC_VU } from '../../constants/role-add-new-config.constant';
+import { ROLE_FIELD_CONSTANT } from '../../constants/role-field.constant';
 import { GET_TABLE_CONFIG_ROLE } from '../../constants/role-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
-import { ROLE_FIELD_CONSTANT } from '../../constants/role-field.constant';
 
 @Component({
   selector: 'md-position',
@@ -19,11 +19,7 @@ export class PositionComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getRoles(),
       (res) => {
-        const data = res?.data;
-        if (!Array.isArray(data)) {
-          return;
-        }
-        this._uppdateTableData(data);
+        this._uppdateTableData(res?.data);
       },
       (error) => {}
     );

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
-import { tableConfigLoaiDa } from '../../constants/stone-type-table.constant';
 import { CONFIG_ADD_LOAI_DA } from '../../constants/stone-type-add-new-config.constant';
+import { tableConfigLoaiDa } from '../../constants/stone-type-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({
@@ -18,11 +18,7 @@ export class StoneTypeComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getStoneType(),
       (res) => {
-        const data = res?.data;
-        if (!Array.isArray(data)) {
-          return;
-        }
-        this._uppdateTableData(data);
+        this._uppdateTableData(res?.data);
       },
       (error) => {}
     );

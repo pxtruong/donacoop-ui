@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { IResponsePaging } from '../../../../core/models/http-service.model';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { GET_ADD_NEW_MACHINERIES } from '../../constants/machineries-add-new-config.constant';
 import { MACHINERIES_FIELD_CONSTANT } from '../../constants/machineries-field.constant';
 import { GET_TABLE_CONFIG_MACHINERIES } from '../../constants/machineries-table.constant';
-import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
-import { IResponsePaging } from '../../../../core/models/http-service.model';
 import { IMachineriesModel } from '../../models/machineries.model';
+import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({
   selector: 'md-machineries',
@@ -21,11 +21,7 @@ export class MachineriesComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getMachineries(),
       (res: IResponsePaging<IMachineriesModel>) => {
-        const data = res?.data;
-        if (!Array.isArray(data)) {
-          return;
-        }
-        this._uppdateTableData(data);
+        this._uppdateTableData(res?.data);
       },
       (error) => {}
     );

@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { GET_CONFIG_ADD_NEW_NHAN_SU } from '../../constants/user-add-new-config.constant';
+import { USER_FIELD_CONSTANT } from '../../constants/user-field.constant';
 import { GET_TABLE_NHAN_SU } from '../../constants/user-table.constant';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
-import { USER_FIELD_CONSTANT } from '../../constants/user-field.constant';
 
 @Component({
   selector: 'md-user.component',
@@ -19,11 +19,7 @@ export class UserComponent extends MasterDataBaseComponent {
     this.subcribe(
       this._masterDataService.getUserList(),
       (res) => {
-        const data = res?.data;
-        if (!Array.isArray(data)) {
-          return;
-        }
-        this._uppdateTableData(data);
+        this._uppdateTableData(res?.data);
       },
       (error) => {}
     );
