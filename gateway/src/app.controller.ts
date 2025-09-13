@@ -9,12 +9,12 @@ export class AppController {
     private configService: ConfigService,
   ) {}
 
-  // @Get('heathy')
-  // getHello() {
-  //   const buildVersion = this.configService.get('BUILD_VERSION');
-  //   if (buildVersion) {
-  //     return { buildVersion: `${buildVersion}` };
-  //   }
-  //   return 'Page Not Found';
-  // }
+  @Get('healthy')
+  getHello() {
+    const buildVersion = this.configService.get('BUILD_VERSION');
+    if (buildVersion) {
+      return { buildVersion: `${buildVersion}` };
+    }
+    return 'Page Not Found';
+  }
 }
