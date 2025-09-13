@@ -4,7 +4,7 @@ import { StoneTypeResolver } from '../master-data/resolvers/stone-type.resolver'
 
 export const SimulatorRoutes: Routes = [
   {
-    path: ROUTE_CONSTANTS.PAGE.SIMULATOR.PATH,
+    path: ROUTE_CONSTANTS.QUARRY.SIMULATOR.PATH,
     loadComponent: () =>
       import('./components/simuator.component/simuator.component').then(
         (m) => m.SimuatorComponent

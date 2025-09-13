@@ -1,22 +1,27 @@
 import { Routes } from '@angular/router';
 import { CoreLayoutComponent } from './core/components/core-layout/core-layout';
 import { CoreRoutes } from './core/core.routes';
-import { KeHoachRoutes } from './modules/ke-hoach/ke-hoach.routes';
+import { PlantRoutes } from './modules/ke-hoach/plant.routes';
 import { MasterDataRoutes } from './modules/master-data/master-data.routes';
 import { RegistrationActivitiesRoutes } from './modules/registrations-and-activities/registrations-and-activities.routes';
 import { SimulatorRoutes } from './modules/simulator/simulator.routes';
+import { ROUTE_CONSTANTS } from './shared/constants/route.constant';
 
 export const routes: Routes = [
   ...CoreRoutes,
   {
-    path: 'page',
+    path: ROUTE_CONSTANTS.QUARRY.PATH,
     component: CoreLayoutComponent,
     children: [
       ...MasterDataRoutes,
-      ...KeHoachRoutes,
+      ...PlantRoutes,
       ...RegistrationActivitiesRoutes,
       ...SimulatorRoutes,
     ],
   },
-  { path: '', redirectTo: 'page/master-data', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: `${ROUTE_CONSTANTS.QUARRY.PATH}/master-data`,
+    pathMatch: 'full',
+  },
 ];

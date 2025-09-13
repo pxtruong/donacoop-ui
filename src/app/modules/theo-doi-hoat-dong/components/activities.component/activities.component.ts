@@ -24,7 +24,7 @@ import { ActivitiesService } from '../../services/activities.services';
   styleUrl: './activities.component.scss',
   standalone: true,
 })
-export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
+export class ActivitiesComponent extends DonacoopBaseComponent {
   private masterDataFormGroup = new FormGroup({
     xeXuc: new FormControl(''),
     fromDate: new FormControl(''),

@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { HTTPService } from '../../../core/models/http-service.model';
+import {
+  HTTPService,
+  IResponsePaging,
+} from '../../../core/models/http-service.model';
+import { ICompanyModel } from '../models/company.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +19,8 @@ export class MasterDataService extends HTTPService {
   // #region company
   public getCompanyList() {
     return this.get('/companies').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }

@@ -1,6 +1,6 @@
 import { ITableConfig } from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
-import { FIELD_KE_HOACH } from './field-ke-hoach.constant';
+import { FIELD_KE_HOACH } from './plant-field.constant';
 
 export function GET_TABLE_CONFIG_PLANT(): ITableConfig {
   const customBindingTruckLicensePlate = new CustomBindingPipe();

@@ -5,7 +5,7 @@ import { RegistrationsRoutes } from '../registrations/registrations-routes';
 
 export const RegistrationActivitiesRoutes: Routes = [
   {
-    path: ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.PATH,
+    path: ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.PATH,
     loadComponent: () =>
       import('./components/registrations-and-activities').then(
         (m) => m.RegistrationsAndActivities

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
+import { IResponsePaging } from '../../../../core/models/http-service.model';
 import { StoreDataKeys } from '../../../../core/models/store-data.model';
 import { StoreDataService } from '../../../../core/services/store-data.service';
 import { SharedAddNewPopup } from '../../../../shared/components/shared-add-new-popup/shared-add-new-popup';
@@ -12,8 +13,8 @@ import {
 } from '../../constants/company-add-new-config.constant';
 import { COMPANY_FIELD_CONSTANT } from '../../constants/company-field.constant';
 import { tableConfigCongTy } from '../../constants/company-table.constant';
+import { ICompanyModel, IRequestCompany } from '../../models/company.model';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
-
 @Component({
   selector: 'company',
   imports: [SharedTable],
@@ -26,12 +27,13 @@ export class CompanyComponent extends MasterDataBaseComponent {
   protected override _loadData() {
     this.subcribe(
       this._masterDataService.getCompanyList(),
-      (res) => {
-        if (!Array.isArray(res)) {
+      (res: IResponsePaging<ICompanyModel>) => {
+        const listCompany = res?.data;
+        if (!Array.isArray(listCompany)) {
           return;
         }
         const showData: any[] = [];
-        res.forEach((i) => {
+        listCompany.forEach((i) => {
           i[`${COMMON_FIELD.ACTION}add_circle_outlineShow`] = true;
           if (Array.isArray(i.deliveryPoints) && i.deliveryPoints.length > 0) {
             showData.push(i);
@@ -61,41 +63,41 @@ export class CompanyComponent extends MasterDataBaseComponent {
     );
   }
 
-  override updateAPI(id: any, data: any) {
+  override updateAPI(id: number, data: IRequestCompany) {
     return this._masterDataService.updateCompany(id, data);
   }
 
-  override deleteAPI(id: any) {
+  override deleteAPI(id: number) {
     return this._masterDataService.deleteCompany(id);
   }
 
-  override createAPI(data: any) {
+  override createAPI(data: IRequestCompany) {
     let request = { ...data };
-    const deliveryPoints = [];
-    const regexNumber = new RegExp('[0-9]*$', 'g');
-    for (const property in data) {
-      if (!data[property]) {
-        continue;
-      }
+    // const deliveryPoints = [];
+    // const regexNumber = new RegExp('[0-9]*$', 'g');
+    // for (const property in data) {
+    //   if (!data[property]) {
+    //     continue;
+    //   }
 
-      if (/diaDiemGiaoHang/.test(property)) {
-        const match = property.match(regexNumber);
-        if (!match) {
-          continue;
-        }
-        deliveryPoints.push({
-          name: data[property],
-          distance: data[`${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${match[0]}`],
-        });
-        delete request[property];
-        delete request[`${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${match[0]}`];
-      }
-    }
-    request.deliveryPoints = deliveryPoints;
+    //   if (/diaDiemGiaoHang/.test(property)) {
+    //     const match = property.match(regexNumber);
+    //     if (!match) {
+    //       continue;
+    //     }
+    //     deliveryPoints.push({
+    //       name: data[property],
+    //       distance: data[`${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${match[0]}`],
+    //     });
+    //     delete request[property];
+    //     delete request[`${COMPANY_FIELD_CONSTANT.QUANG_DUONG}${match[0]}`];
+    //   }
+    // }
+    request.deliveryPoints = [];
     return this._masterDataService.createCompany(request);
   }
 
-  protected override getFormConfig(record: any): any[] {
+  protected override getFormConfig(record: IRequestCompany): any[] {
     return GET_ADD_NEW_CONFIG_CONG_TY(record, this._formGroupAddNew);
   }
 
@@ -107,7 +109,7 @@ export class CompanyComponent extends MasterDataBaseComponent {
         confirmBTNText: `Xác nhận`,
         formConfig: GET_ADD_MEW_DIEM_DEN(record, this._formGroupAddNew),
         confirmAction: (data: any) => {
-          const request = {
+          const request: any = {
             name: data[COMPANY_FIELD_CONSTANT.DIA_DIEM_GIAO_HANG],
             [COMPANY_FIELD_CONSTANT.QUANG_DUONG]:
               data[COMPANY_FIELD_CONSTANT.QUANG_DUONG],

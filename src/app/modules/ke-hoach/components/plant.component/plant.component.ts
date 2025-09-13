@@ -12,16 +12,16 @@ import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model'
 import { ISelectionOption } from '../../../../shared/models/selection-option.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
-import { GET_TABLE_CONFIG_PLANT } from '../../constants/ke-hoach-table.constant';
+import { GET_TABLE_CONFIG_PLANT } from '../../constants/plant-table.constant';
 import { ActivitiesService } from '../../../theo-doi-hoat-dong/services/activities.services';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
-  selector: 'app-ke-hoach.component',
+  selector: 'plant',
   imports: [BaseLayoutComponent, SharedTable, SharedForm],
-  templateUrl: './ke-hoach.component.html',
-  styleUrl: './ke-hoach.component.scss',
+  templateUrl: './plant.component.html',
+  styleUrl: './plant.component.scss',
 })
-export class KeHoachComponent extends DonacoopBaseComponent {
+export class PlantComponent extends DonacoopBaseComponent {
   private plantFormGroup = new FormGroup({
     machineries: new FormControl(''),
   });
