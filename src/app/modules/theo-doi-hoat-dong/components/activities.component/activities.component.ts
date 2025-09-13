@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { StoreDataKeys } from '../../../../core/models/store-data.model';
-import { StoreDataService } from '../../../../core/services/store-data.service';
 import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/button-acceppt';
 import { SharedDatePicker } from '../../../../shared/components/shared-date-picker/shared-date-picker';
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
@@ -11,6 +9,7 @@ import { SharedTable } from '../../../../shared/components/shared-table/shared-t
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
+import { CDanaCoopBase } from '../../../base/models/basic-item.model';
 import { TRUCK_FIELD_ADD_NEW } from '../../../registrations/constants/registrations-field.constant';
 import { GET_ADD_NEW_ACTIVITIES } from '../../constants/activities-add-new-form.constant';
 import { ACTIVITIES_FIELD } from '../../constants/activities-field.constant';
@@ -24,7 +23,7 @@ import { ActivitiesService } from '../../services/activities.services';
   styleUrl: './activities.component.scss',
   standalone: true,
 })
-export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
+export class ActivitiesComponent extends DonacoopBaseComponent {
   private masterDataFormGroup = new FormGroup({
     xeXuc: new FormControl(''),
     fromDate: new FormControl(''),
@@ -41,14 +40,13 @@ export class TheoDoiHoatDongComponent extends DonacoopBaseComponent {
   ) {
     super(_dialog, _builder);
   }
-  protected override _loadData() {
-    this.subcribe(
-      this._activitiesService.getActivities(),
-      (res) => {
-        this._uppdateTableData(res);
-        this._initForm();
-      },
-      (error) => {}
+
+  protected override _apiLoadData() {
+    if (!this.tableConfig.paginationConfig) {
+      return this._activitiesService.getActivities();
+    }
+    return this._activitiesService.getActivitiesPaging(
+      CDanaCoopBase.makeRequestPaging(this.tableConfig.paginationConfig)
     );
   }
 

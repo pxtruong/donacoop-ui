@@ -23,9 +23,9 @@ export class CompanyResolver implements Resolve<any> {
   async waitingForLoadPage() {
     return new Promise((resolve, reject) => {
       forkJoin([this._masterDataService.getCompanyList()]).subscribe(
-        ([companyList]) => {
-          if (Array.isArray(companyList)) {
-            StoreDataService.update(StoreDataKeys.COMPANY_LIST, companyList);
+        ([res]) => {
+          if (Array.isArray(res?.data)) {
+            StoreDataService.update(StoreDataKeys.COMPANY_LIST, res.data);
           }
           resolve(null);
         }

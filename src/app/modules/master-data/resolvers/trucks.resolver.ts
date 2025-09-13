@@ -24,8 +24,8 @@ export class TruckResolver implements Resolve<any> {
     return new Promise((resolve, reject) => {
       forkJoin([this._masterDataService.getTruckList()]).subscribe(
         ([truckList]) => {
-          if (Array.isArray(truckList)) {
-            StoreDataService.update(StoreDataKeys.TRUCK_LIST, truckList);
+          if (Array.isArray(truckList.data)) {
+            StoreDataService.update(StoreDataKeys.TRUCK_LIST, truckList.data);
           }
           resolve(null);
         }

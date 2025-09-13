@@ -1,0 +1,31 @@
+@use "../variables";
+.shared-pagination {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: variables.$gray;
+    height: 36px;
+    border: 1px solid variables.$light-gray-1;
+    box-sizing: border-box;
+    --mat-paginator-container:   34px;
+    --mat-paginator-container-text-color: #747a7c !important;
+    --mat-paginator-container-text-font: Roboto !important;
+    --mat-paginator-form-field-container-height: 34px;
+    --mat-paginator-container-size: 34px;
+    .mat-mdc-paginator-container {
+        --mat-form-field-container-vertical-padding: 0px;
+        .mdc-icon-button {
+            --mat-icon-button-state-layer-size: 24px;
+            padding: 0px !important;
+        }
+        .mat-mdc-form-field-flex {
+            height: 24px;
+        }
+        .mat-mdc-button-touch-target {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+}

@@ -1,7 +1,9 @@
-import { ITableConfig } from '../../../shared/models/table.model';
+import {
+  ITableConfig,
+  PaginationDefault,
+} from '../../../shared/models/table.model';
 import { CustomBindingPipe } from '../../../shared/pipes/custom-binding.pipe';
 import { CustomDatePipe } from '../../../shared/pipes/date.pipe';
-import { REGISTRATIONS_FIELD } from '../../registrations/constants/registrations-field.constant';
 import { ACTIVITIES_FIELD } from './activities-field.constant';
 export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
   const customBindingTruckLicensePlate = new CustomBindingPipe();
@@ -24,14 +26,19 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
     return args[1]?.pickupPosition?.name;
   };
 
+  const customBindingRevenueType = new CustomBindingPipe();
+  customBindingRevenueType.customFunction = (value: any, args: any) => {
+    return args[1]?.registration?.revenueType;
+  };
+
   const customBindingBuyerCompany = new CustomBindingPipe();
   customBindingBuyerCompany.customFunction = (value: any, args: any) => {
-    return args[1]?.buyerCompany?.name;
+    return args[1]?.registration?.buyerCompany?.name;
   };
 
   const customBindingDeliveryPoint = new CustomBindingPipe();
   customBindingDeliveryPoint.customFunction = (value: any, args: any) => {
-    return args[1]?.buyerCompany?.name;
+    return args[1]?.registration?.destination?.name;
   };
   const datePipe = new CustomDatePipe();
   datePipe.formatDate = 'dd-MM-yyyy HH:mm';
@@ -45,10 +52,13 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
 
   const customBindingweightOfGoods = new CustomBindingPipe();
   customBindingweightOfGoods.customFunction = (value: any, args: any) => {
-    if (!args[1]?.weight2 || args[1]?.weight1) {
+    if (!args[1]?.weight2 && !args[1]?.weight1) {
       return '';
     }
-    return args[1]?.weight2 - args[1]?.weight1;
+    const w2 = args[1]?.weight2 ? args[1]?.weight2 : 0;
+
+    const w1 = args[1]?.weight1 ? args[1]?.weight1 : 0;
+    return w2 - w1;
   };
   return {
     columns: [
@@ -81,6 +91,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
         field: ACTIVITIES_FIELD.DOANH_THU,
         columnTitle: 'Doanh Thu',
         minWidth: 120,
+        pipeValue: customBindingRevenueType,
       },
       {
         field: ACTIVITIES_FIELD.CONG_TY_MUA,
@@ -102,18 +113,18 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       },
       {
         field: ACTIVITIES_FIELD.THOI_GIAN_CAN_LAN_1,
-        columnTitle: 'Thời Gian Cân Lần 1',
+        columnTitle: 'Thời Gian Cân Xác',
         minWidth: 160,
         pipeValue: timePipe,
       },
       {
         field: ACTIVITIES_FIELD.VI_TRI_CAN_LAN_1,
-        columnTitle: 'Vị Trí Cân Lần 1',
+        columnTitle: 'Vị Trí Cân Xác',
         minWidth: 160,
       },
       {
         field: ACTIVITIES_FIELD.KHOI_LUONG1,
-        columnTitle: 'Khối Lượng 1',
+        columnTitle: 'Khối Lượng Xác',
         minWidth: 120,
       },
       {
@@ -129,7 +140,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       },
       {
         field: ACTIVITIES_FIELD.KHOI_LUONG2,
-        columnTitle: 'Khối Lượng 2',
+        columnTitle: 'Khối Lượng Cân Lần 2',
         minWidth: 120,
       },
       {
@@ -142,6 +153,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
         field: ACTIVITIES_FIELD.TRONG_LUONG_HANG,
         columnTitle: 'Trọng Lượng Hàng',
         minWidth: 160,
+        pipeValue: customBindingweightOfGoods,
       },
     ],
     dataSource: [{}],
@@ -163,9 +175,7 @@ export function GET_TABLE_CONFIG_ACTIVITIES(): ITableConfig {
       ACTIVITIES_FIELD.TRONG_LUONG_HANG,
       ACTIVITIES_FIELD.THOI_GIAN_RA_CONG,
     ],
-    pageSizeOptions: [5, 10, 25, 100],
-    pageSize: 10,
-    length: 0,
+    paginationConfig: { ...PaginationDefault },
     isLoading: false,
   };
 }

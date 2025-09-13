@@ -1,5 +1,8 @@
 import { SharedAction } from '../../../shared/components/shared-action/shared-action';
-import { ITableConfig } from '../../../shared/models/table.model';
+import {
+  ITableConfig,
+  PaginationDefault,
+} from '../../../shared/models/table.model';
 import { COMMON_FIELD } from '../../base/donacoop-base.component/constants/donacoop-base.constant';
 import { STONE_TYPE_FIELD_CONSTANT } from './stone-type-field.constant';
 
@@ -35,8 +38,6 @@ export const tableConfigLoaiDa: ITableConfig = {
     STONE_TYPE_FIELD_CONSTANT.TEN_LOAI_DA,
     COMMON_FIELD.ACTION,
   ],
-  pageSizeOptions: [5, 10, 25, 100],
-  pageSize: 10,
-  length: 0,
+  paginationConfig: { ...PaginationDefault },
   isLoading: false,
 };

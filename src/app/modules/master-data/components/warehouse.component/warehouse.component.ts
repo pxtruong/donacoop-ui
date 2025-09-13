@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
+import { IResponsePaging } from '../../../../core/models/http-service.model';
 import { SharedAddNewPopup } from '../../../../shared/components/shared-add-new-popup/shared-add-new-popup';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { ITableConfig } from '../../../../shared/models/table.model';
+import { CDanaCoopBase } from '../../../base/models/basic-item.model';
 import {
   GET_ADD_NEW_CONFIG_WAREHOUSES,
   GET_ADD_NEW_LOAI_DA_VAO_KHO,
 } from '../../constants/warehouses-add-new-config.constant';
 import { WAREHOUSES_FIELD_CONSTANT } from '../../constants/warehouses-field.constant';
 import { GET_TABLE_CONFIG_KHO } from '../../constants/warehouses-table.constant';
+import { IStockModel } from '../../models/warehouses.model';
 import { MasterDataBaseComponent } from '../master-data-base.component/master-data-base.component';
 
 @Component({
@@ -21,26 +24,28 @@ import { MasterDataBaseComponent } from '../master-data-base.component/master-da
 export class WarehouseComponent extends MasterDataBaseComponent {
   override tableConfig: ITableConfig = GET_TABLE_CONFIG_KHO();
   isShowAddMore: boolean = true;
-  protected override _loadData() {
-    this.subcribe(
-      this._masterDataService.getWarehouses(),
-      (res) => {
-        if (!Array.isArray(res)) {
-          return;
-        }
-        res.forEach((i) => {
-          if (!Array.isArray(i.stocks)) {
-            return;
-          }
-          i.stocks.forEach(
-            (stock: { stoneType: { id: number }; quantity: number }) => {
-              i[stock.stoneType.id] = stock.quantity;
-            }
-          );
-        });
-        this._uppdateTableData(res);
-      },
-      (error) => {}
+  protected override _prepareApplyTable(res: IResponsePaging<any>) {
+    const data = res?.data;
+    if (!Array.isArray(data)) {
+      return [];
+    }
+    data.forEach((i) => {
+      if (!Array.isArray(i.stocks)) {
+        return;
+      }
+      i.stocks.forEach((stock: IStockModel) => {
+        i[stock.stoneType.id] = stock.quantity;
+      });
+    });
+    return data;
+  }
+  protected override _apiLoadData() {
+    if (!this.tableConfig.paginationConfig) {
+      return this._masterDataService.getWarehouses();
+    }
+
+    return this._masterDataService.getWarehousesListPaging(
+      CDanaCoopBase.makeRequestPaging(this.tableConfig.paginationConfig)
     );
   }
   override updateAPI(id: any, data: any) {

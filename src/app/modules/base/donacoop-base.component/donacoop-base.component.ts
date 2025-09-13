@@ -1,14 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { finalize, of } from 'rxjs';
+import { IResponsePaging } from '../../../core/models/http-service.model';
 import { SharedAddNewPopup } from '../../../shared/components/shared-add-new-popup/shared-add-new-popup';
 import { BasicExtends } from '../../../shared/models/basic-extends.model';
-import { ITableConfig } from '../../../shared/models/table.model';
 import { IMessagePopup } from '../../../shared/models/popup.model';
+import { ITableConfig } from '../../../shared/models/table.model';
 
 @Component({
-  selector: 'app-donacoop-base.component',
+  selector: 'donacoop-base',
   imports: [],
   templateUrl: './donacoop-base.component.html',
   styleUrl: './donacoop-base.component.scss',
@@ -26,13 +28,36 @@ export class DonacoopBaseComponent
   ngOnInit(): void {
     this._loadData();
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => {
       sub.unsubscribe();
     });
     this.subscriptions.clear();
   }
-  protected _loadData() {}
+
+  protected _prepareApplyTable(res: IResponsePaging<any> | any[]): any[] {
+    if (Array.isArray(res)) {
+      return res;
+    }
+    return res.data;
+  }
+
+  protected _apiLoadData(): any {
+    return of({});
+  }
+
+  protected _loadData() {
+    this.subcribe(
+      this._apiLoadData(),
+      (res: IResponsePaging<any>) => {
+        this._setupPaging(res);
+        this._uppdateTableData(this._prepareApplyTable(res));
+      },
+      (error) => {}
+    );
+  }
+
   protected _uppdateTableData(data: any[]) {
     if (!this.tableConfig || !Array.isArray(data)) {
       return;
@@ -237,5 +262,19 @@ export class DonacoopBaseComponent
   }
   protected updateCircle(id: any, data: any, otherRecord: any) {
     return of(null);
+  }
+
+  public pagingChange(event: PageEvent) {
+    console.log(`event--`, event);
+  }
+
+  protected _setupPaging(res: IResponsePaging<any>) {
+    const { limit, page, total } = res;
+    if (!this.tableConfig || !this.tableConfig.paginationConfig) {
+      return;
+    }
+    this.tableConfig.paginationConfig.total = total;
+    this.tableConfig.paginationConfig.pageSize = limit;
+    this.tableConfig.paginationConfig.pageIndex = page - 1;
   }
 }

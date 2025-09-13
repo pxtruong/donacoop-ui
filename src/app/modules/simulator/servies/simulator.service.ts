@@ -13,22 +13,32 @@ export class SimulatorService extends HTTPService {
     super(_httpClient);
   }
   // #region company
-  public getSimulator() {
-    return this.get('/simulator').pipe(
+  public enterGate(licensePlate: string) {
+    return this.post('/activities/enter-gate', { licensePlate }).pipe(
       map((res) => {
-        return res.data;
+        return res;
       })
     );
   }
 
-  public createSimulator(data: any) {
-    return this.post('/simulator', data);
+  public exitGate(licensePlate: string) {
+    return this.post('/activities/exit-gate', { licensePlate }).pipe(
+      map((res) => {
+        return res;
+      })
+    );
   }
 
-  public updateSimulator(id: any, data: any) {
-    return this.put(`/simulator/${id}`, data);
-  }
-  public deleteSimulator(id: any) {
-    return this.delete(`/simulator`, id);
+  public weightStation(data: {
+    licensePlate: string | undefined | null;
+    weight: string | undefined | null;
+    stoneTypeId: string | undefined | null;
+    weighStation: string | undefined | null;
+  }) {
+    return this.post('/activities/weigh-station', data).pipe(
+      map((res) => {
+        return res;
+      })
+    );
   }
 }

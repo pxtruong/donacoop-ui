@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { BaseLayoutComponent } from '../../../../core/components/base-layout.component/base-layout.component';
@@ -10,7 +11,6 @@ import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model'
 import { ISelectionOption } from '../../../../shared/models/selection-option.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
 import { CONG_TY_OPTIONS } from '../../constants/company-options.constant';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'master-data',
@@ -69,7 +69,7 @@ export class MasterDataComponent extends DonacoopBaseComponent {
       this._router.events.pipe(
         filter((event) => event instanceof NavigationEnd)
       ),
-      (event) => {
+      (event: any) => {
         this.logLevel.debug('URL changed to:', event.urlAfterRedirects);
         this._detectURL(event.urlAfterRedirects);
       }

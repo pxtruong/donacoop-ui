@@ -4,12 +4,12 @@ import { RegistrationsResolver } from '../registrations/resolvers/registrations.
 
 export const ActivitiesRoutes: Routes = [
   {
-    path: ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+    path: ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
       .THEO_DOI_HOAT_DONG.PATH,
     loadComponent: () =>
-      import(
-        './components/theo-doi-hoat-dong.component/activities.component'
-      ).then((m) => m.TheoDoiHoatDongComponent),
+      import('./components/activities.component/activities.component').then(
+        (m) => m.ActivitiesComponent
+      ),
     resolve: [RegistrationsResolver],
   },
 ];

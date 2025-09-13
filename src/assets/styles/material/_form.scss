@@ -61,7 +61,10 @@ body {
     }
     
   }
-  
+
+  .simulator-wrapper {
+    --mat-form-field-outlined-disabled-input-text-color: black;
+  }
       /*date range picker*/
       .wrapper-input-date-range-picker,
       .wrapper-date-picker,

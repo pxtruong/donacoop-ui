@@ -40,13 +40,13 @@ export class RegistrationsAndActivities extends DonacoopBaseComponent {
   public tabChange(tabIndex: number) {
     if (tabIndex === 0) {
       this._router.navigate([
-        ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+        ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
           .DS_XE_TAI_DANG_KY.FULL_PATH,
       ]);
       return;
     }
     this._router.navigate([
-      ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+      ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
         .THEO_DOI_HOAT_DONG.FULL_PATH,
     ]);
   }
@@ -54,17 +54,17 @@ export class RegistrationsAndActivities extends DonacoopBaseComponent {
   private _detectURL(url: string) {
     this.logLevel.debug(
       '/' +
-        ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+        ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
           .THEO_DOI_HOAT_DONG.FULL_PATH,
       '/' +
-        ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+        ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
           .DS_XE_TAI_DANG_KY.FULL_PATH
     ),
       url;
     if (
       url.includes(
         '/' +
-          ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+          ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
             .THEO_DOI_HOAT_DONG.FULL_PATH
       )
     ) {
@@ -74,7 +74,7 @@ export class RegistrationsAndActivities extends DonacoopBaseComponent {
     if (
       url.includes(
         '/' +
-          ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+          ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
             .DS_XE_TAI_DANG_KY.FULL_PATH
       )
     ) {
@@ -82,7 +82,7 @@ export class RegistrationsAndActivities extends DonacoopBaseComponent {
       return;
     }
     this._router.navigate([
-      ROUTE_CONSTANTS.PAGE.REGISTRATION_AND_ACTIVITIES.CHILDREN
+      ROUTE_CONSTANTS.QUARRY.REGISTRATION_AND_ACTIVITIES.CHILDREN
         .DS_XE_TAI_DANG_KY.FULL_PATH,
     ]);
   }

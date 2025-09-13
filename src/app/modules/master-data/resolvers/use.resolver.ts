@@ -22,14 +22,12 @@ export class UserResolver implements Resolve<any> {
 
   async waitingForLoadPage() {
     return new Promise((resolve, reject) => {
-      forkJoin([this._masterDataService.getUserList()]).subscribe(
-        ([usesrList]) => {
-          if (Array.isArray(usesrList)) {
-            StoreDataService.update(StoreDataKeys.USER_LIST, usesrList);
-          }
-          resolve(null);
+      forkJoin([this._masterDataService.getUserList()]).subscribe(([res]) => {
+        if (Array.isArray(res.data)) {
+          StoreDataService.update(StoreDataKeys.USER_LIST, res.data);
         }
-      );
+        resolve(null);
+      });
     });
   }
 }

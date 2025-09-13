@@ -2,7 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { HTTPService } from '../../../core/models/http-service.model';
+import {
+  HTTPService,
+  IResponsePaging,
+} from '../../../core/models/http-service.model';
+import { IPagination } from '../../../shared/models/table.model';
+import { ICompanyModel } from '../models/company.model';
+import { IMachineriesModel } from '../models/machineries.model';
+import { IRoleModel } from '../models/role.model';
+import { IStoneTypeModel } from '../models/stone-type.model';
+import { ITruck } from '../models/truck.model';
+import { IUser } from '../models/user.model';
+import { IWarehousesModel } from '../models/warehouses.model';
+import { IRequestPaging } from '../../base/models/basic-item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +26,17 @@ export class MasterDataService extends HTTPService {
   }
   // #region company
   public getCompanyList() {
-    return this.get('/companies').pipe(
-      map((res) => {
-        return res.data;
+    return this.get(`/companies`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
+      })
+    );
+  }
+  public getCompanyListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/companies?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }
@@ -45,8 +65,16 @@ export class MasterDataService extends HTTPService {
   // #region user
   public getUserList() {
     return this.get('/users').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IUser>) => {
+        return res;
+      })
+    );
+  }
+  public getUserListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/users?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }
@@ -64,8 +92,16 @@ export class MasterDataService extends HTTPService {
   // #region truck
   public getTruckList() {
     return this.get('/trucks').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<ITruck>) => {
+        return res;
+      })
+    );
+  }
+  public getTruckListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/trucks?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }
@@ -83,8 +119,16 @@ export class MasterDataService extends HTTPService {
   // #region Machineries
   public getMachineries() {
     return this.get('/machineries').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IMachineriesModel>) => {
+        return res;
+      })
+    );
+  }
+  public getMachineriesListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/machineries?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }
@@ -101,8 +145,16 @@ export class MasterDataService extends HTTPService {
   // #region Warehouses
   public getWarehouses() {
     return this.get('/warehouses').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IWarehousesModel>) => {
+        return res;
+      })
+    );
+  }
+  public getWarehousesListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/warehouses?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }
@@ -128,8 +180,16 @@ export class MasterDataService extends HTTPService {
   // #region Stone Type
   public getStoneType() {
     return this.get('/stone_types').pipe(
-      map((res) => {
-        return res.data;
+      map((res: IResponsePaging<IStoneTypeModel>) => {
+        return res;
+      })
+    );
+  }
+  public getStoneTypeListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/stone_types?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
+        return res;
       })
     );
   }
@@ -147,7 +207,15 @@ export class MasterDataService extends HTTPService {
   // #region role
   public getRoles() {
     return this.get('/roles').pipe(
-      map((res) => {
+      map((res: IRoleModel[]) => {
+        return res;
+      })
+    );
+  }
+  public getRoleListListPaging(pagination: IRequestPaging) {
+    const queryString = new URLSearchParams(pagination).toString();
+    return this.get(`/roles?${queryString}`).pipe(
+      map((res: IResponsePaging<ICompanyModel>) => {
         return res;
       })
     );

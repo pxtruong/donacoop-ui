@@ -6,20 +6,22 @@ import { ButtonAcceppt } from '../../../../shared/components/button-acceppt/butt
 import { SharedForm } from '../../../../shared/components/shared-form/shared-form';
 import { SharedTable } from '../../../../shared/components/shared-table/shared-table';
 import { IDynamicFormModel } from '../../../../shared/models/dynamic-form.model';
+import { IMessagePopup } from '../../../../shared/models/popup.model';
 import { ITableConfig } from '../../../../shared/models/table.model';
 import { DonacoopBaseComponent } from '../../../base/donacoop-base.component/donacoop-base.component';
+import { CDanaCoopBase } from '../../../base/models/basic-item.model';
 import { GET_ADD_NEW_DANG_KY_XE_TAI } from '../../constants/registrations-add-new-form.constant';
 import {
   RegistrationStatus,
   REVENUE_TYPE_VALUE,
 } from '../../constants/registrations-constant';
 import {
-  TRUCK_FIELD_ADD_NEW,
   REGISTRATIONS_FIELD,
+  TRUCK_FIELD_ADD_NEW,
 } from '../../constants/registrations-field.constant';
 import { GET_TABLE_CONFIG_REGISTRATTIONS } from '../../constants/registrations-table.constant';
 import { RegistrationsService } from '../../services/registrations.servies';
-import { IMessagePopup } from '../../../../shared/models/popup.model';
+import { IResponsePaging } from '../../../../core/models/http-service.model';
 
 @Component({
   selector: 'registrations',
@@ -56,15 +58,45 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     super(_dialog, _builder);
   }
 
-  protected override _loadData() {
-    this.subcribe(
-      this._registrationsService.getRegistrations(),
-      (res) => {
-        // remarkConfig
-        this._uppdateTableData(res);
-      },
-      (error) => {}
+  protected override _apiLoadData() {
+    if (!this.tableConfig.paginationConfig) {
+      return this._registrationsService.getRegistrations();
+    }
+    return this._registrationsService.getRegistrationsPaging(
+      CDanaCoopBase.makeRequestPaging(this.tableConfig.paginationConfig)
     );
+  }
+
+  protected override _prepareApplyTable(res: IResponsePaging<any>) {
+    const data = res?.data;
+    if (!this.tableConfig || !Array.isArray(data)) {
+      return [];
+    }
+
+    data.forEach((i, index: number) => {
+      if (i.registrationStatus === RegistrationStatus.PENDING) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-yellow',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.ENTERED) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-blue',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.EXITED) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-green',
+        };
+      }
+      if (i.registrationStatus === RegistrationStatus.INACTIVE) {
+        i[`${REGISTRATIONS_FIELD.STT}remarkConfig`] = {
+          className: 'remark-red',
+        };
+      }
+      i[REGISTRATIONS_FIELD.STT] = index + 1;
+    });
+    return res.data;
   }
 
   protected override _uppdateTableData(data: any[]) {
@@ -97,12 +129,14 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     });
     this.tableConfig.dataSource = [...data];
   }
+
   override updateAPI(id: any, record: any) {
     return this._registrationsService.updateRegistrations(
       id,
       this._prepareData(record)
     );
   }
+
   protected override _getContentEditPopup(record: any): IMessagePopup {
     return {
       title: `Sửa chuyến xe ${record.truck.licensePlate}`,
@@ -172,7 +206,11 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
       request[TRUCK_FIELD_ADD_NEW.WAREHOUSES_ID] = originalWarehouseId;
     }
     // map field
-    request[TRUCK_FIELD_ADD_NEW.TO_DATE] = record[TRUCK_FIELD_ADD_NEW.TO_DATE];
+    request[TRUCK_FIELD_ADD_NEW.TO_DATE] = `${record[
+      TRUCK_FIELD_ADD_NEW.TO_DATE
+    ].getFullYear()}-${
+      record[TRUCK_FIELD_ADD_NEW.TO_DATE].getMonth() + 1
+    }-${record[TRUCK_FIELD_ADD_NEW.TO_DATE].getDate()}T00:00:00.000Z`;
     request[TRUCK_FIELD_ADD_NEW.TRIP_NUM] =
       record[TRUCK_FIELD_ADD_NEW.TRIP_NUM];
     request[TRUCK_FIELD_ADD_NEW.TRUCK_ID] =
@@ -183,9 +221,11 @@ export class RegistrationsComponent extends DonacoopBaseComponent {
     // map time
     const toTime = record[TRUCK_FIELD_ADD_NEW.TO_TIME];
     const fromTime = record[TRUCK_FIELD_ADD_NEW.FROM_TIME];
-    request[
-      TRUCK_FIELD_ADD_NEW.TO_TIME
-    ] = `${fromTime.getHours()}:${fromTime.getMinutes()} - ${toTime.getHours()}:${toTime.getMinutes()}`;
+    if (toTime && fromTime) {
+      request[
+        TRUCK_FIELD_ADD_NEW.TO_TIME
+      ] = `${fromTime.getHours()}:${fromTime.getMinutes()} - ${toTime.getHours()}:${toTime.getMinutes()}`;
+    }
     return request;
   }
 
