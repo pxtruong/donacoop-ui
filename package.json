@@ -1,5 +1,5 @@
 {
-  "name": "donacoop",
+  "name": "donacoop-ui",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
