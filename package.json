@@ -7,9 +7,11 @@
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start:gateway": "npm --prefix gateway run start:dev",
-    "build:gateway:prod": "npm --prefix gateway install && npm --prefix gateway run build",
-    "start:gateway:prod": "npm --prefix gateway run start:prod"
+    "start:gw:dev": "npm --prefix gateway run start:dev",
+    "build:gw:dev": "npm --prefix gateway run build",
+    "start:gw:server:dev": "npm --prefix gateway run start:prod",
+    "build:gw:prod": "npm --prefix gateway install && npm --prefix gateway run build",
+    "start:gw:prod": "npm --prefix gateway run start:prod"
   },
   "prettier": {
     "overrides": [
