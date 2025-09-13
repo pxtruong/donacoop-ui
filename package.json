@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:gateway": "npm --prefix gateway run start:dev",
+    "install:gateway": "npm --prefix gateway run install",
     "build:gateway:prod": "npm --prefix gateway run build",
     "start:gateway:prod": "npm --prefix gateway run start:prod"
   },
