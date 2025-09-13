@@ -8,11 +8,11 @@ import {
 } from '../../../core/models/http-service.model';
 import { ICompanyModel } from '../models/company.model';
 import { IMachineriesModel } from '../models/machineries.model';
+import { IRoleModel } from '../models/role.model';
+import { IStoneTypeModel } from '../models/stone-type.model';
 import { ITruck } from '../models/truck.model';
 import { IUser } from '../models/user.model';
 import { IWarehousesModel } from '../models/warehouses.model';
-import { IStoneTypeModel } from '../models/stone-type.model';
-import { IRoleModel } from '../models/role.model';
 
 @Injectable({
   providedIn: 'root',
@@ -157,7 +157,7 @@ export class MasterDataService extends HTTPService {
   // #region role
   public getRoles() {
     return this.get('/roles').pipe(
-      map((res: IResponsePaging<IRoleModel>) => {
+      map((res: IRoleModel[]) => {
         return res;
       })
     );
