@@ -12,6 +12,7 @@
 /package-lock.json
 /yarn.lock
 
+/gateway/package-lock.json
 # Environment files
 /.env
 
